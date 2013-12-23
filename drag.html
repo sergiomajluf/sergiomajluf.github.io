@@ -37,7 +37,7 @@
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
     -->
-    
+
     <style>
       .draggable { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
       #draggableFree, #draggableQueen { margin-bottom:20px; }
@@ -49,7 +49,8 @@
 
     <script>
       $(function() {
-        $( "#draggableFree" ).draggable({ containment: "#containment-wrapper", scroll: false });
+        //$( "#draggableFree" ).draggable({ containment: "#containment-wrapper", scroll: false });
+        $( "#draggableFree" ).draggable();
 
         $( "#draggableQueen" ).draggable({ containment: "#containment-wrapper", scroll: false });  
         $( "#draggableQueen" ).draggable({ handle: "p" });
@@ -86,7 +87,7 @@
 
     <div class="container">
   
-        <h3>The boxes should be contained within this, ahem, container:</h3>
+        <h3>One of this boxes should be contained within this, ahem, container:</h3>
         <div id="containment-wrapper">
 
           <div id="draggableFree" class="draggable ui-widget-content">
@@ -94,7 +95,7 @@
           </div>
 
           <div id="draggableQueen" class="draggable ui-widget-content">
-           <p class="ui-widget-header">Drag handle only</p>
+           <p class="ui-widget-header">Drag w/handle only</p>
           </div>
 
        
