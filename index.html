@@ -72,10 +72,29 @@
           <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalSignIn">Open modal &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>Questions</h2>
+          <h2>Question 01</h2>
           <p>Use this window to do this and that...</p>
-          <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalQuestions">Open modal &raquo;</a></p>
+          <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalQuestion01">Open modal &raquo;</a></p>
         </div>
+
+ 		<div class="col-md-4">
+          <h2>Question 02</h2>
+          <p>Use this window to do this and that...</p>
+          <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalQuestion02">Open modal &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+          <h2>Question 03</h2>
+          <p>Use this window to do this and that...</p>
+          <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalQuestion03">Open modal &raquo;</a></p>
+        </div>
+
+        <div class="col-md-4">
+          <h2>Question 04</h2>
+          <p>Use this window to do this and that...</p>
+          <p><a class="btn btn-default btn-sm" href="#" role="button" data-toggle="modal" data-target="#myModalQuestion04">Open modal &raquo;</a></p>
+        </div>
+
         <div class="col-md-4">
           <h2>Identitites</h2>
           <p>Use this window to do this and that...</p>
@@ -150,7 +169,7 @@
 </div><!-- /.modal -->
 
 <!-- Modal - Questions -->
-<div class="modal fade" id="myModalQuestions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModalQuestion01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <form class="form-signin" role="form">
@@ -159,7 +178,7 @@
         <h4 class="modal-title" id="myModalLabel">What do I believe?</h4>
       </div>
       <div class="modal-body">
-        <textarea id="txtArea" rows="5" cols="70" class="form-control" placeholder="What do I believe" required autofocus></textarea>
+        <textarea id="q01" rows="5" cols="70" class="form-control" placeholder="What do I believe" required autofocus></textarea>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" type="submit">Save</button>
@@ -168,6 +187,70 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<!-- Modal - Questions -->
+<div class="modal fade" id="myModalQuestion02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-signin" role="form">
+	  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Why I believe it?</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="q02" rows="5" cols="70" class="form-control" placeholder="Why I believe it" required autofocus></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal - Questions -->
+<div class="modal fade" id="myModalQuestion03" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-signin" role="form">
+	  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Should I believe it?</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="q03" rows="5" cols="70" class="form-control" placeholder="Should I believe it" required autofocus></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Modal - Questions -->
+<div class="modal fade" id="myModalQuestion04" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-signin" role="form">
+	  <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">What do I stand for so passionately that I'd take backlash for it?</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="q04" rows="5" cols="70" class="form-control" placeholder="What do I stand" required autofocus></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 <!-- Modal - Identities -->
 <div class="modal fade" id="myModalIdentities" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -178,7 +261,50 @@
         <h4 class="modal-title" id="myModalLabel">Identities</h4>
       </div>
       <div class="modal-body">
-        ...
+        <table width="400" border="0">
+          <tr>
+            <td width="71" align="right">Identity:</td>
+            <td width="319"><input type="text" name="id" id="id"></td>
+          </tr>
+          <tr>
+            <td align="right">Description:</td>
+            <td><textarea name="id01_description2" cols="55" rows="2" id="id01_description2"></textarea></td>
+          </tr>
+          <tr>
+            <td align="right"><label for="id01_color2">Color:</label></td>
+            <td><input type="color" name="id01_color2" id="id01_color2"></td>
+          </tr>
+        </table>
+        &nbsp;
+        <table width="400" border="0">
+          <tr>
+            <td width="71" align="right">Identity:</td>
+            <td width="319"><input type="text" name="id2" id="id2"></td>
+          </tr>
+          <tr>
+            <td align="right">Description:</td>
+            <td><textarea name="id02_description" cols="55" rows="2" id="id02_description"></textarea></td>
+          </tr>
+          <tr>
+            <td align="right"><label for="id03_color">Color:</label></td>
+            <td><input type="color" name="id02_color" id="id01_color3"></td>
+          </tr>
+        </table>
+        &nbsp;
+        <table width="400" border="0">
+          <tr>
+            <td width="71" align="right">Identity:</td>
+            <td width="319"><input type="text" name="id3" id="id3"></td>
+          </tr>
+          <tr>
+            <td align="right">Description:</td>
+            <td><textarea name="id03_description3" cols="55" rows="2" id="id03_description3"></textarea></td>
+          </tr>
+          <tr>
+            <td align="right"><label for="id01_color4">Color:</label></td>
+            <td><input type="color" name="id03_color" id="id01_color4"></td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,10 +320,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Notes</h4>
+        <h4 class="modal-title" id="myModalLabel">Add a note</h4>
       </div>
       <div class="modal-body">
-        ...
+      <table width="600" height="154" border="0">
+          <tr>
+            <td width="132" height="69" align="right">Note:</td>
+            <td width="458"><textarea name="textarea" cols="55" rows="3" id="textarea"></textarea></td>
+          </tr>
+          <tr>
+            <td height="45" align="right">Link:</td>
+            <td><input name="url2" type="url" id="url2" size="35"></td>
+          </tr>
+          <tr>
+            <td align="right">Upload Image:</td>
+            <td><input type="file" name="fileField2" id="fileField2"></td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
