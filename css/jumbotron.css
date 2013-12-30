@@ -12,6 +12,9 @@ body {
   padding-bottom: 60px;
   background-color: transparent;
 }
+body.modal-open {
+overflow: auto;
+}
 .container {
 }
 h1, h2, h3, h4, h4 {
