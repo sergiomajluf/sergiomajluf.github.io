@@ -11,9 +11,10 @@
 
     <title>Moral Courage Drag&Drop Demo</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts
     <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap core CSS -->
+     -->
+     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
 
@@ -31,9 +32,12 @@
 
     <!-- Styles for dragging DEMO. Remove and edit afterwards 
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-    -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    
 
     <style>
       .draggable { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
@@ -47,69 +51,64 @@
     </style>
 
     <script>
-      $(function() {
-        //$( "#draggableFree" ).draggable({ containment: "#containment-wrapper", scroll: false });
-        $( "#draggableFree" ).draggable();
+$(function() {
+      
+  $( "#draggableCell" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });       
+      
+  $( "#area_q1" ).droppable({
+    accept: "#draggableCell",
+    activeClass: "ui-state-hover",
+    hoverClass: "ui-state-active",
+    drop: function( event, ui ) {
+      $(this).addClass( "answered" );
+      $("#draggableCell").addClass("answeredQ1");
+      //console.log("Answered Q1");
+      $('#myModalQuestion01').modal('show');
 
-        $( "#draggableQueen" ).draggable({ containment: "#containment-wrapper", scroll: false });  
-        $( "#draggableQueen" ).draggable({ handle: "p" });
-        $( "div, p" ).disableSelection();
-
-        $( "#draggableQueenDrop" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
-        $( "#draggableQueenDrop2" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
+      $( "#area_q2" ).droppable({
+        accept: "#draggableCell",
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        drop: function( event, ui ) {
+          $(this).addClass( "answered" );
+          //$("#draggableCell").removeClass("answeredQ1").
+          $("#draggableCell").addClass("answeredQ2");
+          console.log("Answered Q2");
+          $('#myModalQuestion02').modal('show');  
+      
+          $( "#area_q3" ).droppable({
+            accept: "#draggableCell",
+            activeClass: "ui-state-hover",
+            hoverClass: "ui-state-active",
+            drop: function( event, ui ) {
+              $(this).addClass( "answered" );
+              //$("#draggableCell").removeClass("answeredQ2").
+              $("#draggableCell").addClass("answeredQ3");
+              console.log("Answered Q3");
+              $('#myModalQuestion03').modal('show');  
         
-        $( "#area_q1" ).droppable({
-          accept: "#draggableQueenDrop",
-          activeClass: "ui-state-hover",
-          hoverClass: "ui-state-active",
-          drop: function( event, ui ) {
-            $( this )
-              .addClass( "answered" )
-              .find( "p" )
-                //.html( "Dropped 1!" );
-            $('#myModalQuestion01').modal('show');  
-            $( "#area_q2" ).droppable({
-              accept: "#draggableQueenDrop",
-              activeClass: "ui-state-hover",
-              hoverClass: "ui-state-active",
-              drop: function( event, ui ) {
-                $( this )
-                  .addClass( "answered" )
-                  .find( "p" )
-                    //.html( "Dropped!" );
-                $('#myModalQuestion02').modal('show');  
-                $( "#area_q3" ).droppable({
-                  accept: "#draggableQueenDrop",
-                  activeClass: "ui-state-hover",
-                  hoverClass: "ui-state-active",
-                  drop: function( event, ui ) {
-                    $( this )
-                      .addClass( "answered" )
-                      .find( "p" )
-                        //.html( "Dropped!" );
-                    $('#myModalQuestion03').modal('show');  
-                    $( "#area_q4" ).droppable({
-                      accept: "#draggableQueenDrop",
-                      activeClass: "ui-state-hover",
-                      hoverClass: "ui-state-active",
-                      drop: function( event, ui ) {
-                        $( this )
-                          .addClass( "answered" )
-                          .find( "p" )
-                            //.html( "Dropped!" );
-                        $('#myModalQuestion04').modal('show');
-                      }
-                    });
-                  }
-                });
-              }
-            });
-          }
-        });
+              $( "#area_q4" ).droppable({
+                accept: "#draggableCell",
+                activeClass: "ui-state-hover",
+                hoverClass: "ui-state-active",
+                drop: function( event, ui ) {
+                  $(this).addClass( "answered" );
+                  $("#draggableCell").removeClass("answeredQ3").
+                  $("#draggableCell").addClass("answeredQ4");
+                  console.log("Answered Q4");
+                  $('#myModalQuestion04').modal('show');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
 
        
 
-      });
+});
     </script>
 
   </head>
@@ -140,11 +139,14 @@
     </div>
 
 
-  <div class="container">
+
+
+
+ <div class="container">
      
       <div id="containment-wrapper">
 
-        <div id="draggableQueenDrop" class="draggable ui-widget-content">
+        <div id="draggableCell" class="draggable ui-widget-content">
           <p class="ui-widget-header">Cell</p>
         </div>
         

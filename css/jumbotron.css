@@ -11,6 +11,7 @@ body {
   padding-top: 60px;
   padding-bottom: 60px;
   background-color: transparent;
+	/*background-image: url(../i/bg.jpg);*/
 }
 body.modal-open {
 overflow: auto;
@@ -29,9 +30,9 @@ h1, h2, h3, h4, h4 {
 	position: relative;
 }
 #area_q1, #area_q2, #area_q3, #area_q4 {
-	/*background-color: grey;
-	*/
-	opacity: 0.4;
+	/*background-color: grey;*/
+	
+	opacity: 0.8;
 	margin: 0;
 	padding: 0;
 	text-indent: -9999px;
@@ -85,7 +86,7 @@ h1, h2, h3, h4, h4 {
 	opacity: 1;
 }
 
-#draggableQueenDrop {
+#draggableCell {
 	z-index: 10;
 	background: url(../i/cell.png) no-repeat center center;
 	border: none;
@@ -94,7 +95,16 @@ h1, h2, h3, h4, h4 {
 	top: 40%;
 }
 
-#draggableQueenDrop p.ui-widget-header {
+div#draggableCell.answeredQ1 {
+		background: url(../i/cell-q1.png) no-repeat center center;
+}
+div#draggableCell.answeredQ2 {
+		background: url(../i/cell-q2.png) no-repeat center center;
+}
+div#draggableCell.answeredQ3 {
+		background: url(../i/cell-q3.png) no-repeat center center;
+}
+#draggableCell p.ui-widget-header {
 	display: block;
 	width: 40px;
 	height: 40px;
@@ -105,3 +115,26 @@ h1, h2, h3, h4, h4 {
 	background-color: none;
 	
 }
+#demoContainer {
+	width: 600px;
+	height: 200px;
+	background: teal;
+	position: absolute;
+	top: 500px;
+	left: 300px;
+	z-index: 20;
+}
+div.demoDraggable {
+	background-color: red;
+	width: 100px;
+	height: 100px;
+	border-radius:50px;
+	text-align: center;
+}
+div.demoDraggable p{
+	background-color: blue;
+	width: 30px;
+	height: 30px;
+	border-radius:20px;
+	
+	}
