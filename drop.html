@@ -47,6 +47,7 @@
       h3 { clear: left; }
       #droppable, #droppable2 { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
  
+
     </style>
 
     <script>
@@ -58,8 +59,8 @@
         $( "#draggableQueen" ).draggable({ handle: "p" });
         $( "div, p" ).disableSelection();
 
-        $( "#draggableQueenDrop" ).draggable({ handle: "p"});
-        $( "#draggableQueenDrop2" ).draggable({ handle: "p"});
+        $( "#draggableQueenDrop" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
+        $( "#draggableQueenDrop2" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
         
         $( "#droppable" ).droppable({
           accept: "#draggableQueenDrop",
