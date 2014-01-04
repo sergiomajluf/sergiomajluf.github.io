@@ -28,7 +28,7 @@ This documents describes all the pages/views/functionalities we should build, an
 * User profile | edit name, email, pass, background
 
 
-## List of modals
+## List of modals (OK)
 * Questions > Textbox
 * Identities > Title, description, color
 * Notes > Textbox
@@ -42,10 +42,11 @@ This documents describes all the pages/views/functionalities we should build, an
 
 ---
 
-## Todo
-* Make it smaller, fit in window
+## Updated Front-End To do (04.12)
+* Make spiral smaller, fit in window
 * Background image / same illustrator image
-* Cell, while answering questions, keep adding outer layers
+* Cell, while answering questions, add circles (planets) around it. 
+* The outer layers represents the identities, so they vary according to the amount (max. 4) of identities the user creates when creating a new cell (the beginning and each time you click in the center of the spiral.
 * constrain movement within spiral
 
 ---
