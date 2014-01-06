@@ -12,6 +12,33 @@ This documents describes all the pages/views/functionalities we should build, an
 
 ---
 
+##
+
+* On click: Add Notes | Exceptions over the questions | When you click, add an icon and open the note modal
+* Create new cell, connect that to the Identities Modal > The number of identities = the number of inner rings 
+* Not critical > Prevent tooltip while dragging (mouse pressing)
+* REMEMBER: The whole cell is clickable and it will open the identities modal > Try identities as planets, Implement boostrap tooltip and double-click
+* Alternative: Status Bar Tooltip
+* Global Save among all modals (Think about alternatives - maybe AJAX)
+
+
+* Create, Style and Solve the Back-End Issue of the Add New Student Page 
+* Add a Plus icon that will add cells (Open Identities Modal)
+* For this thursday: Disable plus icon after you create the first cell
+* Remove Nav Bar / Icon for Color BG change
+* Update the Modals
+
+
+* Maybe AJAX - Create variables representing the elements on the modal windows for the questions, so each cell will have unique modals (texts).
+
+
+
+
+
+
+
+
+
 ## Front end
 ###First Page
 * **Sign Up/Register** - Where users register their Name and E-mail. This can be ignored for the beta, where the teacher can sign them all up. In this case, an _admin_ view is needed for her to do this.
