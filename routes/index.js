@@ -162,7 +162,7 @@ exports.data_detail = function(req, res) {
 /*
         GET /create
 */
-exports.astroForm = function(req, res){
+exports.userForm = function(req, res){
 
         var templateData = {
                 page_title : 'Create a new user'
@@ -219,65 +219,95 @@ exports.createUser = function(req, res) {
                 }
         });
 
+};
 
-        //         var newCell = new cellModel({
-        //         layers : req.body.layers,
-        //         Q1 : req.body.Q1,
-        //         Q2 : req.body.Q2,
-        //         Q3 : req.body.Q3,
-        //         Q4 : req.body.Q4,
-        //         slug : req.body.name.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_')
 
-        // });
+
+
+exports.createCell = function(req, res) {
+        
+        console.log("received form submission");
+        console.log(req.body);
+
+        // accept form post data
+        var newCell = new cellModel({
+                layers : req.body.layers,
+                posX : req.body.posX,
+                posY : req.body.posY,
+                Q1 : req.body.Q1,
+                Q2 : req.body.Q2,
+                Q3 : req.body.Q3,
+                Q4 : req.body.Q4,
+                slug : req.body.name.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_')
+
+        });
 
         // you can also add properties with the . (dot) notation
         }
+        
+        // save the newAstro to the database
+        newCell.save(function(err){
+                if (err) {
+                        console.error("Error on saving new user");
+                        console.error(err); // log out to Terminal all errors
+                // return res.send("There was an error when creating a new astronaut");
 
+                } else {
+                        console.log("Created a new cell!");
+                        console.log(newCell);
+                        
+                        Q1
 
+                        // write code to save the cell - HTML/CSS ??
+
+                        //res.redirect('/users/'+ newUser.slug)
+                }
+        });
 
 };
 
 
-exports.updateUser = function(req, res) {
 
-        // Get astronaut from URL params
-        var user_id = req.params.astro_id;
 
-        // prepare form data
-        var updatedData = {
-                name : req.body.name,
-                photo : req.body.photoUrl,
-                source : {
-                        name : req.body.source_name,
-                        url : req.body.source_url
-                },
-                birthdate : moment(req.body.birthdate).toDate(),
-                skills : req.body.skills.split(","),
+exports.createNotes = function(req, res) {
+        
+        console.log("received notes");
+        console.log(req.body);
 
-                walkedOnMoon : (req.body.walkedonmoon) ? true : false
-                
+        // accept form post data
+        var newNote = new noteModel({
+                note : req.body.note,
+                posX : req.body.posX,
+                posY : req.body.posY,
+                link : req.body.link,
+                slug : req.body.name.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'_')
+
+        });
+
+        // you can also add properties with the . (dot) notation
         }
-
-
-        // query for astronaut
-        astronautModel.update({slug:astro_id}, { $set: updatedData}, function(err, astronaut){
-
+        
+        // save the newAstro to the database
+        newNote.save(function(err){
                 if (err) {
-                        console.error("ERROR: While updating");
-                        console.error(err);                        
-                }
-
-                if (astronaut != null) {
-                        res.redirect('/astronauts/' + astro_id);
+                        console.error("Error on saving new note");
+                        console.error(err); // log out to Terminal all errors
+                // return res.send("There was an error when creating a new astronaut");
 
                 } else {
-
-                        // unable to find astronaut, return 404
-                        console.error("unable to find astronaut: " + astro_id);
-                        return res.status(404).render('404.html');
+                        console.log("Created a new note!");
+                        console.log(newNote);
+                        
+                        // write code to save the note - HTML/CSS ??
+                         
+                        //res.redirect('/users/'+ newUser.slug)
                 }
-        })
-}
+        });
+
+};
+
+
+
 
 exports.postShipLog = function(req, res) {
 
@@ -319,7 +349,7 @@ exports.postShipLog = function(req, res) {
                                 }
                         });
 
-                        res.redirect('/users/' + astro_id);
+                        // res.redirect('/users/' + astro_id);
 
 
                 } else {

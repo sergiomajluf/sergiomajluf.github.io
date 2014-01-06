@@ -33,7 +33,11 @@ var UserSchema = new Schema({
 // define cell schema
 var CellSchema = new Schema({
     slug : { type: String, lowercase: true, required: true, unique: true },
+    owner : String,
 	layers : String,
+	identity01 : String,
+	identity02 : String,
+	identity03 : String,
 	posX : String,
 	posY : String,
 	Q1: String,
@@ -47,9 +51,10 @@ var CellSchema = new Schema({
 // define note schema
 var NotesSchema = new Schema({
 	note : String,
-	upload : {
-		url : String
-	},
+	owner : String,
+	posX : String,
+	posY : String,
+	link : String,
 	lastupdated : { type: Date, default: Date.now },
     shiplogs : [shipLogSchema]
 

@@ -35,8 +35,8 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 
   // database - skipping until week 5
-  app.db = mongoose.connect(process.env.MONGOLAB_URI);
-  console.log("connected to database");
+  // app.db = mongoose.connect(process.env.MONGOLAB_URI);
+  // console.log("connected to database");
   
 });
 
@@ -65,18 +65,18 @@ var routes = require('./routes/index.js');
 app.get('/', routes.index);
 
 //new astronaut routes
-app.get('/create',routes.astroForm); //display form
-app.post('/create',routes.createAstro); //form POST submits here
+app.get('/create',routes.userForm); //display form
+app.post('/create',routes.createUser); //form POST submits here
 
 // display a single astronaut
 app.get('/users/:user_id', routes.detail);
 
 // edit astronaut
-app.get('/users/:user_id/edit', routes.editAstroForm); //GET display form
-app.post('/users/:user_id/edit', routes.updateAstro); //POST update database
+app.get('/users/:user_id/edit', routes.editUserForm); //GET display form
+app.post('/users/:user_id/edit', routes.updateUser); //POST update database
 
 // delete astronaut
-app.get('/users/:user_id/delete', routes.deleteAstro);
+app.get('/users/:user_id/delete', routes.deleteUser);
 
 // add ship's log
 app.post('/users/:astro_id/addshiplog', routes.postShipLog);
