@@ -82,3 +82,6 @@ JQuery Image Map
 
 List Effects - We might customize it to use in the NOTES
 [http://sarasoueidan.com/demos/creative-list-effects/](http://)
+
+Page Menu - For changing settings
+[http://tympanus.net/Tutorials/CircularNavigation/index.html] (http://)
