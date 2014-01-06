@@ -11,9 +11,16 @@
 
     <title>Moral Courage Drag&Drop Demo</title>
 
+<<<<<<< HEAD
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
     <!-- Bootstrap core CSS -->
+=======
+    <!-- Google Fonts
+    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+     -->
+     <!-- Bootstrap core CSS -->
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
 
@@ -31,9 +38,18 @@
 
     <!-- Styles for dragging DEMO. Remove and edit afterwards 
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<<<<<<< HEAD
     -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+=======
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
 
     <style>
       .draggable { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
@@ -47,6 +63,7 @@
     </style>
 
     <script>
+<<<<<<< HEAD
       $(function() {
         //$( "#draggableFree" ).draggable({ containment: "#containment-wrapper", scroll: false });
         $( "#draggableFree" ).draggable();
@@ -110,6 +127,66 @@
        
 
       });
+=======
+$(function() {
+      
+  $( "#draggableCell" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });       
+      
+  $( "#area_q1" ).droppable({
+    accept: "#draggableCell",
+    activeClass: "ui-state-hover",
+    hoverClass: "ui-state-active",
+    drop: function( event, ui ) {
+      $(this).addClass( "answered" );
+      $("#draggableCell").addClass("answeredQ1");
+      //console.log("Answered Q1");
+      $('#myModalQuestion01').modal('show');
+
+      $( "#area_q2" ).droppable({
+        accept: "#draggableCell",
+        activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+        drop: function( event, ui ) {
+          $(this).addClass( "answered" );
+          //$("#draggableCell").removeClass("answeredQ1").
+          $("#draggableCell").addClass("answeredQ2");
+          console.log("Answered Q2");
+          $('#myModalQuestion02').modal('show');  
+      
+          $( "#area_q3" ).droppable({
+            accept: "#draggableCell",
+            activeClass: "ui-state-hover",
+            hoverClass: "ui-state-active",
+            drop: function( event, ui ) {
+              $(this).addClass( "answered" );
+              //$("#draggableCell").removeClass("answeredQ2").
+              $("#draggableCell").addClass("answeredQ3");
+              console.log("Answered Q3");
+              $('#myModalQuestion03').modal('show');  
+        
+              $( "#area_q4" ).droppable({
+                accept: "#draggableCell",
+                activeClass: "ui-state-hover",
+                hoverClass: "ui-state-active",
+                drop: function( event, ui ) {
+                  $(this).addClass( "answered" );
+                  $("#draggableCell").removeClass("answeredQ3").
+                  $("#draggableCell").addClass("answeredQ4");
+                  console.log("Answered Q4");
+                  $('#myModalQuestion04').modal('show');
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+
+       
+
+});
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
     </script>
 
   </head>
@@ -140,11 +217,22 @@
     </div>
 
 
+<<<<<<< HEAD
   <div class="container">
      
       <div id="containment-wrapper">
 
         <div id="draggableQueenDrop" class="draggable ui-widget-content">
+=======
+
+
+
+ <div class="container">
+     
+      <div id="containment-wrapper">
+
+        <div id="draggableCell" class="draggable ui-widget-content">
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
           <p class="ui-widget-header">Cell</p>
         </div>
         

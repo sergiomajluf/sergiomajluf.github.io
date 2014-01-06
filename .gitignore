@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 /private
 .DS_Store
+=======
+.DS_Store
+/private
+/node_modules
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
