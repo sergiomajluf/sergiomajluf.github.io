@@ -79,3 +79,6 @@ Whole explanation of the spiral process, Fibonacci sequence, and more than I can
 
 JQuery Image Map
 [http://www.outsharked.com/imagemapster/default.aspx?demos.html#usa](http://)
+
+List Effects - We might customize it to use in the NOTES
+[http://sarasoueidan.com/demos/creative-list-effects/](http://)
