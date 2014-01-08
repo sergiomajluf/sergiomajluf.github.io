@@ -16,6 +16,7 @@
      -->
      <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -32,10 +33,12 @@
 
     <!-- Styles for dragging DEMO. Remove and edit afterwards 
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    -->
     <script src="js/jquery-1.9.1.js"></script>
+ 
+    -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     
 
@@ -50,9 +53,11 @@
 
     </style>
 
-    <script>
+<script>
 $(function() {
       
+  $("body").disableSelection();
+  
   $( "#draggableCell" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });       
       
   $( "#area_q1" ).droppable({
@@ -105,16 +110,58 @@ $(function() {
       });
     }
   });
-
-       
-
+  
+  $('#example').tooltip({
+    'show': true,
+        'placement': 'top',
+        delay: { show: 1000, hide: 50 }
 });
-    </script>
 
-  </head>
+  $('.doubleClickArea').click(function(e) {
+    var offset = $(this).offset();
+    $('#position').text("Note would be created at "+(e.clientX - offset.left) + ", " + (e.clientY - offset.top));
+    //open1((e.clientX - offset.left), (e.clientY - offset.top))
+  });
+
+  $('#draggableCell').click(function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	return false;
+  });
+  $('#draggableCell').dblclick(function(e) {
+    $('#position').text("Double clicking the cell will open it's modal");
+	e.stopPropagation();
+	e.preventDefault();
+	return false;
+  });
+  
+  $('.area_q').click(function(e) {
+    $('#position').text("[Click] Can't add note over a question");
+    e.stopPropagation();
+	e.preventDefault();
+	return false;
+  }); 
+  $('.area_q').dblclick(function(e) {
+    $('#position').text("[Double Click] Can't add note over a question");
+    e.stopPropagation();
+	e.preventDefault();
+	return false;
+  });  
+
+
+
+		  
+});
+
+
+
+
+
+</script>
+
+</head>
 
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -137,17 +184,14 @@ $(function() {
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-
-
-
-
- <div class="container">
+	
+	<div class="container">
      
-      <div id="containment-wrapper">
+      <div id="containment-wrapper" class="doubleClickArea">
 
         <div id="draggableCell" class="draggable ui-widget-content">
-          <p class="ui-widget-header">Cell</p>
+          <p id="example" class="ui-widget-header" data-toggle="tooltip" title="Double click to edit your Identities.">Cell</p>
+          <a href="" class="" data-toggle="tooltip" title="first tooltip">Open</a>
         </div>
         
         <div id="area_q1" class="area_q">
@@ -164,6 +208,10 @@ $(function() {
 
         <div id="area_q4" class="area_q">
           <p>What do I stand for so passionately that I'd take backlash for it?</p>
+        </div>
+        
+        <div id="user_notes">
+       	  <p id="position">Double click to see the position!</p>          	   
         </div>
      
       </div>
@@ -265,9 +313,10 @@ $(function() {
     <!-- Placed at the end of the document so the pages load faster -->
     <!--
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
 -->
     <script src="js/bootstrap.min.js"></script>
-
     
  
   </body>
