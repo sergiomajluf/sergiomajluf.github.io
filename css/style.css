@@ -172,11 +172,10 @@ h3 {
 }
 #draggableCell {
 	z-index: 100;
-	background: url(../i/cell-q1.png) no-repeat center center;
-	opacity: 0.6;
+	background: url(../i/cell-q0.png) no-repeat center center;
 	border: none;
 	position: relative;
-	left: 28%;
+	left: 45%;
 	top: 40%;
 }
 
@@ -192,13 +191,16 @@ h3 {
 #draggableCell.answeredQ3 {
 	background: url(../i/cell-q3.png) no-repeat center center;
 }
+#draggableCell.answeredQ4 {
+	background: url(../i/cell-q4.png) no-repeat center center;
+}
 
 #draggableCell p.ui-widget-header {
-	width: 40px;
-	height: 40px;
-	border-radius: 40px;
+	width: 35px;
+	height: 35px;
+	border-radius: 35px;
 	text-align: center;
-	margin: 32px auto;
+	margin: 35px auto;
 	text-indent: -9999px;
 	background-color: none;
 }
@@ -384,3 +386,45 @@ text-align: left;
 }
 
 /* @end */
+#answerPlanets {
+	width:30px;
+heigth:30px;
+}
+#answerPlanets ol {
+	position: relative;
+	top: -40px;
+	left: -40px;
+	    transform:rotate(17deg);
+    -ms-transform:rotate(17deg); /* IE 9 */
+-webkit-transform:rotate(17deg); /* Safari and Chrome */
+}
+#answerPlanets li {
+	display: block;
+	width: 24px;
+	height: 24px;
+	border-radius: 30px;
+	background: #3b9010 url(../i/cell-q0.png) no-repeat center center;
+	border: none;
+	position: absolute;
+	text-align: center;
+	color: #feffff;
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 2;
+}
+#answerPlanets li.answer1 {
+	left: 0;
+	top: 0;
+}
+#answerPlanets li.answer2 {
+	right: 0;
+	top: 0;
+}
+#answerPlanets li.answer3 {
+	right: 0;
+	bottom: 0;
+}
+#answerPlanets li.answer4 {
+	left: 0;
+	bottom: 0;
+}

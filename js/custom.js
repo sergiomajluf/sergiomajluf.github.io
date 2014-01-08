@@ -1,14 +1,19 @@
 var debugging = false;
 
 $(function() {
-      
+
+  $('#draggableCell').hide();
+  $('#answerPlanets li').hide();
+    
   // Disable selection to prevent visual quirk
   $('body').disableSelection();
   
-  // Disable selection to prevent visual quirk
+  // Create Identity
   $('#add_identity > a').click(function(){
-	  $('#draggableCell').removeClass("hidden");
-	  $('#position').text("Drag your identity's cell to explore the questions. Double click elsewhere to add a note.");  
+	  //$('#draggableCell').removeClass("hidden");
+	  $('#position').text("Drag your identity's cell to explore the questions. Double click elsewhere to add a note.");
+	  $(this).fadeOut('slow');  
+	  $('#draggableCell').fadeIn('slow');
   });
   
   
@@ -38,17 +43,7 @@ $(function() {
 	  return scrOfY;
 	}
  
-  // Debugging - Print x, y and scroll
-  if (debugging){
-  $( "#spiral" ).mousemove(function( event ) {
-	var that = $("#containment-wrapper");
-	var spiralMargin = (that.outerHeight(true) - that.innerHeight());
-	var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
-	var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
-	$( "#positionw" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
-	$( "#position" ).text( "( event.clientX, event.clientY ) : " + clientCoords + " scroll " + getScrollY() );
-  });
-  }
+
 
   // Sequentially activate the Questions as drop zones
   $( "#area_q1" ).droppable({
@@ -101,7 +96,35 @@ $(function() {
     }
   });
   
-  // Tooltips and User Preferences
+  // Fade in Planets on modal close
+  $('#myModalQuestion01').on('hidden.bs.modal', function () {
+	  $('li.answer1').fadeIn('slow'); 
+  })
+  $('#myModalQuestion02').on('hidden.bs.modal', function () {
+	  $('li.answer2').fadeIn('slow');  
+  })
+  $('#myModalQuestion03').on('hidden.bs.modal', function () {
+	  $('li.answer3').fadeIn('slow');  
+  })
+  $('#myModalQuestion04').on('hidden.bs.modal', function () {
+	  $('li.answer4').fadeIn('slow');  
+  })  
+  
+
+  $('li.answer1').click(function(){
+	  $('#myModalQuestion01').modal('show'); 
+  });  
+  $('li.answer2').click(function(){
+	  $('#myModalQuestion02').modal('show'); 
+  });  
+  $('li.answer3').click(function(){
+	  $('#myModalQuestion03').modal('show'); 
+  });  
+  $('li.answer4').click(function(){
+	  $('#myModalQuestion04').modal('show'); 
+  });  
+
+// Tooltips and User Preferences
   $('#userPreferences').tooltip({
     	'show': true,
         'placement': 'auto',
@@ -159,16 +182,28 @@ $(function() {
   
   // Prevent adding notes over the questions
   $('.area_q').click(function(e) {
-    $('#position').text("[Click] Can't add a note on top of a question. Try elsewhere on the spiral");
+    $('#position').text("[Click]Can't add a note on top of a question. Try elsewhere on the spiral");
     e.stopPropagation();
 	e.preventDefault();
 	return false;
   }); 
   $('.area_q').dblclick(function(e) {
-    $('#position').text("[Double Click] Can't add note over a question");
+    $('#position').text("[Double Click]Can't add a note on top of a question. Try elsewhere on the spiral");
     e.stopPropagation();
 	e.preventDefault();
 	return false;
   });  
-		  
+	
+	  // Debugging - Print x, y and scroll
+  if (debugging){
+  $( "#spiral" ).mousemove(function( event ) {
+	var that = $("#containment-wrapper");
+	var spiralMargin = (that.outerHeight(true) - that.innerHeight());
+	var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
+	var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
+	$( "#positionw" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
+	$( "#position" ).text( "( event.clientX, event.clientY ) : " + clientCoords + " scroll " + getScrollY() );
+  });
+  }
+  	  
 });
