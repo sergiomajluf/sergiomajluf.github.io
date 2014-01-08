@@ -11,10 +11,16 @@
 
     <title>Moral Courage Drag&Drop Demo</title>
 
+<<<<<<< HEAD
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap core CSS -->
+=======
     <!-- Google Fonts
     <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
      -->
      <!-- Bootstrap core CSS -->
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
@@ -33,7 +39,16 @@
 
     <!-- Styles for dragging DEMO. Remove and edit afterwards 
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<<<<<<< HEAD
     
+=======
+<<<<<<< HEAD
+    -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+=======
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="js/jquery-1.9.1.js"></script>
  
@@ -41,6 +56,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
 
     <style>
       .draggable { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
@@ -53,7 +69,76 @@
 
     </style>
 
+<<<<<<< HEAD
 <script>
+=======
+    <script>
+<<<<<<< HEAD
+      $(function() {
+        //$( "#draggableFree" ).draggable({ containment: "#containment-wrapper", scroll: false });
+        $( "#draggableFree" ).draggable();
+
+        $( "#draggableQueen" ).draggable({ containment: "#containment-wrapper", scroll: false });  
+        $( "#draggableQueen" ).draggable({ handle: "p" });
+        $( "div, p" ).disableSelection();
+
+        $( "#draggableQueenDrop" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
+        $( "#draggableQueenDrop2" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });
+        
+        $( "#area_q1" ).droppable({
+          accept: "#draggableQueenDrop",
+          activeClass: "ui-state-hover",
+          hoverClass: "ui-state-active",
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "answered" )
+              .find( "p" )
+                //.html( "Dropped 1!" );
+            $('#myModalQuestion01').modal('show');  
+            $( "#area_q2" ).droppable({
+              accept: "#draggableQueenDrop",
+              activeClass: "ui-state-hover",
+              hoverClass: "ui-state-active",
+              drop: function( event, ui ) {
+                $( this )
+                  .addClass( "answered" )
+                  .find( "p" )
+                    //.html( "Dropped!" );
+                $('#myModalQuestion02').modal('show');  
+                $( "#area_q3" ).droppable({
+                  accept: "#draggableQueenDrop",
+                  activeClass: "ui-state-hover",
+                  hoverClass: "ui-state-active",
+                  drop: function( event, ui ) {
+                    $( this )
+                      .addClass( "answered" )
+                      .find( "p" )
+                        //.html( "Dropped!" );
+                    $('#myModalQuestion03').modal('show');  
+                    $( "#area_q4" ).droppable({
+                      accept: "#draggableQueenDrop",
+                      activeClass: "ui-state-hover",
+                      hoverClass: "ui-state-active",
+                      drop: function( event, ui ) {
+                        $( this )
+                          .addClass( "answered" )
+                          .find( "p" )
+                            //.html( "Dropped!" );
+                        $('#myModalQuestion04').modal('show');
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+
+       
+
+      });
+=======
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
 $(function() {
       
   $("body").disableSelection();
@@ -152,6 +237,11 @@ $(function() {
 
 		  
 });
+<<<<<<< HEAD
+=======
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
+    </script>
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
 
 
 
@@ -184,14 +274,35 @@ $(function() {
         </div><!--/.nav-collapse -->
       </div>
     </div>
+<<<<<<< HEAD
 	
 	<div class="container">
+=======
+
+
+<<<<<<< HEAD
+  <div class="container">
+     
+      <div id="containment-wrapper">
+
+        <div id="draggableQueenDrop" class="draggable ui-widget-content">
+=======
+
+
+
+ <div class="container">
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
      
       <div id="containment-wrapper" class="doubleClickArea">
 
         <div id="draggableCell" class="draggable ui-widget-content">
+<<<<<<< HEAD
           <p id="example" class="ui-widget-header" data-toggle="tooltip" title="Double click to edit your Identities.">Cell</p>
           <a href="" class="" data-toggle="tooltip" title="first tooltip">Open</a>
+=======
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
+          <p class="ui-widget-header">Cell</p>
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
         </div>
         
         <div id="area_q1" class="area_q">

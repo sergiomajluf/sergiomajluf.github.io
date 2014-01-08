@@ -1,5 +1,13 @@
+<<<<<<< HEAD
+/private
+.DS_Store
+=======
 .DS_Store
 /private
 /node_modules
+<<<<<<< HEAD
 /v02
 v03
+=======
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a

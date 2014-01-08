@@ -16,6 +16,9 @@ body {
 body.modal-open {
 overflow: auto;
 }
+body.modal-open {
+overflow: auto;
+}
 .container {
 }
 h1, h2, h3, h4, h4 {
@@ -31,9 +34,15 @@ h1, h2, h3, h4, h4 {
 	z-index: 0;
 }
 #area_q1, #area_q2, #area_q3, #area_q4 {
+<<<<<<< HEAD
+	/*background-color: grey;
+	*/
+	opacity: 0.4;
+=======
 	/*background-color: grey;*/
 	
 	opacity: 0.8;
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
 	margin: 0;
 	padding: 0;
 	text-indent: -9999px;
@@ -91,12 +100,21 @@ h1, h2, h3, h4, h4 {
 	opacity: 1;
 }
 
+<<<<<<< HEAD
 #user_notes {
 	z-index: 30;
 }
 
 #draggableCell {
 	z-index: 100;
+=======
+<<<<<<< HEAD
+#draggableQueenDrop {
+=======
+#draggableCell {
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
+	z-index: 10;
+>>>>>>> 0832df144f7da09017be3d7e66a7b6739312536a
 	background: url(../i/cell.png) no-repeat center center;
 	border: none;
 	position: relative;
@@ -104,6 +122,9 @@ h1, h2, h3, h4, h4 {
 	top: 40%;
 }
 
+<<<<<<< HEAD
+#draggableQueenDrop p.ui-widget-header {
+=======
 div#draggableCell.answeredQ1 {
 		background: url(../i/cell-q1.png) no-repeat center center;
 }
@@ -114,6 +135,7 @@ div#draggableCell.answeredQ3 {
 		background: url(../i/cell-q3.png) no-repeat center center;
 }
 #draggableCell p.ui-widget-header {
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
 	display: block;
 	width: 40px;
 	height: 40px;
@@ -123,6 +145,9 @@ div#draggableCell.answeredQ3 {
 	text-indent: -9999px;
 	background-color: none;
 	
+<<<<<<< HEAD
+}
+=======
 }
 #demoContainer {
 	width: 600px;
@@ -147,3 +172,4 @@ div.demoDraggable p{
 	border-radius:20px;
 	
 	}
+>>>>>>> 0826dbb3d562f591c5635b2b9cfd67758a4730b8
