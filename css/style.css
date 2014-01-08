@@ -167,29 +167,33 @@ h3 {
 	margin: 10px;
 }
 
+#draggableCell.hidden {
+	display: none;	
+}
 #draggableCell {
 	z-index: 100;
-	background: url(../i/cell.png) no-repeat center center;
+	background: url(../i/cell-q1.png) no-repeat center center;
+	opacity: 0.6;
 	border: none;
 	position: relative;
 	left: 28%;
 	top: 40%;
 }
 
-#draggableQueenDrop p.ui-widget-header {
+#draggableCell.answeredQ1 {
+	opacity: 1;
 	background: url(../i/cell-q1.png) no-repeat center center;
 }
 
-div#draggableCell.answeredQ2 {
+#draggableCell.answeredQ2 {
 	background: url(../i/cell-q2.png) no-repeat center center;
 }
 
-div#draggableCell.answeredQ3 {
+#draggableCell.answeredQ3 {
 	background: url(../i/cell-q3.png) no-repeat center center;
 }
 
 #draggableCell p.ui-widget-header {
-	display: block;
 	width: 40px;
 	height: 40px;
 	border-radius: 40px;
@@ -346,6 +350,37 @@ div#draggableCell.answeredQ3 {
 
 /* @end */
 
+/* @group NOTES */
+
 #user_notes {
+position: absolute;
 	z-index: 30;
 }
+.userNote{
+position: absolute;
+text-align: left;
+}
+
+/* @end */
+
+/* @group IDENTITY
+ */
+
+#add_identity {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 363px;
+	top: 340px;
+}
+#add_identity a.glyphicon {
+    font-size: 2em;
+  color: #D84A4A;
+  background-image: url(../i/bg_button.png);
+}
+#add_identity a.glyphicon:hover {
+    text-decoration: none;
+	color: #9e1f36;
+}
+
+/* @end */
