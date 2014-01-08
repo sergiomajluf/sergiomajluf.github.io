@@ -1,0 +1,170 @@
+extends layout
+
+block content
+ body
+      .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        .container
+          .navbar-header
+            a.navbar-brand(href='') Moral Courage 
+              strong #{student.name}
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+               li
+                 a#userPreferences(href='#', title='Edit user preferences', data-toggle='tooltip')
+                   i.glyphicon.glyphicon-cog
+               li.active
+                 a#position Drag your identity's cell to explore the questions
+          //
+            /.nav-collapse 
+      .container
+        #containment-wrapper.doubleClickArea
+          #draggableCell.draggable.ui-widget-content
+            p#cell.ui-widget-header(data-toggle='tooltip', title='Double click to edit your Identities.') Cell
+          #area_q1.area_q
+            p What do I believe?
+          #area_q2.area_q
+            p Why do I believe it?
+          #area_q3.area_q
+            p Should I believe it?
+          #area_q4.area_q
+            p What do I stand for so passionately that I'd take backlash for it?
+          #user_notes
+      //
+         /container 
+      //
+         Modal - Questions 
+      #myModalQuestion01.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            form.form-signin(role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#myModalLabel.modal-title What do I believe?
+              .modal-body
+                textarea#q01.form-control(rows='5', cols='70', placeholder='What do I believe', required='required', autofocus='autofocus') #{student.answer1}
+              .modal-footer
+                button.btn.btn-primary(type='submit', data-dismiss='modal') Save
+          //
+             /.modal-content 
+        //
+           /.modal-dialog 
+      //
+         /.modal 
+      //
+         Modal - Questions 
+      #myModalQuestion02.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            form.form-signin(role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#myModalLabel.modal-title Why I believe it?
+              .modal-body
+                textarea#q02.form-control(rows='5', cols='70', placeholder='Why I believe it', required='required', autofocus='autofocus') #{student.answer2}
+              .modal-footer
+                button.btn.btn-primary(type='submit', data-dismiss='modal') Save
+          //
+             /.modal-content 
+        //
+           /.modal-dialog 
+      //
+         /.modal 
+      //
+         Modal - Questions 
+      #myModalQuestion03.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            form.form-signin(role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#myModalLabel.modal-title Should I believe it?
+              .modal-body
+                textarea#q03.form-control(rows='5', cols='70', placeholder='Should I believe it', required='required', autofocus='autofocus') #{student.answer3}
+              .modal-footer
+                button.btn.btn-primary(type='submit', data-dismiss='modal') Save
+          //
+             /.modal-content 
+        //
+           /.modal-dialog 
+      //
+         /.modal 
+      //
+         Modal - Questions 
+      #myModalQuestion04.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            form.form-signin(role='form')
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4#myModalLabel.modal-title What do I stand for so passionately that I'd take backlash for it?
+              .modal-body
+                textarea#q04.form-control(rows='5', cols='70', placeholder='What do I stand', required='required', autofocus='autofocus') #{student.answer4}
+              .modal-footer
+                button.btn.btn-primary(type='submit', data-dismiss='modal') Save
+          //
+             /.modal-content 
+        //
+           /.modal-dialog 
+      //
+         /.modal
+         //
+     Modal - Identities 
+    #myModalIdentities.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4#myModalLabel.modal-title Identities
+          .modal-body
+            table(width='400', border='0')
+              tr
+                td(width='71', align='right') Identity:
+                td(width='319')
+                  input#id(type='text', name='id')
+              tr
+                td(align='right') Description:
+                td
+                  textarea#id01_description2(name='id01_description2', cols='55', rows='2')
+              tr
+                td(align='right')
+                  label(for='id01_color2') Color:
+                td
+                  input#id01_color2(type='color', name='id01_color2')
+            table(width='400', border='0')
+              tr
+                td(width='71', align='right') Identity:
+                td(width='319')
+                  input#id2(type='text', name='id2')
+              tr
+                td(align='right') Description:
+                td
+                  textarea#id02_description(name='id02_description', cols='55', rows='2')
+              tr
+                td(align='right')
+                  label(for='id03_color') Color:
+                td
+                  input#id01_color3(type='color', name='id02_color')
+            table(width='400', border='0')
+              tr
+                td(width='71', align='right') Identity:
+                td(width='319')
+                  input#id3(type='text', name='id3')
+              tr
+                td(align='right') Description:
+                td
+                  textarea#id03_description3(name='id03_description3', cols='55', rows='2')
+              tr
+                td(align='right')
+                  label(for='id01_color4') Color:
+                td
+                  input#id01_color4(type='color', name='id03_color')
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+        //
+           /.modal-content 
+      //
+         /.modal-dialog 
+    //
+       /.modal 
+   

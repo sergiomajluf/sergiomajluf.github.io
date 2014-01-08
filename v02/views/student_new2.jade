@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1= title
+    div.newStudent
+        form( method="post")
+            label(for='name') student name
+            input(type="text", name="name", id="editStudentName")
+            span.label Answer 1 :
+            input(type="text", name="title", id="editStudentA1")
+            br
+            span.label Answer 2 :
+            input(type="text", name="title", id="editStudentA2")
+            br
+            span.label Answer 3 :
+            input(type="text", name="title", id="editStudentA3")
+            br
+            span.label Answer 4 :
+            input(type="text", name="title", id="editStudentA4")
+            br
+            input(type="submit", value="Save")
+            br
+        a(href="/")!= "Back to Student List"
+
+
+
+         
