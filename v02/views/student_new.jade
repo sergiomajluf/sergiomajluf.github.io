@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  .container    
+    h1= title
+    .well
+      h3= "Create a new student here. You will (soon) be able upload a background image too."
+      a(href="/")!= "« Go back (loose changes)"
+    div.newStudent
+      form(method="post")#subject
+        .control-group
+          label.control-label Student name:
+          .controls
+            .input-prepend
+              span.add-on: i.icon-envelope 
+              input.input-large(type="text", name="name", id="editStudentName")          
+        .control-group
+            label.control-label Student email:
+            .controls
+              .input-prepend
+                span.add-on: i.icon-envelope 
+                input.input-large(type="email", name="email", id="editStudentEmail")
+        .control-group
+          label.control-label #1: What do I believe?
+          .controls
+            .input-prepend
+              span.add-on: i.icon-envelope 
+              textarea.input-large(type="text", rows="4", cols="70", name="answer1", id="editStudentA1") 
+        .control-group
+          label.control-label #2: Why I believe it?
+          .controls
+            .input-prepend
+              span.add-on: i.icon-envelope 
+              textarea.input-large(type="text", rows="4", cols="70", name="answer2", id="editStudentA2") 
+        .control-group
+          label.control-label #3: Should I believe it?
+          .controls
+            .input-prepend
+              span.add-on: i.icon-envelope 
+              textarea.input-large(type="text", rows="4", cols="70", name="answer3", id="editStudentA3") 
+        .control-group
+          label.control-label #4: What do I stand for so passionately that I'd take backlash for it?
+          .controls
+            .input-prepend
+              span.add-on: i.icon-envelope 
+              textarea.input-large(type="text", rows="4", cols="70", name="answer4", id="editStudentA4") 
+        .form-actions
+          input(type="submit", value="Save changes").btn.btn-primary
+

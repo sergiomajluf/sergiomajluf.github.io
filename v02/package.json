@@ -1,0 +1,30 @@
+{
+  "name": "Moral-Courage",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*",
+    "mongodb": ">= 0.9.6-7"
+  },
+  "description": "Manage user responses to different questions, grouping them in several \"cells\", representing each person identity.",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergiomajluf/sergiomajluf.github.io/v02-alpha"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "jade",
+    "mongo",
+    "stylus"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause"
+}

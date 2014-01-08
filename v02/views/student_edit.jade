@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  .container    
+    h1= title
+    .well
+      h3= "Editing " + student.name + "\'s profile"
+      a(href="/")!= "« Go back (loose changes)"
+    div.newStudent
+      .row
+        .col-md-6
+          form( method="post")#subject
+            .control-group
+              label.control-label Student name:
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  input.input-large(type="text", name="name", id="editStudentName" value=student.name)
+            .control-group
+              label.control-label Student email:
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  input.input-large(type="email", name="email", id="editStudentEmail" value=student.email)
+            .control-group
+              label.control-label #1: What do I believe?
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  textarea.input-large(type="text", rows="4", cols="70", name="answer1", id="editStudentA1") #{student.answer1}
+            .control-group
+              label.control-label #2: Why I believe it?
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  textarea.input-large(type="text", rows="4", cols="70", name="answer2", id="editStudentA2") #{student.answer2}
+            .control-group
+              label.control-label #3: Should I believe it?
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  textarea.input-large(type="text", rows="4", cols="70", name="answer3", id="editStudentA3") #{student.answer3}
+            .control-group
+              label.control-label #4: What do I stand for so passionately that I'd take backlash for it?
+              .controls
+                .input-prepend
+                  span.add-on: i.icon-envelope 
+                  textarea.input-large(type="text", rows="4", cols="70", name="answer4", id="editStudentA4") #{student.answer4}
+            .form-actions
+               input(type="submit", value="Save changes").btn.btn-primary
+
