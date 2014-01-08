@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,23 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
 
-    <title>Moral Courage Drag&Drop Demo</title>
+    <title>Moral Courage</title>
 
-    <!-- Google Fonts
-    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
-     -->
-     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/modal.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,197 +20,53 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Styles for dragging DEMO. Remove and edit afterwards 
-      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-    
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="js/jquery-1.9.1.js"></script>
- 
-    -->
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    
-
-    <style>
-      .draggable { width: 120px; height: 120px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
-      #draggableFree, #draggableQueen { margin-bottom:20px; }
-      #draggableFree { cursor: move; }
-      .draggable p { cursor: move; }
-      h3 { clear: left; }
-      #droppable, #droppable2, .area_q  { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
- 
-
-    </style>
-
-<script>
-$(function() {
-      
-  $("body").disableSelection();
-  
-  $( "#draggableCell" ).draggable({ handle: "p", containment: "#containment-wrapper", scroll: false });       
-      
-  $( "#area_q1" ).droppable({
-    accept: "#draggableCell",
-    activeClass: "ui-state-hover",
-    hoverClass: "ui-state-active",
-    drop: function( event, ui ) {
-      $(this).addClass( "answered" );
-      $("#draggableCell").addClass("answeredQ1");
-      //console.log("Answered Q1");
-      $('#myModalQuestion01').modal('show');
-
-      $( "#area_q2" ).droppable({
-        accept: "#draggableCell",
-        activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active",
-        drop: function( event, ui ) {
-          $(this).addClass( "answered" );
-          //$("#draggableCell").removeClass("answeredQ1").
-          $("#draggableCell").addClass("answeredQ2");
-          console.log("Answered Q2");
-          $('#myModalQuestion02').modal('show');  
-      
-          $( "#area_q3" ).droppable({
-            accept: "#draggableCell",
-            activeClass: "ui-state-hover",
-            hoverClass: "ui-state-active",
-            drop: function( event, ui ) {
-              $(this).addClass( "answered" );
-              //$("#draggableCell").removeClass("answeredQ2").
-              $("#draggableCell").addClass("answeredQ3");
-              console.log("Answered Q3");
-              $('#myModalQuestion03').modal('show');  
-        
-              $( "#area_q4" ).droppable({
-                accept: "#draggableCell",
-                activeClass: "ui-state-hover",
-                hoverClass: "ui-state-active",
-                drop: function( event, ui ) {
-                  $(this).addClass( "answered" );
-                  $("#draggableCell").removeClass("answeredQ3");
-                  $("#draggableCell").addClass("answeredQ4");
-                  console.log("Answered Q4");
-                  $('#myModalQuestion04').modal('show');
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-  });
-  
-  $('#example').tooltip({
-    'show': true,
-        'placement': 'top',
-        delay: { show: 1000, hide: 50 }
-});
-
-  $('.doubleClickArea').click(function(e) {
-    var offset = $(this).offset();
-    $('#position').text("Note would be created at "+(e.clientX - offset.left) + ", " + (e.clientY - offset.top));
-    //open1((e.clientX - offset.left), (e.clientY - offset.top))
-  });
-
-  $('#draggableCell').click(function(e) {
-	e.stopPropagation();
-	e.preventDefault();
-	return false;
-  });
-  $('#draggableCell').dblclick(function(e) {
-    $('#position').text("Double clicking the cell will open it's modal");
-    $('#myModalIdentities').modal('show'); 
-	e.stopPropagation();
-	e.preventDefault();
-	return false;
-  });
-  
-  $('.area_q').click(function(e) {
-    $('#position').text("[Click] Can't add note over a question");
-    e.stopPropagation();
-	e.preventDefault();
-	return false;
-  }); 
-  $('.area_q').dblclick(function(e) {
-    $('#position').text("[Double Click] Can't add note over a question");
-    e.stopPropagation();
-	e.preventDefault();
-	return false;
-  });  
-
-
-
-		  
-});
-
-
-
-
-
-</script>
-
 </head>
 
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Moral Courage development log</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="drag.html">Drag</a></li>
-            <li><a href="drop.html">Drop</a></li>
-            <li class="active"><a href="spiral.html">Spiral</a></li>
-            <li><a href="prototype.html">All of them</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-	
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Moral Courage Name LastName</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="#" title="Edit user preferences" data-toggle="tooltip" id="userPreferences"><i class="glyphicon glyphicon-cog"></i></a></li>
+				  <li class="active"><a id="position">Drag your identity's cell to explore the questions</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
 	<div class="container">
-     
-      <div id="containment-wrapper" class="doubleClickArea">
-
-        <div id="draggableCell" class="draggable ui-widget-content">
-          <p id="example" class="ui-widget-header" data-toggle="tooltip" title="Double click to edit your Identities.">Cell</p>
-        </div>
-        
-        <div id="area_q1" class="area_q">
-          <p>What do I believe?</p>
-        </div>
-
-        <div id="area_q2" class="area_q">
-          <p>Why do I believe it?</p>
-        </div>
-
-        <div id="area_q3" class="area_q">
-          <p>Should I believe it?</p>
-        </div>
-
-        <div id="area_q4" class="area_q">
-          <p>What do I stand for so passionately that I'd take backlash for it?</p>
-        </div>
-        
-        <div id="user_notes">
-       	  <p id="position">Double click to see the position!</p>          	   
-        </div>
-     
-      </div>
-
-      <hr>
-
-      <footer>
-        <p>Poetry is code.</p>
-      </footer>
-    </div> <!-- /container -->
+	 
+	  <div id="containment-wrapper" class="doubleClickArea">
+	
+	    <div id="draggableCell" class="draggable ui-widget-content">
+	      <p id="cell" class="ui-widget-header" data-toggle="tooltip" title="Double click to edit your Identities.">Cell</p>
+	    </div>
+	    
+	    <div id="area_q1" class="area_q">
+	      <p>What do I believe?</p>
+	    </div>
+	
+	    <div id="area_q2" class="area_q">
+	      <p>Why do I believe it?</p>
+	    </div>
+	
+	    <div id="area_q3" class="area_q">
+	      <p>Should I believe it?</p>
+	    </div>
+	
+	    <div id="area_q4" class="area_q">
+	      <p>What do I stand for so passionately that I'd take backlash for it?</p>
+	    </div>
+	    
+	    <div id="user_notes">
+	    </div>
+	 
+	  </div>
+	
+	</div> <!-- /container -->
 
 
 <!-- Modal - Questions -->
@@ -367,18 +212,13 @@ $(function() {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
--->
-    <script src="js/bootstrap.min.js"></script>
-    
- 
-  </body>
+	
+	
+	<!-- JavaScript -->
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/custom.js"></script> 
+	<script src="js/bootstrap.min.js"></script>
+	
+	</body>
 </html>

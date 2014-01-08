@@ -12,13 +12,14 @@ This documents describes all the pages/views/functionalities we should build, an
 
 ---
 
-##
+## Last edit: Jan 8 2014 @sergio
 
-* On click: Add Notes | Exceptions over the questions | When you click, add an icon and open the note modal
+* ~~On click: Add~~ Notes | ~~Exceptions over the questions~~
+* When you click, add an icon and open the note modal
 * Create new cell, connect that to the Identities Modal > The number of identities = the number of inner rings 
 * Not critical > Prevent tooltip while dragging (mouse pressing)
-* REMEMBER: The whole cell is clickable and it will open the identities modal > Try identities as planets, Implement boostrap tooltip and double-click
-* Alternative: Status Bar Tooltip
+* ~~REMEMBER: The whole cell is clickable and it will open the identities modal~~ > Try identities as planets, ~~Implement boostrap tooltip and double-click~~
+* ~~Alternative: Status Bar Tooltip~~
 * Global Save among all modals (Think about alternatives - maybe AJAX)
 
 
@@ -32,10 +33,19 @@ This documents describes all the pages/views/functionalities we should build, an
 * Maybe AJAX - Create variables representing the elements on the modal windows for the questions, so each cell will have unique modals (texts).
 
 
+### Also done this time
+* Major file clean up
+	* in static html
+	* in css file
+* JS Functionalitites moved to external .js file
+* Updated Node App with all this changes:
+	* Added email as user field 	
+	
+#### Previously done
+(move done lines form above on next edit of this file)
 
 
-
-
+___
 
 
 
