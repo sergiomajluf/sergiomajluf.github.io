@@ -261,50 +261,62 @@
         <h4 class="modal-title" id="myModalLabel">Identities</h4>
       </div>
       <div class="modal-body">
-        <table width="400" border="0">
+  <div class="form-group">
+ <p>Number of Identities: 
+  <select name="select" size="1" autofocus required>
+    <option selected>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+</p>
+ <table width="400" border="0">
           <tr>
-            <td width="71" align="right">Identity:</td>
-            <td width="319"><input type="text" name="id" id="id"></td>
-          </tr>
+            <td width="71" align="right"><strong>Identity</strong></td>
+            <td width="319"><input name="id1" type="text" required class="form-control" id="id1" size="35"></td>
+   </tr>
           <tr>
-            <td align="right">Description:</td>
-            <td><textarea name="id01_description2" cols="55" rows="2" id="id01_description2"></textarea></td>
+            <td align="right"><strong>Description</strong></td>
+            <td><textarea class="form-control" name="id01_description2" cols="70" rows="2" id="id01_description2"></textarea></td>
           </tr>
-          <tr>
-            <td align="right"><label for="id01_color2">Color:</label></td>
-            <td><input type="color" name="id01_color2" id="id01_color2"></td>
-          </tr>
-        </table>
+          
+</table>
         &nbsp;
-        <table width="400" border="0">
+<table width="400" border="0">
           <tr>
-            <td width="71" align="right">Identity:</td>
-            <td width="319"><input type="text" name="id2" id="id2"></td>
+            <td width="71" align="right"><strong>Identity</strong></td>
+            <td width="319"><input name="id2" type="text" class="form-control" id="id2" size="35"></td>
           </tr>
           <tr>
-            <td align="right">Description:</td>
-            <td><textarea name="id02_description" cols="55" rows="2" id="id02_description"></textarea></td>
+            <td align="right"><strong>Description</strong></td>
+            <td><textarea class="form-control" name="id02_description" cols="70" rows="2" id="id02_description"></textarea></td>
           </tr>
-          <tr>
-            <td align="right"><label for="id03_color">Color:</label></td>
-            <td><input type="color" name="id02_color" id="id01_color3"></td>
-          </tr>
+          
         </table>
-        &nbsp;
-        <table width="400" border="0">
+&nbsp;
+<table width="400" border="0">
           <tr>
-            <td width="71" align="right">Identity:</td>
-            <td width="319"><input type="text" name="id3" id="id3"></td>
-          </tr>
+            <td width="71" align="right"><strong>Identity</strong></td>
+            <td width="319"><input name="id3" type="text" class="form-control" id="id3" size="35"></td>
+  </tr>
           <tr>
-            <td align="right">Description:</td>
-            <td><textarea name="id03_description3" cols="55" rows="2" id="id03_description3"></textarea></td>
+            <td align="right"><strong>Description</strong></td>
+            <td><textarea name="id03_description3" class="form-control" cols="70" rows="2" id="id03_description3"></textarea></td>
           </tr>
+       
+       
+</table>
+<br>
+<table width="400" border="0">
+  <tr>
+            <td width="71" align="right"><strong>Identity</strong></td>
+            <td width="319"><input name="id4" type="text" class="form-control" id="id4" size="35"></td>
+  </tr>
           <tr>
-            <td align="right"><label for="id01_color4">Color:</label></td>
-            <td><input type="color" name="id03_color" id="id01_color4"></td>
+            <td align="right"><strong>Description</strong></td>
+            <td><textarea name="id04_description" class="form-control" cols="70" rows="2" id="id04_description"></textarea></td>
           </tr>
-        </table>
+</table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -323,7 +335,7 @@
         <h4 class="modal-title" id="myModalLabel">Add a note</h4>
       </div>
       <div class="modal-body">
-      <table width="600" height="154" border="0">
+      <table width="650" height="154" border="0">
           <tr>
             <td width="132" height="69" align="right">Note:</td>
             <td width="458"><textarea name="textarea" cols="55" rows="3" id="textarea"></textarea></td>
