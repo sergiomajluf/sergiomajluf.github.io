@@ -3,3 +3,5 @@
 /node_modules
 /v02
 /v03
+/v02/*
+/v03/*
