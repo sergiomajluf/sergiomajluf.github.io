@@ -24,7 +24,7 @@ $(function() {
   var noteIndex = 0;
   function addNote(notex, notey, notei){
 	var newNoteY = parseInt(notey)+ getScrollY();
-	$("#user_notes").append('<div class="userNote draggable" id="note'+noteIndex +'" style="top:'+newNoteY+'px;left:'+notex+'px;"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment"></span> ' + noteIndex + '</button></div>');
+	$("#user_notes").append('<div class="userNote draggable" id="note'+noteIndex + '" data-id="note'+noteIndex + '" style="top:'+newNoteY+'px;left:'+notex+'px;"><a type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-comment"></span> ' + noteIndex + '</a></div>');
 	}
 
   // Get window scroll - Modded from http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
@@ -110,7 +110,7 @@ $(function() {
 	  $('li.answer4').fadeIn('slow');  
   })  
   
-
+  // Open question modals from planets
   $('li.answer1').click(function(){
 	  $('#myModalQuestion01').modal('show'); 
   });  
@@ -124,7 +124,19 @@ $(function() {
 	  $('#myModalQuestion04').modal('show'); 
   });  
 
-// Tooltips and User Preferences
+  // Open question modals from planets
+  $('div.userNote button').click(function(){
+	  var noteID = $(this).data('id');
+	  console.log(noteID);
+	  alert("hi");
+	  //$('#myModalQuestion04').modal('show'); 
+  });
+  $('div.userNote > a').click(function(){
+	  alert("hi");
+	  //$('#myModalQuestion01').modal('show'); 
+  }); 
+  
+  // Tooltips and User Preferences
   $('#userPreferences').tooltip({
     	'show': true,
         'placement': 'auto',
@@ -140,7 +152,7 @@ $(function() {
         delay: { show: 1000, hide: 50 }
    });
   
-  // Listen for double clicks and then add notes
+  // Add notes and listen for double clicks
   $('.doubleClickArea').dblclick(function(e) {
     var offset = $(this).offset();
     addNote((e.clientX - offset.left)-20, (e.clientY - offset.top - $(this).scrollTop())-20, noteIndex);    

@@ -16,7 +16,7 @@ This documents describes all the pages/views/functionalities we should build, an
 
 * Connect cell that to the Identities Modal > The number of identities = the number of inner rings 
 * Not critical > Prevent tooltip while dragging (mouse pressing)
-* ~~REMEMBER: The whole cell is clickable and it will open the identities modal~~ > Try identities as planets, ~~Implement boostrap tooltip and double-click~~
+*  > Try identities as planets, 
 
 * Global Save among all modals (Think about alternatives - maybe AJAX)
 
@@ -46,6 +46,8 @@ This documents describes all the pages/views/functionalities we should build, an
 * ~~On click: Add Notes~~  | ~~Exceptions over the questions~~
 * ~~When you click, add an icon and open the note modal~~ **binded to Double click**
 * * ~~Alternative: Status Bar Tooltip~~
+* ~~Implement boostrap tooltip and double-click~~
+* ~~REMEMBER: The whole cell is clickable and it will open the identities modal~~
 
 
 
