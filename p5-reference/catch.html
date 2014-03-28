@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    
+    var line = "";
+
+    function setup() {
+        createCanvas(100,100);
+        background(240);
+        jQuery.get('positions.txt', function(data) {
+        line = data;
+        });
+    }
+
+    function draw() {
+        try {
+            //line = reader.readLine();
+            //console.log(line);
+             var pieces = line.split(',');
+            
+        } catch (e) {
+            console.log("The error is ", e);
+            line = null;
+        }
+        if (line == null) {
+            // Stop reading because of an error or file is empty
+            noLoop();
+        } else {
+           
+            //var pieces = line.split(',');         // was » String[] pieces = split(line, TAB);
+            for (var i = 0; i < pieces.length; i++){
+                var pointPos = pieces[i].split('t'); // was » var x = pieces[0]; var y = pieces[1];
+                point(pointPos[0],pointPos[1]);      // was » point(x, y);
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">
+    var line = "";
+
+    function setup() {
+        createCanvas(100,100);
+        background(240);
+        jQuery.get('positions.txt', function(data) {
+        line = data;
+        });
+    }
+
+    function draw() {
+        try {
+            //line = reader.readLine();
+            //console.log(line);
+             var pieces = line.split(',');
+            
+        } catch (e) {
+            console.log("The error is ", e);
+            line = null;
+        }
+        if (line == null) {
+            // Stop reading because of an error or file is empty
+            noLoop();
+        } else {
+           
+            //var pieces = line.split(',');         // was » String[] pieces = split(line, TAB);
+            for (var i = 0; i < pieces.length; i++){
+                var pointPos = pieces[i].split('t'); // was » var x = pieces[0]; var y = pieces[1];
+                point(pointPos[0],pointPos[1]);      // was » point(x, y);
+            }
+        }
+    }
+        </code>
+    </pre>
+    <div class="offset"><hr/>
+        <h2>BUGGY: Catch</h2>
+        <p>The code works, as in I get the expected visual display. But the try/cath part is not behaving as I think it should</p>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+</body>
+
+</html>

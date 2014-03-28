@@ -2,9 +2,14 @@ canvas {
 margin: 10px;
 }
 
-pre {
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans;
+}
+pre,
+.offset {
 	margin-left: 120px;
 }
+
 
 a.ref-link {
 	display: block;
