@@ -23,3 +23,8 @@ a.ref-link.done {
 a.ref-link.pending {
 	color: grey;
 }
+
+a.ref-link.revisit {
+	color: orange;
+	font-weight: bold;
+}
