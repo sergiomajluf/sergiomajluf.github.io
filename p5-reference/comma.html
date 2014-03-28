@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(200);
+
+        // Comma used to separate a list of variable declarations
+        var a = 20,
+            b = 30,
+            c = 80;
+
+        // Comma used to separate a list of values assigned to an array
+        var d = [20, 60, 80];
+
+        // Comma used to separate a list of parameters passed to a function
+        line(a, b, c, b);
+        line(d[0], d[1], d[2], d[1]);
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">
+            // Comma used to separate a list of variable declarations var a = 20, b = 30, c = 80; // Comma used to separate a list of values assigned to an array var d = [20, 60, 80]; // Comma used to separate a list of parameters passed to a function line(a, b, c, b); line(d[0], d[1], d[2], d[1]);
+        </code>
+    </pre>
+</body>
+
+</html>

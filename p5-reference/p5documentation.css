@@ -1,0 +1,20 @@
+canvas {
+margin: 10px;
+}
+
+pre {
+	margin-left: 120px;
+}
+
+a.ref-link {
+	display: block;
+	padding: 5px;
+}
+
+a.ref-link.done {
+	font-weight: bold;
+}
+
+a.ref-link.pending {
+	color: grey;
+}

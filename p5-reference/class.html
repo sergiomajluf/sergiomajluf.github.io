@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    // Declare and construct two objects (h1, h2) from the class HLine 
+    var h1 = new HLine(20, 2.0);
+    var h2 = new HLine(50, 2.5);
+
+    function setup() {
+        createCanvas(100, 100);
+        frameRate(30);
+    }
+
+    function draw() {
+        background(204);
+        h1.update();
+        h2.update();
+    }
+
+    function HLine(y, s) {
+        var ypos = y;
+        var speed = s;
+        
+        this.update = function() {
+            ypos += speed;
+            if (ypos > height) {
+                ypos = 0;
+            }
+            line(0, ypos, width, ypos);
+        }
+    }
+    
+    </script>
+</head>
+
+<body>
+    <pre><code class="javascript">// Declare and construct two objects (h1, h2) from the class HLine 
+var h1 = new HLine(20, 2.0);
+var h2 = new HLine(50, 2.5);
+
+function setup() {
+    createCanvas(100, 100);
+    frameRate(30);
+}
+
+function draw() {
+    background(204);
+    h1.update();
+    h2.update();
+}
+
+function HLine(y, s) {
+    var ypos = y;
+    var speed = s;
+    
+    this.update = function() {
+        ypos += speed;
+        if (ypos > height) {
+            ypos = 0;
+        }
+        line(0, ypos, width, ypos);
+    }
+}
+        </code>
+    </pre>
+</body>
+
+</html>

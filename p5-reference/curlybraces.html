@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    var a = {
+        p1: 5,
+        p2: 20,
+        p3: 25,
+        p4: 45,
+        p5: 70
+    };
+
+    function setup() {
+        createCanvas(100, 100);
+        background(240);
+        for (var item in a) {
+            console.log(item);
+        }
+    }
+
+    function draw() {
+        for (var v in a) {
+            if (typeof a[v] !== 'function') {
+                var item = a[v]
+                line(0, item, 50, item);
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <pre>Javascript uses {} for Object Notation.<br/>This example illustrate how 'iterating' over the object elements (it's a dictionary!) will only get you the key and not the value.<br/>To get the value, check the second for loop, within draw().
+        <code class="javascript">var a = {
+    p1: 5,
+    p2: 20,
+    p3: 25,
+    p4: 45,
+    p5: 70
+};
+
+function setup() {
+    createCanvas(100, 100);
+    background(240);
+    for (var item in a) {
+        console.log(item);
+    }
+}
+
+function draw() {
+    for (var v in a) {
+        if (typeof a[v] !== 'function') {
+            var item = a[v]
+            line(0, item, 50, item);
+        }
+    }
+}</code>
+    </pre>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(230);	
+        var numbers = new Array(3); // Create array with 3 undefined elements
+        console.log(numbers);    
+        numbers[0] = 90; 
+        numbers[1] = 150; 
+        numbers[2] = 30; 
+        var a = numbers[0] + numbers[1]; // Sets variable 'a' to 240 
+        var b = numbers[1] + numbers[2]; // Sets variable 'b' to 180
+        console.log(numbers);
+        console.log("a=%d and b=%d", a,b);
+    }
+</script>
+</head>
+
+<body>
+<pre>Open the console (Cmd+shift+i on Chrome) to see what's going on step by step<code class="javascript">var numbers = new Array(3); // Create array with 3 undefined elements
+console.log(numbers);    
+numbers[0] = 90; 
+numbers[1] = 150; 
+numbers[2] = 30; 
+var a = numbers[0] + numbers[1]; // Sets variable 'a' to 240 
+var b = numbers[1] + numbers[2]; // Sets variable 'b' to 180
+console.log(numbers);
+console.log("a=%d and b=%d", a,b);
+</code>
+    </pre>
+</body>
+
+</html>

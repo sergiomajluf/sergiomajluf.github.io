@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(200);
+
+		var c = [175, 100, 220]; // Define color 'c'
+		fill(c); // Use color variable 'c' as fill color
+		rect(15, 20, 35, 60); // Draw left rectangle
+
+		var blueValue = blue(c); // Get blue in 'c'
+		console.log(blueValue); // Prints "220"
+		fill(0, 0, blueValue); // Use 'blueValue' in new fill
+		rect(50, 20, 35, 60); // Draw right rectangle
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">
+var c = [175, 100, 220]; // Define color 'c'
+fill(c); // Use color variable 'c' as fill color
+rect(15, 20, 35, 60); // Draw left rectangle
+
+var blueValue = blue(c); // Get blue in 'c'
+console.log(blueValue); // Prints "220"
+fill(0, 0, blueValue); // Use 'blueValue' in new fill
+rect(50, 20, 35, 60); // Draw right rectangle
+        </code>
+    </pre>
+</body>
+
+</html>
