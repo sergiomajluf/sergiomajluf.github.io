@@ -1,0 +1,701 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cons",
+				"console	jsProp"
+			],
+			[
+				"dis",
+				"disableSelection"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"act",
+				"action"
+			],
+			[
+				"bt",
+				"btn-primary"
+			],
+			[
+				"upt",
+				"updated_at"
+			],
+			[
+				"exp",
+				"express"
+			],
+			[
+				"emlo",
+				"employees"
+			],
+			[
+				"employe",
+				"employees"
+			],
+			[
+				"employ",
+				"employees"
+			],
+			[
+				"emplo",
+				"employees"
+			],
+			[
+				"prot",
+				"prototype	jsProp"
+			],
+			[
+				"empl",
+				"employee_collection"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"op",
+				"open	jsWindow"
+			],
+			[
+				"req",
+				"req	require"
+			],
+			[
+				"star",
+				"startCountDown"
+			],
+			[
+				"S_OFF",
+				"S_OFFLINE"
+			],
+			[
+				"0f",
+				"0f"
+			],
+			[
+				"Score",
+				"ScoreScript"
+			],
+			[
+				"Vec",
+				"Vector3	x, y, z"
+			],
+			[
+				"Re",
+				"Recycle"
+			],
+			[
+				"TRa",
+				"Transform"
+			],
+			[
+				"Tr",
+				"Transform"
+			],
+			[
+				"Vect",
+				"Vector3	x, y, z"
+			],
+			[
+				"se",
+				"secondsToDegrees"
+			],
+			[
+				"minu",
+				"minutesToDegrees"
+			],
+			[
+				"minutes",
+				"minutes"
+			],
+			[
+				"cu",
+				"currentTime"
+			],
+			[
+				"my",
+				"myTempForecast"
+			],
+			[
+				"fore",
+				"forecastTemp"
+			],
+			[
+				"ge",
+				"getWeaterApi"
+			],
+			[
+				"user",
+				"userID"
+			],
+			[
+				"curre",
+				"currentTime"
+			],
+			[
+				"c",
+				"currentTemp"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"wr",
+				"write"
+			],
+			[
+				"write",
+				"writeHead"
+			],
+			[
+				"file",
+				"files"
+			],
+			[
+				"form",
+				"formidable"
+			],
+			[
+				"for",
+				"formidable"
+			],
+			[
+				"w",
+				"write"
+			],
+			[
+				"wri",
+				"writeHead"
+			],
+			[
+				"pos",
+				"postData"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"get",
+				"getTime"
+			],
+			[
+				"thi",
+				"thingToSpin"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pret",
+				"HTMLPrettify"
+			],
+			[
+				"mi",
+				"Minify Javascript"
+			],
+			[
+				"mini",
+				"Minify Javascript"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pretty",
+				"HTMLPrettify"
+			],
+			[
+				"templ",
+				"Create file from Template"
+			],
+			[
+				"pre",
+				"Preview"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"jade",
+				"Set Syntax: Jade"
+			],
+			[
+				"synt	ja",
+				"Set Syntax: Jade"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"styl",
+				"Set Syntax: Stylus"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"arduino",
+				"Set Syntax: Arduino"
+			],
+			[
+				"snip",
+				"Snippet: function"
+			],
+			[
+				"prety js",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"tidy",
+				"TidyHTML"
+			],
+			[
+				"cd	",
+				"Package Control: Disable Package"
+			],
+			[
+				"console",
+				"Snippet: console.dir"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"uni",
+				"Set Syntax: Unity C#"
+			],
+			[
+				"previ",
+				"Preview"
+			],
+			[
+				"ardu",
+				"Set Syntax: Arduino"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"fold",
+				"Code Folding: Unfold All"
+			],
+			[
+				"foi",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"colo",
+				"Snippet: Color(r, g, b, a)"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"root",
+				"Snippet: Prototype"
+			],
+			[
+				"temp",
+				"Create file from Template"
+			],
+			[
+				"syntax",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"s",
+				"Set Syntax: JSON"
+			],
+			[
+				"tid",
+				"TidyHTML"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"",
+				"HTML: Wrap Selection With Tag"
+			],
+			[
+				"POack",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Set",
+				"Set Syntax: C#"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/custom.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/print.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/summernote.min.custom.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/app.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.env",
+		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/.env",
+		"/Users/sergiomajluf/Downloads/DWD-NodeJS-S3-Demo-master/app.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/Procfile",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.git/description",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.git/config",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_print.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_edit.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_spiral.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/layout.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/users.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/print.css",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/style.css",
+		"/Users/sergiomajluf/Sites/thesis/timeline2.html",
+		"/Users/sergiomajluf/Sites/thesis/timeline.html",
+		"/Users/sergiomajluf/Sites/lab/summernote-master/examples/index-.html",
+		"/Users/sergiomajluf/Sites/lab/summernote-master/examples/textarea.html",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/summernote.min.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/demo.html",
+		"/Users/sergiomajluf/Sites/moral-courage/v03-file/app.js",
+		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/Procfile",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v03-alpha/views/employee_new.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/views/student_new.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/app.js",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/package.json",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/spiral.html",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/private/jquery-post.html",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/spiral.html",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/js/custom.js",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_spiral.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_edit.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/index.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/layout.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/studentprovider.js",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_new.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/moralcourage.sublime-project",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_new2.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/stylesheets/style.styl",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/employee_edit.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/employee_new.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/stylesheets/modal.css",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_view.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/admin.jade",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/employeeprovider.js",
+		"/Users/sergiomajluf/Sites/lab/EmployeeDB/package.json",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/routes/routes.js",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/app.js",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/index.jade",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/layout.jade",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/routes/user.js",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/todo.jade",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/menu.jade",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/package.json",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/user.jade",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/app.js",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/post.js",
+		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/thread.js",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/new/views/layout.jade",
+		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/new/views/index.jade",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/TemperatureMonitor/TemperatureMonitor.ino",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/state/state.ino",
+		"/Users/sergiomajluf/Dropbox/_ITP/3-Undertanding Networks/Goldberg-machine/physical_in_xbee_out/physical_in_xbee_out.ino",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/PingInterruptCode.ino",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/arduino/ethernet_temp_sensor/ethernet_temp_sensor.ino",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/RGBledPWM/RGBledPWM.ino",
+		"/Users/sergiomajluf/Sites/lab/network-examples/restToSerial/index.html",
+		"/Users/sergiomajluf/Documents/UnityProjects/Aurora Game/Assets/Scripts/accelerometer.cs",
+		"/Users/sergiomajluf/Downloads/torrent/ap-ttsdcavsedd2h/AudioP2P.nfo",
+		"/Users/sergiomajluf/Downloads/torrent/ToonTrack.Superior.Drummer.Custom.And.Vintage.SDX.Expansion.DVDR.D3.HYBRID-AudioP2P/AudioP2P.nfo",
+		"/Users/sergiomajluf/Downloads/tiny/avr/README",
+		"/Users/sergiomajluf/Dropbox/Arduino/hardware/tiny/avr/README",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/TemperatureMonitor/Temperature Monitor.ino",
+		"/Users/sergiomajluf/Downloads/Bootstrap-3-Illustrator-Template copy.ai",
+		"/Users/sergiomajluf/Sites/memecracy/index.php",
+		"/Users/sergiomajluf/Documents/Arduino/testi/testi.ino",
+		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/voodoo_bear/Teddy_bear_12_8_12/Teddy_bear_12_8_12.ino",
+		"/Users/sergiomajluf/Downloads/ballot.xml",
+		"/Users/sergiomajluf/Dropbox/Arduino/MPU6050/MPU6050.ino",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/scripts/CubeClicker.cs",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/scripts/ScoreScript.cs",
+		"/Users/sergiomajluf/Dropbox/Arduino/MPU6050/MPU6050.h",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/scripts/SphereLogic.cs",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/Materials/CubeClicker.cs",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/Materials/SphereLogic.cs",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/Materials/sphereLogic.cs",
+		"/Users/sergiomajluf/Sites/lab/mongodb-tutorial/userProvider-mongodb.js",
+		"/Users/sergiomajluf/Sites/lab/mongodb-tutorial/package.json",
+		"/Users/sergiomajluf/Sites/lab/mongodb-tutorial/app.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/app.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/Procfile",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/temperature.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/app-local.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/time.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/temp-monitor.sublime-project",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/package.json",
+		"/Users/sergiomajluf/Sites/lab/node/server.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/server.js",
+		"/Users/sergiomajluf/Sites/lab/temp-monitor/arduino/forever_connect/forever_connect.ino",
+		"/Users/sergiomajluf/Sites/lab/node-tutorial/views/helloworld.jade",
+		"/Users/sergiomajluf/Sites/lab/node-tutorial/views/index.jade",
+		"/Users/sergiomajluf/Sites/lab/node-tutorial/routes/index.js",
+		"/Users/sergiomajluf/Sites/lab/node-tutorial/app.js",
+		"/Users/sergiomajluf/Sites/hello-world/package.json",
+		"/Users/sergiomajluf/Sites/temperature-monitor/server.js",
+		"/Users/sergiomajluf/Sites/hello-world/server.js",
+		"/Users/sergiomajluf/Sites/lab/node-session/socket/arduino/arduino.html",
+		"/Users/sergiomajluf/Sites/lab/node/index.js",
+		"/Users/sergiomajluf/Sites/lab/google/data.csv",
+		"/Users/sergiomajluf/Sites/lab/node/router.js",
+		"/Users/sergiomajluf/Sites/lab/node/requestHandlers.js",
+		"/Users/sergiomajluf/Sites/lab/google/donut-d3.html",
+		"/Users/sergiomajluf/Sites/lab/expanse/readme.md",
+		"/Users/sergiomajluf/Sites/lab/node/fileServer.js",
+		"/Users/sergiomajluf/Sites/lab/node/helloworld.js",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/C#/Build.tmLanguage",
+		"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/Webcam.cs",
+		"/Users/sergiomajluf/Downloads/piconnect_03.py",
+		"/Users/sergiomajluf/Sites/santiagoamil.cl/wp-content/themes/stgoamil2013/wp-advanced-search-master/README.md",
+		"/Users/sergiomajluf/Sites/santiagoamil.cl/wp-content/themes/stgoamil2013/category-encuentros-de-trasnoche-2013.php",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"saving",
+			"selectFromFiles",
+			"-image",
+			"image",
+			"hidden.bs",
+			"bs.",
+			"modal('hide')",
+			"modal",
+			"editable",
+			"content",
+			"moral-content",
+			"admin",
+			"submit",
+			"'",
+			"Date",
+			"Employee",
+			"employee",
+			"emps",
+			"Employee",
+			"employee",
+			"Employee",
+			"touper",
+			"#",
+			"#ping"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\"",
+			"Student",
+			"student",
+			"Student",
+			"student",
+			"Student",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.RGBledPWM":
+	{
+		"height": 100.0
+	},
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.testi":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"open",
+				"/Users/sergiomajluf/Documents/UnityProjects/Begginer/Assets/Scenes/04-scripts-and-objects.unity"
+			],
+			[
+				"",
+				"untitled"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 252.0,
+	"status_bar_visible": true
+}

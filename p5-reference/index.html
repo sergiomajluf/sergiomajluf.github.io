@@ -9,6 +9,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap CSS -->
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 	<link rel="stylesheet" href="p5documentation.css">
 
 </head>
@@ -16,8 +18,20 @@
 <body>
     <div class="container">
 		<div class="well"><h1>P5.js Reference</h1>
-        <p class="lead">This reference is a (<em>work in progress</em>) translation from <a href="https://www.processing.org/reference/" title="Processing Reference" target="_tab">Processing's</a> language into Javascript P5.js</p>
+            <p class="lead">This reference is a (<em>work in progress</em>) translation from <a href="https://www.processing.org/reference/" title="Processing Reference" target="_tab">Processing's</a> language into <a href="https://github.com/lmccart/p5.js">Javascript P5.js</a></p>
+            <p>This list is a crossbreed between <a href="https://github.com/lmccart/p5.js/wiki/API">P5's API page</a> and Processing reference.</p>
+            <p>I'l try to keep it up with the <a href="https://github.com/lmccart/p5.js/wiki/API-Progress">API official progress</a> page</p>
 		</div>
+
+            <div class="well well-lg"><div class="btn-group">
+                Key:&nbsp;&nbsp;
+              <span class="fa fa-check" title="Implemented"> Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="fa fa-clock-o" title="To Be Implemented"> To Be Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="fa fa-trash-o" title="Removed"> Removed</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="fa fa-ellipsis-h" title="Future Version"> Future Version</span>
+            </div>
+            </div>
+            
 
         <div class="row">
 			<div class="col-sm-4">
@@ -50,21 +64,21 @@
 
                 <a href="catch.html" class="ref-link revisit">catch</a>
 
-                <a href="class.html" class="ref-link revisit">class</a>
+                <a href="class.html" class="ref-link removed done">class</a>
 
                 <a href="draw_.html" class="ref-link">draw()</a>
 
-                <a href="exit_.html" class="ref-link">exit()</a>
+                <a href="exit_.html" class="ref-link toBeImplemented">exit()</a>
 
-                <a href="extends.html" class="ref-link">extends</a>
+                <a href="extends.html" class="ref-link removed">extends</a>
 
                 <a href="false.html" class="ref-link">false</a>
 
-                <a href="final.html" class="ref-link">final</a>
+                <a href="final.html" class="ref-link removed">final</a>
 
-                <a href="implements.html" class="ref-link">implements</a>
+                <a href="implements.html" class="ref-link removed">implements</a>
 
-                <a href="import.html" class="ref-link">import</a>
+                <a href="import.html" class="ref-link removed">import</a>
 
                 <a href="loop_.html" class="ref-link">loop()</a>
 
@@ -76,9 +90,9 @@
 
                 <a href="popStyle_.html" class="ref-link">popStyle()</a>
 
-                <a href="private.html" class="ref-link">private</a>
+                <a href="private.html" class="ref-link removed">private</a>
 
-                <a href="public.html" class="ref-link">public</a>
+                <a href="public.html" class="ref-link removed">public</a>
 
                 <a href="pushStyle_.html" class="ref-link">pushStyle()</a>
 
@@ -88,9 +102,9 @@
 
                 <a href="setup_.html" class="ref-link">setup()</a>
 
-                <a href="static.html" class="ref-link">static</a>
+                <a href="static.html" class="ref-link removed">static</a>
 
-                <a href="super.html" class="ref-link">super</a>
+                <a href="super.html" class="ref-link removed">super</a>
 
                 <a href="this.html" class="ref-link">this</a>
 
@@ -98,7 +112,7 @@
 
                 <a href="try.html" class="ref-link">try</a>
 
-                <a href="void.html" class="ref-link">void</a>
+                <a href="void.html" class="ref-link removed">void</a>
 
             </div>
             <div class="category">
@@ -116,7 +130,7 @@
 
                 <a href="frameCount.html" class="ref-link">frameCount</a>
 
-                <a href="frameRate_.html" class="ref-link">frameRate()</a>
+                <a href="frameRate_.html" class="ref-link removed">frameRate()</a>
 
                 <a href="frameRate.html" class="ref-link">frameRate</a>
 
@@ -124,7 +138,7 @@
 
                 <a href="noCursor_.html" class="ref-link">noCursor()</a>
 
-                <a href="size_.html" class="ref-link">size()</a>
+                <a href="size_.html" class="ref-link removed">size()</a>
 
                 <a href="width.html" class="ref-link">width</a>
 
@@ -133,75 +147,75 @@
                 <b>Data</b>
                 <h5>Primitive</h5>
 
-                <a href="boolean.html" class="ref-link">boolean</a>
+                <a href="boolean.html" class="ref-link removed">boolean</a>
 
-                <a href="byte.html" class="ref-link">byte</a>
+                <a href="byte.html" class="ref-link removed">byte</a>
 
-                <a href="char.html" class="ref-link">char</a>
+                <a href="char.html" class="ref-link removed">char</a>
 
-                <a href="color_datatype.html" class="ref-link">color</a>
+                <a href="color_datatype.html" class="ref-link removed">color</a>
 
-                <a href="double.html" class="ref-link">double</a>
+                <a href="double.html" class="ref-link removed">double</a>
 
-                <a href="float.html" class="ref-link">float</a>
+                <a href="float.html" class="ref-link removed">float</a>
 
-                <a href="int.html" class="ref-link">int</a>
+                <a href="int.html" class="ref-link removed">int</a>
 
-                <a href="long.html" class="ref-link">long</a>
+                <a href="long.html" class="ref-link removed">long</a>
                 <h5>Composite</h5>
 
-                <a href="Array.html" class="ref-link">Array</a>
+                <a href="Array.html" class="ref-link removed">Array</a>
 
-                <a href="ArrayList.html" class="ref-link">ArrayList</a>
+                <a href="ArrayList.html" class="ref-link removed">ArrayList</a>
 
-                <a href="FloatDict.html" class="ref-link">FloatDict</a>
+                <a href="FloatDict.html" class="ref-link removed">FloatDict</a>
 
-                <a href="FloatList.html" class="ref-link">FloatList</a>
+                <a href="FloatList.html" class="ref-link removed">FloatList</a>
 
-                <a href="HashMap.html" class="ref-link">HashMap</a>
+                <a href="HashMap.html" class="ref-link removed">HashMap</a>
 
-                <a href="IntDict.html" class="ref-link">IntDict</a>
+                <a href="IntDict.html" class="ref-link removed">IntDict</a>
 
-                <a href="IntList.html" class="ref-link">IntList</a>
+                <a href="IntList.html" class="ref-link removed">IntList</a>
 
-                <a href="JSONArray.html" class="ref-link">JSONArray</a>
+                <a href="JSONArray.html" class="ref-link removed">JSONArray</a>
 
-                <a href="JSONObject.html" class="ref-link">JSONObject</a>
+                <a href="JSONObject.html" class="ref-link removed">JSONObject</a>
 
-                <a href="Object.html" class="ref-link">Object</a>
+                <a href="Object.html" class="ref-link removed">Object</a>
 
-                <a href="String.html" class="ref-link">String</a>
+                <a href="String.html" class="ref-link removed">String</a>
 
-                <a href="StringDict.html" class="ref-link">StringDict</a>
+                <a href="StringDict.html" class="ref-link removed">StringDict</a>
 
-                <a href="StringList.html" class="ref-link">StringList</a>
+                <a href="StringList.html" class="ref-link removed">StringList</a>
 
-                <a href="Table.html" class="ref-link">Table</a>
+                <a href="Table.html" class="ref-link removed">Table</a>
 
-                <a href="TableRow.html" class="ref-link">TableRow</a>
+                <a href="TableRow.html" class="ref-link removed">TableRow</a>
 
-                <a href="XML.html" class="ref-link">XML</a>
+                <a href="XML.html" class="ref-link removed">XML</a>
                 <h5>Conversion</h5>
 
-                <a href="binary_.html" class="ref-link">binary()</a>
+                <a href="binary_.html" class="ref-link removed">binary()</a>
 
-                <a href="booleanconvert_.html" class="ref-link">boolean()</a>
+                <a href="booleanconvert_.html" class="ref-link removed">boolean()</a>
 
-                <a href="byteconvert_.html" class="ref-link">byte()</a>
+                <a href="byteconvert_.html" class="ref-link removed">byte()</a>
 
-                <a href="charconvert_.html" class="ref-link">char()</a>
+                <a href="charconvert_.html" class="ref-link removed">char()</a>
 
-                <a href="floatconvert_.html" class="ref-link">float()</a>
+                <a href="floatconvert_.html" class="ref-link removed">float()</a>
 
-                <a href="hex_.html" class="ref-link">hex()</a>
+                <a href="hex_.html" class="ref-link removed">hex()</a>
 
-                <a href="intconvert_.html" class="ref-link">int()</a>
+                <a href="intconvert_.html" class="ref-link removed">int()</a>
 
-                <a href="strconvert_.html" class="ref-link">str()</a>
+                <a href="strconvert_.html" class="ref-link removed">str()</a>
 
-                <a href="unbinary_.html" class="ref-link">unbinary()</a>
+                <a href="unbinary_.html" class="ref-link removed">unbinary()</a>
 
-                <a href="unhex_.html" class="ref-link">unhex()</a>
+                <a href="unhex_.html" class="ref-link removed">unhex()</a>
                 <h5>String Functions</h5>
 
                 <a href="join_.html" class="ref-link">join()</a>
@@ -300,14 +314,14 @@
 			        <br>
 			        <br>
 
-			        <a href="createShape_.html" class="ref-link">createShape()</a>
+			        <a href="createShape_.html" class="ref-link toBeImplemented">createShape()</a>
 
-			        <a href="loadShape_.html" class="ref-link">loadShape()</a>
+			        <a href="loadShape_.html" class="ref-link toBeImplemented">loadShape()</a>
 
-			        <a href="PShape.html" class="ref-link">PShape</a>
+			        <a href="PShape.html" class="ref-link toBeImplemented">PShape</a>
 			        <h5>2D Primitives</h5>
 
-			        <a href="arc_.html" class="ref-link">arc()</a>
+			        <a href="arc_.html" class="ref-link toBeImplemented">arc()</a>
 
 			        <a href="ellipse_.html" class="ref-link">ellipse()</a>
 
@@ -325,29 +339,29 @@
 
 			        <a href="bezier_.html" class="ref-link">bezier()</a>
 
-			        <a href="bezierDetail_.html" class="ref-link">bezierDetail()</a>
+			        <a href="bezierDetail_.html" class="ref-link toBeImplemented">bezierDetail()</a>
 
-			        <a href="bezierPoint_.html" class="ref-link">bezierPoint()</a>
+			        <a href="bezierPoint_.html" class="ref-link toBeImplemented">bezierPoint()</a>
 
-			        <a href="bezierTangent_.html" class="ref-link">bezierTangent()</a>
+			        <a href="bezierTangent_.html" class="ref-link toBeImplemented">bezierTangent()</a>
 
-			        <a href="curve_.html" class="ref-link">curve()</a>
+			        <a href="curve_.html" class="ref-link toBeImplemented">curve()</a>
 
-			        <a href="curveDetail_.html" class="ref-link">curveDetail()</a>
+			        <a href="curveDetail_.html" class="ref-link toBeImplemented">curveDetail()</a>
 
-			        <a href="curvePoint_.html" class="ref-link">curvePoint()</a>
+			        <a href="curvePoint_.html" class="ref-link toBeImplemented">curvePoint()</a>
 
-			        <a href="curveTangent_.html" class="ref-link">curveTangent()</a>
+			        <a href="curveTangent_.html" class="ref-link toBeImplemented">curveTangent()</a>
 
-			        <a href="curveTightness_.html" class="ref-link">curveTightness()</a>
+			        <a href="curveTightness_.html" class="ref-link toBeImplemented">curveTightness()</a>
 
 			        <h5>3D Primitives</h5>
 
-			        <a href="box_.html" class="ref-link">box()</a>
+			        <a href="box_.html" class="ref-link future">box()</a>
 
-			        <a href="sphere_.html" class="ref-link">sphere()</a>
+			        <a href="sphere_.html" class="ref-link future">sphere()</a>
 
-			        <a href="sphereDetail_.html" class="ref-link">sphereDetail()</a>
+			        <a href="sphereDetail_.html" class="ref-link future">sphereDetail()</a>
 			        <h5>Attributes</h5>
 
 			        <a href="ellipseMode_.html" class="ref-link">ellipseMode()</a>
@@ -365,15 +379,15 @@
 			        <a href="strokeWeight_.html" class="ref-link">strokeWeight()</a>
 			        <h5>Vertex</h5>
 
-			        <a href="beginContour_.html" class="ref-link">beginContour()</a>
+			        <a href="beginContour_.html" class="ref-link toBeImplemented">beginContour()</a>
 
 			        <a href="beginShape_.html" class="ref-link">beginShape()</a>
 
 			        <a href="bezierVertex_.html" class="ref-link">bezierVertex()</a>
 
-			        <a href="curveVertex_.html" class="ref-link">curveVertex()</a>
+			        <a href="curveVertex_.html" class="ref-link toBeImplemented">curveVertex()</a>
 
-			        <a href="endContour_.html" class="ref-link">endContour()</a>
+			        <a href="endContour_.html" class="ref-link toBeImplemented">endContour()</a>
 
 			        <a href="endShape_.html" class="ref-link">endShape()</a>
 
@@ -382,9 +396,9 @@
 			        <a href="vertex_.html" class="ref-link">vertex()</a>
 			        <h5>Loading &amp; Displaying</h5>
 
-			        <a href="shape_.html" class="ref-link">shape()</a>
+			        <a href="shape_.html" class="ref-link toBeImplemented">shape()</a>
 
-			        <a href="shapeMode_.html" class="ref-link">shapeMode()</a>
+			        <a href="shapeMode_.html" class="ref-link toBeImplemented">shapeMode()</a>
 			    </div>
 			    <div class="category">
 			        <b>Input</b>
@@ -401,7 +415,9 @@
 
 			        <a href="mousePressed_.html" class="ref-link">mousePressed()</a>
 
-			        <a href="mousePressed.html" class="ref-link">mousePressed</a>
+                    <a href="" class="ref-link">mouseIsPressed()</a>
+
+			        <a href="mousePressed.html" class="ref-link removed">mousePressed</a>
 
 			        <a href="mouseReleased_.html" class="ref-link">mouseReleased()</a>
 
@@ -423,7 +439,9 @@
 
 			        <a href="keyPressed_.html" class="ref-link">keyPressed()</a>
 
-			        <a href="keyPressed.html" class="ref-link">keyPressed</a>
+                    <a href="" class="ref-link">keyIsPressed()</a>
+
+			        <a href="keyPressed.html" class="ref-link removed">keyPressed</a>
 
 			        <a href="keyReleased_.html" class="ref-link">keyReleased()</a>
 
@@ -431,31 +449,35 @@
 
 			        <h5>Files</h5>
 
-			        <a href="BufferedReader.html" class="ref-link">BufferedReader</a>
+			        <a href="BufferedReader.html" class="ref-link removed">BufferedReader</a>
 
-			        <a href="createInput_.html" class="ref-link">createInput()</a>
+			        <a href="createInput_.html" class="ref-link toBeImplemented">createInput()</a>
 
-			        <a href="createReader_.html" class="ref-link">createReader()</a>
+			        <a href="createReader_.html" class="ref-link toBeImplemented">createReader()</a>
 
-			        <a href="loadBytes_.html" class="ref-link">loadBytes()</a>
+			        <a href="loadBytes_.html" class="ref-link toBeImplemented">loadBytes()</a>
 
-			        <a href="loadJSONArray_.html" class="ref-link">loadJSONArray()</a>
+			        <a href="" class="ref-link">loadJSON()</a>
 
-			        <a href="loadJSONObject_.html" class="ref-link">loadJSONObject()</a>
+                    <a href="loadJSONArray_.html" class="ref-link removed">loadJSONArray()</a>
+
+			        <a href="loadJSONObject_.html" class="ref-link removed">loadJSONObject()</a>
 
 			        <a href="loadStrings_.html" class="ref-link">loadStrings()</a>
 
-			        <a href="loadTable_.html" class="ref-link">loadTable()</a>
+			        <a href="loadTable_.html" class="ref-link toBeImplemented">loadTable()</a>
 
-			        <a href="loadXML_.html" class="ref-link">loadXML()</a>
+			        <a href="loadXML_.html" class="ref-link toBeImplemented">loadXML()</a>
 
-			        <a href="open_.html" class="ref-link">open()</a>
+			        <a href="open_.html" class="ref-link toBeImplemented">open()</a>
 
-			        <a href="parseXML_.html" class="ref-link">parseXML()</a>
+			        <a href="parseXML_.html" class="ref-link toBeImplemented">parseXML()</a>
 
-			        <a href="selectFolder_.html" class="ref-link">selectFolder()</a>
+                    <a href="saveTable_.html" class="ref-link toBeImplemented">saveTable()</a>
 
-			        <a href="selectInput_.html" class="ref-link">selectInput()</a>
+			        <a href="selectFolder_.html" class="ref-link toBeImplemented">selectFolder()</a>
+
+			        <a href="selectInput_.html" class="ref-link toBeImplemented">selectInput()</a>
 			        <!--<h5>Web</h5>-->
 			        <!-- input:web -->
 
@@ -480,47 +502,45 @@
 			        <b>Output</b>
 			        <h5>Text Area</h5>
 
-			        <a href="print_.html" class="ref-link">print()</a>
+			        <a href="print_.html" class="ref-link removed">print()</a>
 
 			        <a href="printArray_.html" class="ref-link">printArray()</a>
 
 			        <a href="println_.html" class="ref-link">println()</a>
 			        <h5>Image</h5>
 
-			        <a href="save_.html" class="ref-link">save()</a>
+			        <a href="save_.html" class="ref-link toBeImplemented">save()</a>
 
-			        <a href="saveFrame_.html" class="ref-link">saveFrame()</a>
+			        <a href="saveFrame_.html" class="ref-link removed">saveFrame()</a>
 			        <h5>Files</h5>
 
-			        <a href="beginRaw_.html" class="ref-link">beginRaw()</a>
+			        <a href="beginRaw_.html" class="ref-link toBeImplemented">beginRaw()</a>
 
-			        <a href="beginRecord_.html" class="ref-link">beginRecord()</a>
+			        <a href="beginRecord_.html" class="ref-link toBeImplemented">beginRecord()</a>
 
-			        <a href="createOutput_.html" class="ref-link">createOutput()</a>
+			        <a href="createOutput_.html" class="ref-link toBeImplemented">createOutput()</a>
 
 			        <a href="createWriter_.html" class="ref-link">createWriter()</a>
 
-			        <a href="endRaw_.html" class="ref-link">endRaw()</a>
+			        <a href="endRaw_.html" class="ref-link toBeImplemented">endRaw()</a>
 
-			        <a href="endRecord_.html" class="ref-link">endRecord()</a>
+			        <a href="endRecord_.html" class="ref-link toBeImplemented">endRecord()</a>
 
 			        <a href="PrintWriter.html" class="ref-link">PrintWriter</a>
 
-			        <a href="saveBytes_.html" class="ref-link">saveBytes()</a>
+			        <a href="saveBytes_.html" class="ref-link toBeImplemented">saveBytes()</a>
 
-			        <a href="saveJSONArray_.html" class="ref-link">saveJSONArray()</a>
+			        <a href="saveJSONArray_.html" class="ref-link toBeImplemented">saveJSONArray()</a>
 
-			        <a href="saveJSONObject_.html" class="ref-link">saveJSONObject()</a>
+			        <a href="saveJSONObject_.html" class="ref-link toBeImplemented">saveJSONObject()</a>
 
-			        <a href="saveStream_.html" class="ref-link">saveStream()</a>
+			        <a href="saveStream_.html" class="ref-link toBeImplemented">saveStream()</a>
 
 			        <a href="saveStrings_.html" class="ref-link">saveStrings()</a>
 
-			        <a href="saveTable_.html" class="ref-link">saveTable()</a>
+			        <a href="saveXML_.html" class="ref-link toBeImplemented">saveXML()</a>
 
-			        <a href="saveXML_.html" class="ref-link">saveXML()</a>
-
-			        <a href="selectOutput_.html" class="ref-link">selectOutput()</a>
+			        <a href="selectOutput_.html" class="ref-link toBeImplemented">selectOutput()</a>
 
 			    </div>
 
@@ -541,11 +561,11 @@
 
 			        <a href="rotate_.html" class="ref-link">rotate()</a>
 
-			        <a href="rotateX_.html" class="ref-link">rotateX()</a>
+			        <a href="rotateX_.html" class="ref-link future">rotateX()</a>
 
-			        <a href="rotateY_.html" class="ref-link">rotateY()</a>
+			        <a href="rotateY_.html" class="ref-link future">rotateY()</a>
 
-			        <a href="rotateZ_.html" class="ref-link">rotateZ()</a>
+			        <a href="rotateZ_.html" class="ref-link future">rotateZ()</a>
 
 			        <a href="scale_.html" class="ref-link">scale()</a>
 
@@ -561,63 +581,63 @@
 			        <!-- lights_camera -->
 			        <h5>Lights</h5>
 
-			        <a href="ambientLight_.html" class="ref-link">ambientLight()</a>
+			        <a href="ambientLight_.html" class="ref-link future">ambientLight()</a>
 
-			        <a href="directionalLight_.html" class="ref-link">directionalLight()</a>
+			        <a href="directionalLight_.html" class="ref-link future">directionalLight()</a>
 
-			        <a href="lightFalloff_.html" class="ref-link">lightFalloff()</a>
+			        <a href="lightFalloff_.html" class="ref-link future">lightFalloff()</a>
 
-			        <a href="lights_.html" class="ref-link">lights()</a>
+			        <a href="lights_.html" class="ref-link future">lights()</a>
 
-			        <a href="lightSpecular_.html" class="ref-link">lightSpecular()</a>
+			        <a href="lightSpecular_.html" class="ref-link future">lightSpecular()</a>
 
-			        <a href="noLights_.html" class="ref-link">noLights()</a>
+			        <a href="noLights_.html" class="ref-link future">noLights()</a>
 
-			        <a href="normal_.html" class="ref-link">normal()</a>
+			        <a href="normal_.html" class="ref-link future">normal()</a>
 
-			        <a href="pointLight_.html" class="ref-link">pointLight()</a>
+			        <a href="pointLight_.html" class="ref-link future">pointLight()</a>
 
-			        <a href="spotLight_.html" class="ref-link">spotLight()</a>
+			        <a href="spotLight_.html" class="ref-link future">spotLight()</a>
 
 			        <h5>Camera</h5>
 
-			        <a href="beginCamera_.html" class="ref-link">beginCamera()</a>
+			        <a href="beginCamera_.html" class="ref-link future">beginCamera()</a>
 
-			        <a href="camera_.html" class="ref-link">camera()</a>
+			        <a href="camera_.html" class="ref-link future">camera()</a>
 
-			        <a href="endCamera_.html" class="ref-link">endCamera()</a>
+			        <a href="endCamera_.html" class="ref-link future">endCamera()</a>
 
-			        <a href="frustum_.html" class="ref-link">frustum()</a>
+			        <a href="frustum_.html" class="ref-link future">frustum()</a>
 
-			        <a href="ortho_.html" class="ref-link">ortho()</a>
+			        <a href="ortho_.html" class="ref-link future">ortho()</a>
 
-			        <a href="perspective_.html" class="ref-link">perspective()</a>
+			        <a href="perspective_.html" class="ref-link future">perspective()</a>
 
-			        <a href="printCamera_.html" class="ref-link">printCamera()</a>
+			        <a href="printCamera_.html" class="ref-link future">printCamera()</a>
 
-			        <a href="printProjection_.html" class="ref-link">printProjection()</a>
+			        <a href="printProjection_.html" class="ref-link future">printProjection()</a>
 			        <h5>Coordinates</h5>
 
-			        <a href="modelX_.html" class="ref-link">modelX()</a>
+			        <a href="modelX_.html" class="ref-link future">modelX()</a>
 
-			        <a href="modelY_.html" class="ref-link">modelY()</a>
+			        <a href="modelY_.html" class="ref-link future">modelY()</a>
 
-			        <a href="modelZ_.html" class="ref-link">modelZ()</a>
+			        <a href="modelZ_.html" class="ref-link future">modelZ()</a>
 
-			        <a href="screenX_.html" class="ref-link">screenX()</a>
+			        <a href="screenX_.html" class="ref-link future">screenX()</a>
 
-			        <a href="screenY_.html" class="ref-link">screenY()</a>
+			        <a href="screenY_.html" class="ref-link future">screenY()</a>
 
-			        <a href="screenZ_.html" class="ref-link">screenZ()</a>
+			        <a href="screenZ_.html" class="ref-link future">screenZ()</a>
 			        <h5>Material Properties</h5>
 
-			        <a href="ambient_.html" class="ref-link">ambient()</a>
+			        <a href="ambient_.html" class="ref-link future">ambient()</a>
 
-			        <a href="emissive_.html" class="ref-link">emissive()</a>
+			        <a href="emissive_.html" class="ref-link future">emissive()</a>
 
-			        <a href="shininess_.html" class="ref-link">shininess()</a>
+			        <a href="shininess_.html" class="ref-link future">shininess()</a>
 
-			        <a href="specular_.html" class="ref-link">specular()</a>
+			        <a href="specular_.html" class="ref-link future">specular()</a>
 
 			    </div>
 			</div>
@@ -672,7 +692,7 @@
 
 			        <a href="createImage_.html" class="ref-link">createImage()</a>
 
-			        <a href="PImage.html" class="ref-link">PImage</a>
+			        <a href="PImage.html" class="ref-link">PImage</a> - mostly
 			        <h5>Loading &amp; Displaying</h5>
 
 			        <a href="image_.html" class="ref-link">image()</a>
@@ -681,35 +701,35 @@
 
 			        <a href="loadImage_.html" class="ref-link">loadImage()</a>
 
-			        <a href="noTint_.html" class="ref-link">noTint()</a>
+			        <a href="noTint_.html" class="ref-link toBeImplemented">noTint()</a>
 
-			        <a href="requestImage_.html" class="ref-link">requestImage()</a>
+			        <a href="requestImage_.html" class="ref-link toBeImplemented">requestImage()</a>
 
-			        <a href="tint_.html" class="ref-link">tint()</a>
+			        <a href="tint_.html" class="ref-link toBeImplemented">tint()</a>
 			        <h5>Textures</h5>
 
-			        <a href="texture_.html" class="ref-link">texture()</a>
+			        <a href="texture_.html" class="ref-link toBeImplemented">texture()</a>
 
-			        <a href="textureMode_.html" class="ref-link">textureMode()</a>
+			        <a href="textureMode_.html" class="ref-link toBeImplemented">textureMode()</a>
 
-			        <a href="textureWrap_.html" class="ref-link">textureWrap()</a>
+			        <a href="textureWrap_.html" class="ref-link toBeImplemented">textureWrap()</a>
 			        <h5>Pixels</h5>
 
-			        <a href="blend_.html" class="ref-link">blend()</a>
+			        <a href="blend_.html" class="ref-link toBeImplemented">blend()</a>
 
-			        <a href="copy_.html" class="ref-link">copy()</a>
+			        <a href="copy_.html" class="ref-link toBeImplemented">copy()</a>
 
-			        <a href="filter_.html" class="ref-link">filter()</a>
+			        <a href="filter_.html" class="ref-link toBeImplemented">filter()</a>
 
-			        <a href="get_.html" class="ref-link">get()</a>
+			        <a href="get_.html" class="ref-link">get()</a> - incomplete
 
 			        <a href="loadPixels_.html" class="ref-link">loadPixels()</a>
 
 			        <a href="pixels.html" class="ref-link">pixels[]</a>
 
-			        <a href="set_.html" class="ref-link">set()</a>
+			        <a href="set_.html" class="ref-link toBeImplemented">set()</a>
 
-			        <a href="updatePixels_.html" class="ref-link">updatePixels()</a>
+			        <a href="updatePixels_.html" class="ref-link toBeImplemented">updatePixels()</a>
 
 			    </div>
 			    <div class="category">
@@ -717,20 +737,20 @@
 			        <br>
 			        <br>
 
-			        <a href="blendMode_.html" class="ref-link">blendMode()</a>
+			        <a href="blendMode_.html" class="ref-link toBeImplemented">blendMode()</a>
 
 			        <a href="createGraphics_.html" class="ref-link">createGraphics()</a>
 
-			        <a href="PGraphics.html" class="ref-link">PGraphics</a>
+			        <a href="PGraphics.html" class="ref-link">PGraphics</a> (is now PElement)
 			        <h5>Shaders</h5>
 
-			        <a href="loadShader_.html" class="ref-link">loadShader()</a>
+			        <a href="loadShader_.html" class="ref-link future">loadShader()</a>
 
-			        <a href="PShader.html" class="ref-link">PShader</a>
+			        <a href="PShader.html" class="ref-link future">PShader</a>
 
-			        <a href="resetShader_.html" class="ref-link">resetShader()</a>
+			        <a href="resetShader_.html" class="ref-link future">resetShader()</a>
 
-			        <a href="shader_.html" class="ref-link">shader()</a>
+			        <a href="shader_.html" class="ref-link future">shader()</a>
 
 			    </div>
 			    <div class="category">
@@ -738,12 +758,12 @@
 			        <br>
 			        <br>
 
-			        <a href="PFont.html" class="ref-link">PFont</a>
+			        <a href="PFont.html" class="ref-link toBeImplemented">PFont</a>
 			        <h5>Loading &amp; Displaying</h5>
 
-			        <a href="createFont_.html" class="ref-link">createFont()</a>
+			        <a href="createFont_.html" class="ref-link removed">createFont()</a>
 
-			        <a href="loadFont_.html" class="ref-link">loadFont()</a>
+			        <a href="loadFont_.html" class="ref-link removed">loadFont()</a>
 
 			        <a href="text_.html" class="ref-link">text()</a>
 
@@ -754,16 +774,16 @@
 
 			        <a href="textLeading_.html" class="ref-link">textLeading()</a>
 
-			        <a href="textMode_.html" class="ref-link">textMode()</a>
+			        <a href="textMode_.html" class="ref-link removed">textMode()</a>
 
 			        <a href="textSize_.html" class="ref-link">textSize()</a>
 
 			        <a href="textWidth_.html" class="ref-link">textWidth()</a>
 			        <h5>Metrics</h5>
 
-			        <a href="textAscent_.html" class="ref-link">textAscent()</a>
+			        <a href="textAscent_.html" class="ref-link toBeImplemented">textAscent()</a>
 
-			        <a href="textDescent_.html" class="ref-link">textDescent()</a>
+			        <a href="textDescent_.html" class="ref-link toBeImplemented">textDescent()</a>
 
 			    </div>
 
@@ -772,9 +792,11 @@
 			        <br>
 			        <br>
 
-			        <a href="PVector.html" class="ref-link">PVector</a>
-			        <h5>Operators</h5>
+			        <h5>PVectos</h5>
 
+                    <a href="PVector.html" class="ref-link">PVector</a> - this list incomplete
+			        
+                    <h5>Operators</h5>
 
 			        <a href="modulo.html" class="ref-link">% (modulo)</a>
 
@@ -870,17 +892,17 @@
 			        <h5>Random</h5>
 
 
-			        <a href="noise_.html" class="ref-link">noise()</a>
+			        <a href="noise_.html" class="ref-link toBeImplemented">noise()</a>
 
-			        <a href="noiseDetail_.html" class="ref-link">noiseDetail()</a>
+			        <a href="noiseDetail_.html" class="ref-link toBeImplemented">noiseDetail()</a>
 
-			        <a href="noiseSeed_.html" class="ref-link">noiseSeed()</a>
+			        <a href="noiseSeed_.html" class="ref-link toBeImplemented">noiseSeed()</a>
 
 			        <a href="random_.html" class="ref-link">random()</a>
 
-			        <a href="randomGaussian_.html" class="ref-link">randomGaussian()</a>
+			        <a href="randomGaussian_.html" class="ref-link toBeImplemented">randomGaussian()</a>
 
-			        <a href="randomSeed_.html" class="ref-link">randomSeed()</a>
+			        <a href="randomSeed_.html" class="ref-link toBeImplemented">randomSeed()</a>
 
 			    </div>
 
@@ -900,6 +922,50 @@
 			        <a href="TWO_PI.html" class="ref-link">TWO_PI</a>
 
 			    </div>
+
+                <div class="category">
+                    <b>DOM</b>
+                    <br>
+                    <br>
+
+                    <a href="" class="ref-link">AUTO</a>
+
+                    <h5>Create</h5>
+
+                    <a href="" class="ref-link">createElement(html)</a>
+                    <a href="" class="ref-link">createImage(src)</a>
+                    <a href="" class="ref-link">createCanvas(w, h)</a>
+
+                    <h5>Access</h5>
+
+                    <a href="" class="ref-link">get(id)</a>
+                    <a href="" class="ref-link">get(class)</a>
+
+                    <h5>Set context</h5>
+
+                    <a href="" class="ref-link">context(id)</a>
+                    <a href="" class="ref-link">context(obj)</a>
+
+                    <h5>PElement</h5>
+
+                    <a href="" class="ref-link">id(id)</a>
+                    <a href="" class="ref-link">class(class)</a>
+                    <a href="" class="ref-link">size(w, h)</a>
+                    <a href="" class="ref-link">position(x, y)</a>
+                    <a href="" class="ref-link">style(style)</a>
+                    <a href="" class="ref-link">html(html)</a>
+                    <a href="" class="ref-link">show()</a>
+                    <a href="" class="ref-link">hide()</a>
+
+                    <h5>Listeners</h5>
+
+                    <a href="" class="ref-link">mousePressed(function)</a>
+                    <a href="" class="ref-link">mouseOver(function)</a>
+                    <a href="" class="ref-link">mouseOut(function)</a>
+
+
+                </div>
+
 			</div>
 		</div>
 
@@ -913,6 +979,17 @@
     // Shorthand for $( document ).ready()
 	$(function() {
 		$("a.ref-link").wrap("<li class='list-group-item'>");
+
+        $("a.ref-link").addClass("implemented");
+        $("a.removed").removeClass("implemented");
+        $("a.toBeImplemented").removeClass("implemented");
+        $("a.future").removeClass("implemented");
+
+        $("a.implemented").append('<span class="pull-right fa fa-check fa-lg" title="Implemented"> </span>');
+        $("a.removed").append('<span class="pull-right fa fa-trash-o fa-lg" title="Removed"> </span>');
+        $("a.toBeImplemented").append('<span class="pull-right fa fa-clock-o fa-lg" title="Removed"> </span>');
+        $("a.future").append('<span class="pull-right fa fa-ellipsis-h fa-lg" title="Removed"> </span>');
+
 
 		$("a.ref-link").not(".done").addClass( "pending" );
 

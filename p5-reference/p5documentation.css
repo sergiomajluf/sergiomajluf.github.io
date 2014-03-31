@@ -1,3 +1,5 @@
+/* @override http://dev.github/p5-reference/p5documentation.css */
+
 canvas {
 margin: 10px;
 }
@@ -13,9 +15,22 @@ pre,
 
 a.ref-link {
 	display: block;
-	padding: 5px;
+	padding: 15px;
+	-webkit-transition:background-color 0.5s, -webkit-transform 0.5s;
+    	    transition:background-color 0.5s, transform 0.5s;
 }
 
+a.ref-link:hover {
+	background-color: rgba(222,251,222,0.53);
+}
+
+a.ref-link.pending:hover {
+	background-color: rgba(252,249,231,0.53);
+}
+
+li.list-group-item {
+	padding: 0;
+}
 a.ref-link.done {
 	font-weight: bold;
 }
@@ -27,4 +42,8 @@ a.ref-link.pending {
 a.ref-link.revisit {
 	color: orange;
 	font-weight: bold;
+}
+
+a.ref-link.removed {
+	text-decoration:line-through;
 }
