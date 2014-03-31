@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <script src="../../../p5.js/dist/p5.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    var s = function(sketch) {
+        sketch.setup = function() {
+            sketch.createCanvas(100, 100);
+            sketch.background(230);
+            sketch.fill(250);
+            sketch.rect(30, 20, 55, 55);
+        };  
+    };
+
+    var d = function(sketch2) {
+        sketch2.setup = function() {
+            sketch2.createCanvas(100, 100);
+            sketch2.background(230);
+            sketch2.fill(250);
+            sketch2.rect(30, 20, 55, 55, 7);
+        };  
+    };
+
+    var f = function(sketch3) {
+        sketch3.setup = function() {
+            sketch3.createCanvas(100, 100);
+            sketch3.background(230);
+            sketch3.fill(250);
+            sketch3.rect(30, 20, 55, 55, 3, 6, 12, 18);
+        };  
+    };
+    console.log(s);
+    console.log(d);
+    console.log(f);
+    //d.sketch.setup.rect(30, 20, 55, 55, 7);
+
+    var myp5_0 = new p5(s, 'canvas0');
+    var myp5_1 = new p5(d, 'canvas1');
+    var myp5_2 = new p5(f, 'canvas2');
+    
+    function deStyleCanvas(){
+            $("canvas").each(function(index) {
+                $(this).removeAttr("style");
+            });
+            $("pre").each(function(index) {
+            //$(this).removeAttr("style");
+            $(this).attr("id", "pre"+index);
+        });
+
+        }
+    
+    window.onload = function() {
+      deStyleCanvas();
+    };
+    </script>
+
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">rect(30, 20, 55, 55);</code>
+    </pre>
+    <pre>
+        <code class="javascript">rect(30, 20, 55, 55, 7);</code>
+    </pre>
+    <pre>
+        <code class="javascript">rect(30, 20, 55, 55, 3, 6, 12, 18);</code>
+    </pre>
+    <canvas id="canvas0"></canvas>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+<div class="offset cf" style="position:absolute;top:350px"><hr><h2>Using local js file. rect() has no rounded corners apparently</h2>CDN wasn't working.</div>
+</body>
+
+</html>

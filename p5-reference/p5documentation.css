@@ -1,54 +1,68 @@
 /* @override http://dev.github/p5-reference/p5documentation.css */
-
-canvas {
-margin: 10px;
+ canvas {
+    margin: 10px;
 }
-
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans;
 }
-pre,
-.offset {
-	margin-left: 120px;
+pre, .offset {
+    margin-left: 120px;
 }
-
-
 a.ref-link {
-	display: block;
-	padding: 15px;
-	-webkit-transition:background-color 0.5s, -webkit-transform 0.5s;
-    	    transition:background-color 0.5s, transform 0.5s;
+    display: block;
+    padding: 15px;
+    -webkit-transition:background-color 0.5s, -webkit-transform 0.5s;
+    transition:background-color 0.5s, transform 0.5s;
 }
-
 a.ref-link:hover {
-	background-color: rgba(222,251,222,0.53);
+    background-color: rgba(222, 251, 222, 0.53);
 }
-
 a.ref-link.pending:hover {
-	background-color: rgba(252,249,231,0.53);
+    background-color: rgba(252, 249, 231, 0.53);
 }
-
 li.list-group-item {
-	padding: 0;
+    padding: 0;
 }
 a.ref-link.done {
-	font-weight: bold;
+    font-weight: bold;
 }
-
 a.ref-link.pending {
-	color: grey;
+    color: grey;
 }
-
 a.ref-link.revisit {
-	color: orange;
-	font-weight: bold;
+    color: orange;
+    font-weight: bold;
 }
-
 a.ref-link.removed {
-	text-decoration:line-through;
+    text-decoration:line-through;
 }
-
-
+#canvas0 {
+    position: absolute;
+    top: 0;
+}
+#canvas1 {
+    position: absolute;
+    top: 120px;
+}
+#canvas2 {
+    position: absolute;
+    top: 240px;
+}
+pre {
+    position: absolute;
+    left: 120px;
+    width: 80%;
+    margin: 0 0 0 20px;
+}
+#pre0 {
+    top: 0px;
+}
+#pre1 {
+    top: 132px;
+}
+#pre2 {
+    top: 250px;
+}
 /**
  * http://nicolasgallagher.com/micro-clearfix-hack/
  * For modern browsers
@@ -59,20 +73,19 @@ a.ref-link.removed {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.cf:before,
-.cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+ .cf:before, .cf:after {
+    content:" ";
+    /* 1 */
+    display: table;
+    /* 2 */
 }
-
 .cf:after {
     clear: both;
 }
-
 /**
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-.cf {
+ .cf {
     *zoom: 1;
 }
