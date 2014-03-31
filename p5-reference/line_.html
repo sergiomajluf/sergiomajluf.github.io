@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    var ypos = 0;
+    var speed = 0.01;
+
+    function setup() {
+
+        createCanvas(100, 100);
+        background(200);
+        line(30, 20, 85, 75);
+
+        createCanvas(100, 100);
+        background(200);
+        line(30, 20, 85, 20);
+        stroke(126);
+        line(85, 20, 85, 75);
+        stroke(255);
+        line(85, 75, 30, 75);
+
+        createCanvas(100, 100);
+        background(200);
+        line(30, 20, 0, 85, 20, 15);
+        stroke(126);
+        line(85, 20, 15, 85, 75, 0);
+        stroke(255);
+        line(85, 75, 0, 30, 75, -50);
+
+        renameCanvas();
+
+    }
+
+    function renameCanvas(){
+        $("canvas").each(function(index) {
+            $(this).removeAttr("style");
+            $(this).attr("id", "canvas"+index);
+        });
+
+        $("pre").each(function(index) {
+            //$(this).removeAttr("style");
+            $(this).attr("id", "pre"+index);
+        });
+    }
+    $
+    </script>
+    <style>
+    #canvas0 {
+        position: absolute;
+        top: 0;
+    }
+    #canvas1 {
+        position: absolute;
+        top: 120px;
+    }
+    #canvas2 {
+        position: absolute;
+        top: 240px;
+    }
+
+    pre {
+        position: absolute;
+        left: 120px;
+        width: 80%;
+        margin: 0 0 0 20px;
+    }
+    #pre0 { top: 0px;}
+    #pre1 { top: 132px;}
+    #pre2 { top: 250px;}
+    </style>
+
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">line(30, 20, 85, 75);</code>
+    </pre>
+    <pre><code class="javascript">line(30, 20, 85, 20);
+stroke(126);
+line(85, 20, 85, 75);
+stroke(255);
+line(85, 75, 30, 75);</code></pre>
+<pre><code class="javascript">//Intentionally bad code ;)
+line(30, 20, 0, 85, 20, 15);
+stroke(126);
+line(85, 20, 15, 85, 75, 0);
+stroke(255);
+line(85, 75, 0, 30, 75, -50);</code></pre>
+<div class="offset cf" style="position:absolute; top:400px;"><hr><h2>There is no P3D renderer.</h2><p>The original <a href="http://processing.org/reference/line_.html" title"Line()">line()</a> function example showed also the ability to draw in 3D space. That is still not implemented in P5, but the example is still here as a comparison.</p></div>
+</body>
+
+</html>
