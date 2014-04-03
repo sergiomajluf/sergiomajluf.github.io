@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.3/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(200);
+    }
+    // Run this program to learn how each of these functions
+    // relate to the others.
+
+    function draw() {} // Empty draw() needed to keep the program running
+
+    function keyPressed() {
+        println("pressed " + key + " " + keyCode);
+    }
+
+    function keyTyped() {
+        println("typed " + key + " " + keyCode);
+    }
+
+    function keyReleased() {
+        println("released " + key + " " + keyCode);
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">function draw() {} // Empty draw() needed to keep the program running
+function keyPressed() {
+    println("pressed " + key + " " + keyCode);
+}
+
+function keyTyped() {
+    println("typed " + key + " " + keyCode);
+}
+
+function keyReleased() {
+    println("released " + key + " " + keyCode);
+}
+        </code>
+    </pre>
+</body>
+
+</html>

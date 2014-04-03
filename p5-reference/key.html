@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.3/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(200);
+    }
+    // Note the use of keyIsPressed() instead of keyPressed boolean
+    // Click on the window to give it focus,
+    // and press the 'B' key.
+
+    function draw() {
+        if (keyIsPressed()) {
+            if (key == 'b' || key == 'B') {
+                fill(0);
+            }
+        } else {
+            fill(255);
+        }
+        rect(25, 25, 50, 50);
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">// Note the use of keyIsPressed() instead of keyPressed boolean
+// Click on the window to give it focus,
+// and press the 'B' key.
+
+function draw() {
+    if (keyIsPressed()) {
+        if (key == 'b' || key == 'B') {
+            fill(0);
+        }
+    } else {
+        fill(255);
+    }
+    rect(25, 25, 50, 50);
+} }
+        </code>
+    </pre>
+</body>
+
+</html>

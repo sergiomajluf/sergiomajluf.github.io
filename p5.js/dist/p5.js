@@ -1,11 +1,12 @@
-(function () {var shim = function (require) {
-        window.requestDraw = function () {
-            return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback, element) {
+(function() {
+    var shim = function(require) {
+        window.requestDraw = function() {
+            return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback, element) {
                 window.setTimeout(callback, 1000 / 60);
             };
         }();
     }({});
-var constants = function (require) {
+    var constants = function(require) {
         var PI = Math.PI;
         return {
             ARROW: 'default',
@@ -51,10 +52,10 @@ var constants = function (require) {
             BOLD: 'bold'
         };
     }({});
-var core = function (require, shim, constants) {
+    var core = function(require, shim, constants) {
         'use strict';
         var constants = constants;
-        var p5 = function (sketch, node) {
+        var p5 = function(sketch, node) {
             this.frameCount = 0;
             this.focused = true;
             this.displayWidth = screen.width;
@@ -75,14 +76,16 @@ var core = function (require, shim, constants) {
             this._bezierDetail = 20;
             this._curveDetail = 20;
             this.curElement = null;
-            this.matrices = [[
+            this.matrices = [
+                [
                     1,
                     0,
                     0,
                     1,
                     0,
                     0
-                ]];
+                ]
+            ];
             this.settings = {
                 loop: true,
                 fill: false,
@@ -131,7 +134,7 @@ var core = function (require, shim, constants) {
                 window.addEventListener('load', this._start.bind(this), false);
             }
         };
-        p5.prototype._start = function () {
+        p5.prototype._start = function() {
             this.createCanvas(800, 600, true);
             if (this._userNode) {
                 if (typeof this._userNode === 'string') {
@@ -141,16 +144,16 @@ var core = function (require, shim, constants) {
             var userPreload = this.preload || window.preload;
             var context = this._isGlobal ? window : this;
             if (userPreload) {
-                context.loadJSON = function (path) {
+                context.loadJSON = function(path) {
                     return context._preload('loadJSON', path);
                 };
-                context.loadStrings = function (path) {
+                context.loadStrings = function(path) {
                     return context._preload('loadStrings', path);
                 };
-                context.loadXML = function (path) {
+                context.loadXML = function(path) {
                     return context._preload('loadXML', path);
                 };
-                context.loadImage = function (path) {
+                context.loadImage = function(path) {
                     return context._preload('loadImage', path);
                 };
                 userPreload();
@@ -164,10 +167,10 @@ var core = function (require, shim, constants) {
                 this._draw();
             }
         };
-        p5.prototype._preload = function (func, path) {
+        p5.prototype._preload = function(func, path) {
             var context = this._isGlobal ? window : this;
             context._setProperty('preload-count', context._preloadCount + 1);
-            return this[func](path, function (resp) {
+            return this[func](path, function(resp) {
                 context._setProperty('preload-count', context._preloadCount - 1);
                 if (context._preloadCount === 0) {
                     context._setup();
@@ -176,19 +179,19 @@ var core = function (require, shim, constants) {
                 }
             });
         };
-        p5.prototype._setup = function () {
+        p5.prototype._setup = function() {
             var userSetup = this.setup || window.setup;
             if (typeof userSetup === 'function') {
                 userSetup();
             }
         };
-        p5.prototype._draw = function () {
+        p5.prototype._draw = function() {
             var now = new Date().getTime();
             this._frameRate = 1000 / (now - this._lastFrameTime);
             this._lastFrameTime = now;
             var userDraw = this.draw || window.draw;
             if (this.settings.loop) {
-                setTimeout(function () {
+                setTimeout(function() {
                     window.requestDraw(this._draw.bind(this));
                 }.bind(this), 1000 / this._targetFrameRate);
             }
@@ -197,20 +200,20 @@ var core = function (require, shim, constants) {
             }
             this.curElement.context.setTransform(1, 0, 0, 1, 0, 0);
         };
-        p5.prototype._runFrames = function () {
+        p5.prototype._runFrames = function() {
             if (this.updateInterval) {
                 clearInterval(this.updateInterval);
             }
-            this.updateInterval = setInterval(function () {
+            this.updateInterval = setInterval(function() {
                 this._setProperty('frameCount', this.frameCount + 1);
             }.bind(this), 1000 / this._targetFrameRate);
         };
-        p5.prototype._applyDefaults = function () {
+        p5.prototype._applyDefaults = function() {
             this.curElement.context.fillStyle = '#FFFFFF';
             this.curElement.context.strokeStyle = '#000000';
             this.curElement.context.lineCap = constants.ROUND;
         };
-        p5.prototype._setProperty = function (prop, value) {
+        p5.prototype._setProperty = function(prop, value) {
             this[prop] = value;
             if (this._isGlobal) {
                 window[prop] = value;
@@ -218,14 +221,15 @@ var core = function (require, shim, constants) {
         };
         return p5;
     }({}, shim, constants);
-var mathpvector = function (require) {
+    var mathpvector = function(require) {
         'use strict';
+
         function PVector(x, y, z) {
             this.x = x || 0;
             this.y = y || 0;
             this.z = z || 0;
         }
-        PVector.prototype.set = function (x, y, z) {
+        PVector.prototype.set = function(x, y, z) {
             if (x instanceof PVector) {
                 return this.set(x.x, x.y, x.z);
             }
@@ -236,10 +240,10 @@ var mathpvector = function (require) {
             this.y = y || 0;
             this.z = z || 0;
         };
-        PVector.prototype.get = function () {
+        PVector.prototype.get = function() {
             return new PVector(this.x, this.y, this.z);
         };
-        PVector.prototype.add = function (x, y, z) {
+        PVector.prototype.add = function(x, y, z) {
             if (x instanceof PVector) {
                 return this.add(x.x, x.y, x.z);
             }
@@ -251,7 +255,7 @@ var mathpvector = function (require) {
             this.z += z || 0;
             return this;
         };
-        PVector.prototype.sub = function (x, y, z) {
+        PVector.prototype.sub = function(x, y, z) {
             if (x instanceof PVector) {
                 return this.sub(x.x, x.y, x.z);
             }
@@ -263,45 +267,47 @@ var mathpvector = function (require) {
             this.z -= z || 0;
             return this;
         };
-        PVector.prototype.mult = function (n) {
+        PVector.prototype.mult = function(n) {
             this.x *= n || 0;
             this.y *= n || 0;
             this.z *= n || 0;
             return this;
         };
-        PVector.prototype.div = function (n) {
+        PVector.prototype.div = function(n) {
             this.x /= n;
             this.y /= n;
             this.z /= n;
             return this;
         };
-        PVector.prototype.mag = function () {
+        PVector.prototype.mag = function() {
             return Math.sqrt(this.magSq());
         };
-        PVector.prototype.magSq = function () {
-            var x = this.x, y = this.y, z = this.z;
+        PVector.prototype.magSq = function() {
+            var x = this.x,
+                y = this.y,
+                z = this.z;
             return x * x + y * y + z * z;
         };
-        PVector.prototype.dot = function (x, y, z) {
+        PVector.prototype.dot = function(x, y, z) {
             if (x instanceof PVector) {
                 return this.dot(x.x, x.y, x.z);
             }
             return this.x * (x || 0) + this.y * (y || 0) + this.z * (z || 0);
         };
-        PVector.prototype.cross = function (v) {
+        PVector.prototype.cross = function(v) {
             var x = this.y * v.z - this.z * v.y;
             var y = this.z * v.x - this.x * v.z;
             var z = this.x * v.y - this.y * v.x;
             return new PVector(x, y, z);
         };
-        PVector.prototype.dist = function (v) {
+        PVector.prototype.dist = function(v) {
             var d = v.get().sub(this);
             return d.mag();
         };
-        PVector.prototype.normalize = function () {
+        PVector.prototype.normalize = function() {
             return this.div(this.mag());
         };
-        PVector.prototype.limit = function (l) {
+        PVector.prototype.limit = function(l) {
             var mSq = this.magSq();
             if (mSq > l * l) {
                 this.div(Math.sqrt(mSq));
@@ -309,20 +315,20 @@ var mathpvector = function (require) {
             }
             return this;
         };
-        PVector.prototype.setMag = function (n) {
+        PVector.prototype.setMag = function(n) {
             return this.normalize().mult(n);
         };
-        PVector.prototype.heading = function () {
+        PVector.prototype.heading = function() {
             return Math.atan2(this.y, this.x);
         };
-        PVector.prototype.rotate2D = function (a) {
+        PVector.prototype.rotate2D = function(a) {
             var newHeading = this.heading() + a;
             var mag = this.mag();
             this.x = Math.cos(newHeading) * mag;
             this.y = Math.sin(newHeading) * mag;
             return this;
         };
-        PVector.prototype.lerp = function (x, y, z, amt) {
+        PVector.prototype.lerp = function(x, y, z, amt) {
             if (x instanceof PVector) {
                 return this.lerp(x.x, x.y, x.z, y);
             }
@@ -331,150 +337,150 @@ var mathpvector = function (require) {
             this.z += (z - this.z) * amt || 0;
             return this;
         };
-        PVector.prototype.array = function () {
+        PVector.prototype.array = function() {
             return [
                 this.x || 0,
                 this.y || 0,
                 this.z || 0
             ];
         };
-        PVector.fromAngle = function (angle) {
+        PVector.fromAngle = function(angle) {
             return new PVector(Math.cos(angle), Math.sin(angle), 0);
         };
-        PVector.random2D = function () {
+        PVector.random2D = function() {
             return this.fromAngle(Math.random(Math.PI * 2));
         };
-        PVector.random3D = function () {
+        PVector.random3D = function() {
             var angle = Math.random() * Math.PI * 2;
             var vz = Math.random() * 2 - 1;
             var vx = Math.sqrt(1 - vz * vz) * Math.cos(angle);
             var vy = Math.sqrt(1 - vz * vz) * Math.sin(angle);
             return new PVector(vx, vy, vz);
         };
-        PVector.add = function (v1, v2) {
+        PVector.add = function(v1, v2) {
             return v1.get().add(v2);
         };
-        PVector.sub = function (v1, v2) {
+        PVector.sub = function(v1, v2) {
             return v1.get().sub(v2);
         };
-        PVector.mult = function (v, n) {
+        PVector.mult = function(v, n) {
             return v.get().mult(n);
         };
-        PVector.div = function (v, n) {
+        PVector.div = function(v, n) {
             return v.get().div(n);
         };
-        PVector.dot = function (v1, v2) {
+        PVector.dot = function(v1, v2) {
             return v1.dot(v2);
         };
-        PVector.cross = function (v1, v2) {
+        PVector.cross = function(v1, v2) {
             return v1.cross(v2);
         };
-        PVector.dist = function (v1, v2) {
+        PVector.dist = function(v1, v2) {
             return v1.dist(v2);
         };
-        PVector.lerp = function (v1, v2, amt) {
+        PVector.lerp = function(v1, v2, amt) {
             return v1.get().lerp(v2, amt);
         };
-        PVector.angleBetween = function (v1, v2) {
+        PVector.angleBetween = function(v1, v2) {
             return Math.acos(v1.dot(v2) / (v1.mag() * v2.mag()));
         };
         return PVector;
     }({});
-var mathcalculation = function (require, core) {
+    var mathcalculation = function(require, core) {
         'use strict';
         var p5 = core;
         p5.prototype.abs = Math.abs;
         p5.prototype.ceil = Math.ceil;
-        p5.prototype.constrain = function (n, l, h) {
+        p5.prototype.constrain = function(n, l, h) {
             return this.max(this.min(n, h), l);
         };
-        p5.prototype.dist = function (x1, y1, x2, y2) {
+        p5.prototype.dist = function(x1, y1, x2, y2) {
             var xs = x2 - x1;
             var ys = y2 - y1;
             return Math.sqrt(xs * xs + ys * ys);
         };
         p5.prototype.exp = Math.exp;
         p5.prototype.floor = Math.floor;
-        p5.prototype.lerp = function (start, stop, amt) {
+        p5.prototype.lerp = function(start, stop, amt) {
             return amt * (stop - start) + start;
         };
         p5.prototype.log = Math.log;
-        p5.prototype.mag = function (x, y) {
+        p5.prototype.mag = function(x, y) {
             return Math.sqrt(x * x + y * y);
         };
-        p5.prototype.map = function (n, start1, stop1, start2, stop2) {
+        p5.prototype.map = function(n, start1, stop1, start2, stop2) {
             return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
         };
         p5.prototype.max = Math.max;
         p5.prototype.min = Math.min;
-        p5.prototype.norm = function (n, start, stop) {
+        p5.prototype.norm = function(n, start, stop) {
             return this.map(n, start, stop, 0, 1);
         };
         p5.prototype.pow = Math.pow;
         p5.prototype.round = Math.round;
-        p5.prototype.sq = function (n) {
+        p5.prototype.sq = function(n) {
             return n * n;
         };
         p5.prototype.sqrt = Math.sqrt;
         return p5;
     }({}, core);
-var colorcreating_reading = function (require, core, mathcalculation) {
+    var colorcreating_reading = function(require, core, mathcalculation) {
         'use strict';
         var p5 = core;
         var calculation = mathcalculation;
-        p5.prototype.alpha = function (rgb) {
+        p5.prototype.alpha = function(rgb) {
             if (rgb.length > 3) {
                 return rgb[3];
             } else {
                 return 255;
             }
         };
-        p5.prototype.blue = function (rgb) {
+        p5.prototype.blue = function(rgb) {
             if (rgb.length > 2) {
                 return rgb[2];
             } else {
                 return 0;
             }
         };
-        p5.prototype.brightness = function (hsv) {
+        p5.prototype.brightness = function(hsv) {
             if (hsv.length > 2) {
                 return hsv[2];
             } else {
                 return 0;
             }
         };
-        p5.prototype.color = function () {
+        p5.prototype.color = function() {
             return this.getNormalizedColor(arguments);
         };
-        p5.prototype.green = function (rgb) {
+        p5.prototype.green = function(rgb) {
             if (rgb.length > 2) {
                 return rgb[1];
             } else {
                 return 0;
             }
         };
-        p5.prototype.hue = function (hsv) {
+        p5.prototype.hue = function(hsv) {
             if (hsv.length > 2) {
                 return hsv[0];
             } else {
                 return 0;
             }
         };
-        p5.prototype.lerpColor = function (c1, c2, amt) {
+        p5.prototype.lerpColor = function(c1, c2, amt) {
             var c = [];
             for (var i = 0; i < c1.length; i++) {
                 c.push(calculation.lerp(c1[i], c2[i], amt));
             }
             return c;
         };
-        p5.prototype.red = function (rgb) {
+        p5.prototype.red = function(rgb) {
             if (rgb.length > 2) {
                 return rgb[0];
             } else {
                 return 0;
             }
         };
-        p5.prototype.saturation = function (hsv) {
+        p5.prototype.saturation = function(hsv) {
             if (hsv.length > 2) {
                 return hsv[1];
             } else {
@@ -483,40 +489,40 @@ var colorcreating_reading = function (require, core, mathcalculation) {
         };
         return p5;
     }({}, core, mathcalculation);
-var colorsetting = function (require, core, constants) {
+    var colorsetting = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var constants = constants;
-        p5.prototype.background = function () {
+        p5.prototype.background = function() {
             var c = this.getNormalizedColor(arguments);
             var curFill = this.curElement.context.fillStyle;
             this.curElement.context.fillStyle = this.getCSSRGBAColor(c);
             this.curElement.context.fillRect(0, 0, this.width, this.height);
             this.curElement.context.fillStyle = curFill;
         };
-        p5.prototype.clear = function () {
+        p5.prototype.clear = function() {
             this.curElement.context.clearRect(0, 0, this.width, this.height);
         };
-        p5.prototype.colorMode = function (mode) {
+        p5.prototype.colorMode = function(mode) {
             if (mode === constants.RGB || mode === constants.HSB) {
                 this.settings.colorMode = mode;
             }
         };
-        p5.prototype.fill = function () {
+        p5.prototype.fill = function() {
             var c = this.getNormalizedColor(arguments);
             this.curElement.context.fillStyle = this.getCSSRGBAColor(c);
         };
-        p5.prototype.noFill = function () {
+        p5.prototype.noFill = function() {
             this.curElement.context.fillStyle = 'rgba(0,0,0,0)';
         };
-        p5.prototype.noStroke = function () {
+        p5.prototype.noStroke = function() {
             this.curElement.context.strokeStyle = 'rgba(0,0,0,0)';
         };
-        p5.prototype.stroke = function () {
+        p5.prototype.stroke = function() {
             var c = this.getNormalizedColor(arguments);
             this.curElement.context.strokeStyle = this.getCSSRGBAColor(c);
         };
-        p5.prototype.getNormalizedColor = function (args) {
+        p5.prototype.getNormalizedColor = function(args) {
             var r, g, b, a, rgba;
             var _args = typeof args[0].length === 'number' ? args[0] : args;
             if (_args.length >= 3) {
@@ -540,30 +546,30 @@ var colorsetting = function (require, core, constants) {
             }
             return rgba;
         };
-        p5.prototype.hsv2rgb = function (h, s, b) {
+        p5.prototype.hsv2rgb = function(h, s, b) {
             return [
                 h,
                 s,
                 b
             ];
         };
-        p5.prototype.getCSSRGBAColor = function (arr) {
-            var a = arr.map(function (val) {
-                    return Math.floor(val);
-                });
+        p5.prototype.getCSSRGBAColor = function(arr) {
+            var a = arr.map(function(val) {
+                return Math.floor(val);
+            });
             var alpha = a[3] ? a[3] / 255 : 1;
             return 'rgba(' + a[0] + ',' + a[1] + ',' + a[2] + ',' + alpha + ')';
         };
         return p5;
     }({}, core, constants);
-var dataarray_functions = function (require, core) {
+    var dataarray_functions = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.append = function (array, value) {
+        p5.prototype.append = function(array, value) {
             array.push(value);
             return array;
         };
-        p5.prototype.arrayCopy = function (src, srcPosition, dst, dstPosition, length) {
+        p5.prototype.arrayCopy = function(src, srcPosition, dst, dstPosition, length) {
             var start, end;
             if (typeof length !== 'undefined') {
                 end = Math.min(length, src.length);
@@ -585,36 +591,36 @@ var dataarray_functions = function (require, core) {
                 end
             ].concat(src));
         };
-        p5.prototype.concat = function (list0, list1) {
+        p5.prototype.concat = function(list0, list1) {
             return list0.concat(list1);
         };
-        p5.prototype.reverse = function (list) {
+        p5.prototype.reverse = function(list) {
             return list.reverse();
         };
-        p5.prototype.shorten = function (list) {
+        p5.prototype.shorten = function(list) {
             list.pop();
             return list;
         };
-        p5.prototype.sort = function (list, count) {
+        p5.prototype.sort = function(list, count) {
             var arr = count ? list.slice(0, Math.min(count, list.length)) : list;
             var rest = count ? list.slice(Math.min(count, list.length)) : [];
             if (typeof arr[0] === 'string') {
                 arr = arr.sort();
             } else {
-                arr = arr.sort(function (a, b) {
+                arr = arr.sort(function(a, b) {
                     return a - b;
                 });
             }
             return arr.concat(rest);
         };
-        p5.prototype.splice = function (list, value, index) {
+        p5.prototype.splice = function(list, value, index) {
             Array.prototype.splice.apply(list, [
                 index,
                 0
             ].concat(value));
             return list;
         };
-        p5.prototype.subset = function (list, start, count) {
+        p5.prototype.subset = function(list, start, count) {
             if (typeof count !== 'undefined') {
                 return list.slice(start, start + count);
             } else {
@@ -623,16 +629,16 @@ var dataarray_functions = function (require, core) {
         };
         return p5;
     }({}, core);
-var datastring_functions = function (require, core) {
+    var datastring_functions = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.join = function (list, separator) {
+        p5.prototype.join = function(list, separator) {
             return list.join(separator);
         };
-        p5.prototype.match = function (str, reg) {
+        p5.prototype.match = function(str, reg) {
             return str.match(reg);
         };
-        p5.prototype.matchAll = function (str, reg) {
+        p5.prototype.matchAll = function(str, reg) {
             var re = new RegExp(reg, 'g');
             var match = re.exec(str);
             var matches = [];
@@ -642,17 +648,18 @@ var datastring_functions = function (require, core) {
             }
             return matches;
         };
-        p5.prototype.nf = function () {
+        p5.prototype.nf = function() {
             if (arguments[0] instanceof Array) {
                 var a = arguments[1];
                 var b = arguments[2];
-                return arguments[0].map(function (x) {
+                return arguments[0].map(function(x) {
                     return doNf(x, a, b);
                 });
             } else {
                 return doNf.apply(this, arguments);
             }
         };
+
         function doNf() {
             var num = arguments[0];
             var neg = num < 0;
@@ -680,16 +687,17 @@ var datastring_functions = function (require, core) {
                 return str;
             }
         }
-        p5.prototype.nfc = function () {
+        p5.prototype.nfc = function() {
             if (arguments[0] instanceof Array) {
                 var a = arguments[1];
-                return arguments[0].map(function (x) {
+                return arguments[0].map(function(x) {
                     return doNfc(x, a);
                 });
             } else {
                 return doNfc.apply(this, arguments);
             }
         };
+
         function doNfc() {
             var num = arguments[0].toString();
             var dec = num.indexOf('.');
@@ -701,7 +709,7 @@ var datastring_functions = function (require, core) {
             }
             return n + rem;
         }
-        p5.prototype.nfp = function () {
+        p5.prototype.nfp = function() {
             var nfRes = this.nf(arguments);
             if (nfRes instanceof Array) {
                 return nfRes.map(addNfp);
@@ -709,10 +717,11 @@ var datastring_functions = function (require, core) {
                 return addNfp(nfRes);
             }
         };
+
         function addNfp() {
             return parseFloat(arguments[0]) > 0 ? '+' + arguments[0].toString() : arguments[0].toString();
         }
-        p5.prototype.nfs = function () {
+        p5.prototype.nfs = function() {
             var nfRes = this.nf(arguments);
             if (nfRes instanceof Array) {
                 return nfRes.map(addNfs);
@@ -720,19 +729,20 @@ var datastring_functions = function (require, core) {
                 return addNfs(nfRes);
             }
         };
+
         function addNfs() {
             return parseFloat(arguments[0]) > 0 ? ' ' + arguments[0].toString() : arguments[0].toString();
         }
-        p5.prototype.split = function (str, delim) {
+        p5.prototype.split = function(str, delim) {
             return str.split(delim);
         };
-        p5.prototype.splitTokens = function () {
+        p5.prototype.splitTokens = function() {
             var d = arguments.length > 0 ? arguments[1] : /\s/g;
-            return arguments[0].split(d).filter(function (n) {
+            return arguments[0].split(d).filter(function(n) {
                 return n;
             });
         };
-        p5.prototype.trim = function (str) {
+        p5.prototype.trim = function(str) {
             if (str instanceof Array) {
                 return str.map(this.trim);
             } else {
@@ -741,14 +751,14 @@ var datastring_functions = function (require, core) {
         };
         return p5;
     }({}, core);
-var inputmouse = function (require, core, constants) {
+    var inputmouse = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var constants = constants;
-        p5.prototype.isMousePressed = p5.prototype.mouseIsPressed = function () {
+        p5.prototype.isMousePressed = p5.prototype.mouseIsPressed = function() {
             return this.settings.mousePressed;
         };
-        p5.prototype.updateMouseCoords = function (e) {
+        p5.prototype.updateMouseCoords = function(e) {
             this._setProperty('pmouseX', this.mouseX);
             this._setProperty('pmouseY', this.mouseY);
             this._setProperty('mouseX', Math.max(e.pageX - this.curElement.x, 0));
@@ -758,7 +768,7 @@ var inputmouse = function (require, core, constants) {
             this._setProperty('winMouseX', e.pageX);
             this._setProperty('winMouseY', e.pageY);
         };
-        p5.prototype.setMouseButton = function (e) {
+        p5.prototype.setMouseButton = function(e) {
             if (e.button === 1) {
                 this._setProperty('mouseButton', constants.CENTER);
             } else if (e.button === 2) {
@@ -767,7 +777,7 @@ var inputmouse = function (require, core, constants) {
                 this._setProperty('mouseButton', constants.LEFT);
             }
         };
-        p5.prototype.onmousemove = function (e) {
+        p5.prototype.onmousemove = function(e) {
             var context = this.isGlobal ? window : this;
             this.updateMouseCoords(e);
             if (!this.isMousePressed() && typeof context.mouseMoved === 'function') {
@@ -777,7 +787,7 @@ var inputmouse = function (require, core, constants) {
                 context.mouseDragged(e);
             }
         };
-        p5.prototype.onmousedown = function (e) {
+        p5.prototype.onmousedown = function(e) {
             var context = this.isGlobal ? window : this;
             this.settings.mousePressed = true;
             this.setMouseButton(e);
@@ -785,20 +795,20 @@ var inputmouse = function (require, core, constants) {
                 context.mousePressed(e);
             }
         };
-        p5.prototype.onmouseup = function (e) {
+        p5.prototype.onmouseup = function(e) {
             var context = this.isGlobal ? window : this;
             this.settings.mousePressed = false;
             if (typeof context.mouseReleased === 'function') {
                 context.mouseReleased(e);
             }
         };
-        p5.prototype.onmouseclick = function (e) {
+        p5.prototype.onmouseclick = function(e) {
             var context = this.isGlobal ? window : this;
             if (typeof context.mouseClicked === 'function') {
                 context.mouseClicked(e);
             }
         };
-        p5.prototype.onmousewheel = function (e) {
+        p5.prototype.onmousewheel = function(e) {
             var context = this.isGlobal ? window : this;
             if (typeof context.mouseWheel === 'function') {
                 context.mouseWheel(e);
@@ -806,10 +816,10 @@ var inputmouse = function (require, core, constants) {
         };
         return p5;
     }({}, core, constants);
-var inputtouch = function (require, core) {
+    var inputtouch = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.setTouchPoints = function (e) {
+        p5.prototype.setTouchPoints = function(e) {
             this._setProperty('touchX', e.changedTouches[0].pageX);
             this._setProperty('touchY', e.changedTouches[0].pageY);
             var touches = [];
@@ -822,7 +832,7 @@ var inputtouch = function (require, core) {
             }
             this._setProperty('touches', touches);
         };
-        p5.prototype.ontouchstart = function (e) {
+        p5.prototype.ontouchstart = function(e) {
             this.setTouchPoints(e);
             if (typeof this.touchStarted === 'function') {
                 this.touchStarted(e);
@@ -832,13 +842,13 @@ var inputtouch = function (require, core) {
                 e.preventDefault();
             }
         };
-        p5.prototype.ontouchmove = function (e) {
+        p5.prototype.ontouchmove = function(e) {
             this.setTouchPoints(e);
             if (typeof this.touchMoved === 'function') {
                 this.touchMoved(e);
             }
         };
-        p5.prototype.ontouchend = function (e) {
+        p5.prototype.ontouchend = function(e) {
             this.setTouchPoints(e);
             if (typeof this.touchEnded === 'function') {
                 this.touchEnded(e);
@@ -846,8 +856,9 @@ var inputtouch = function (require, core) {
         };
         return p5;
     }({}, core);
-var dompelement = function (require, constants) {
+    var dompelement = function(require, constants) {
         var constants = constants;
+
         function PElement(elt, pInst) {
             this.elt = elt;
             this.pInst = pInst;
@@ -862,16 +873,16 @@ var dompelement = function (require, constants) {
                 this.context = elt.getContext('2d');
             }
         }
-        PElement.prototype.html = function (html) {
+        PElement.prototype.html = function(html) {
             this.elt.innerHTML = html;
         };
-        PElement.prototype.position = function (x, y) {
+        PElement.prototype.position = function(x, y) {
             this.x = x;
             this.y = y;
             this.elt.style.left = x + 'px';
             this.elt.style.top = y + 'px';
         };
-        PElement.prototype.size = function (w, h) {
+        PElement.prototype.size = function(w, h) {
             var aW = w;
             var aH = h;
             var AUTO = constants.AUTO;
@@ -896,45 +907,45 @@ var dompelement = function (require, constants) {
                 }
             }
         };
-        PElement.prototype.style = function (s) {
+        PElement.prototype.style = function(s) {
             this.elt.style.cssText += s;
         };
-        PElement.prototype.id = function (id) {
+        PElement.prototype.id = function(id) {
             this.elt.id = id;
         };
-        PElement.prototype.class = function (c) {
+        PElement.prototype.class = function(c) {
             this.elt.className = c;
         };
-        PElement.prototype.show = function () {
+        PElement.prototype.show = function() {
             this.elt.style.display = 'block';
         };
-        PElement.prototype.hide = function () {
+        PElement.prototype.hide = function() {
             this.elt.style.display = 'none';
         };
-        PElement.prototype.mousePressed = function (fxn) {
+        PElement.prototype.mousePressed = function(fxn) {
             var _this = this;
-            this.elt.addEventListener('click', function (e) {
+            this.elt.addEventListener('click', function(e) {
                 fxn(e, _this);
             }, false);
         };
-        PElement.prototype.mouseOver = function (fxn) {
+        PElement.prototype.mouseOver = function(fxn) {
             var _this = this;
-            this.elt.addEventListener('mouseover', function (e) {
+            this.elt.addEventListener('mouseover', function(e) {
                 fxn(e, _this);
             }, false);
         };
-        PElement.prototype.mouseOut = function (fxn) {
+        PElement.prototype.mouseOut = function(fxn) {
             var _this = this;
-            this.elt.addEventListener('mouseout', function (e) {
+            this.elt.addEventListener('mouseout', function(e) {
                 fxn(e, _this);
             }, false);
         };
         return PElement;
     }({}, constants);
-var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement) {
+    var dommanipulate = function(require, core, inputmouse, inputtouch, dompelement) {
         var p5 = core;
         var PElement = dompelement;
-        p5.prototype.createCanvas = function (w, h, isDefault) {
+        p5.prototype.createCanvas = function(w, h, isDefault) {
             var c = document.createElement('canvas');
             c.setAttribute('width', w);
             c.setAttribute('height', h);
@@ -963,7 +974,7 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
             this._applyDefaults();
             return cnv;
         };
-        p5.prototype.createHTML = function (html) {
+        p5.prototype.createHTML = function(html) {
             var elt = document.createElement('div');
             elt.innerHTML = html;
             document.body.appendChild(elt);
@@ -971,7 +982,7 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
             this.context(c);
             return c;
         };
-        p5.prototype.createHTMLImage = function (src, alt) {
+        p5.prototype.createHTMLImage = function(src, alt) {
             var elt = document.createElement('img');
             elt.src = src;
             if (typeof alt !== 'undefined') {
@@ -982,7 +993,7 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
             this.context(c);
             return c;
         };
-        p5.prototype.find = function (e) {
+        p5.prototype.find = function(e) {
             var res = document.getElementById(e);
             if (res) {
                 return [new PElement(res, this)];
@@ -998,7 +1009,7 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
             }
             return [];
         };
-        p5.prototype.context = function (e) {
+        p5.prototype.context = function(e) {
             var obj;
             if (typeof e === 'string' || e instanceof String) {
                 var elt = document.getElementById(e);
@@ -1010,10 +1021,10 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
                 this.curElement = obj;
                 this._setProperty('width', obj.elt.offsetWidth);
                 this._setProperty('height', obj.elt.offsetHeight);
-                this.curElement.onfocus = function () {
+                this.curElement.onfocus = function() {
                     this.focused = true;
                 };
-                this.curElement.onblur = function () {
+                this.curElement.onblur = function() {
                     this.focused = false;
                 };
                 if (!this.isGlobal) {
@@ -1036,19 +1047,19 @@ var dommanipulate = function (require, core, inputmouse, inputtouch, dompelement
         };
         return p5;
     }({}, core, inputmouse, inputtouch, dompelement);
-var environment = function (require, core, constants) {
+    var environment = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var C = constants;
         var standardCursors = [
-                C.ARROW,
-                C.CROSS,
-                C.HAND,
-                C.MOVE,
-                C.TEXT,
-                C.WAIT
-            ];
-        p5.prototype.cursor = function (type, x, y) {
+            C.ARROW,
+            C.CROSS,
+            C.HAND,
+            C.MOVE,
+            C.TEXT,
+            C.WAIT
+        ];
+        p5.prototype.cursor = function(type, x, y) {
             var cursor = 'auto';
             var canvas = this.curElement.elt;
             if (standardCursors.indexOf(type) > -1) {
@@ -1068,7 +1079,7 @@ var environment = function (require, core, constants) {
             }
             canvas.style.cursor = cursor;
         };
-        p5.prototype.frameRate = function (fps) {
+        p5.prototype.frameRate = function(fps) {
             if (typeof fps === 'undefined') {
                 return this._frameRate;
             } else {
@@ -1077,21 +1088,21 @@ var environment = function (require, core, constants) {
                 return this;
             }
         };
-        p5.prototype.getFrameRate = function () {
+        p5.prototype.getFrameRate = function() {
             return this.frameRate();
         };
-        p5.prototype.setFrameRate = function (fps) {
+        p5.prototype.setFrameRate = function(fps) {
             return this.frameRate(fps);
         };
-        p5.prototype.noCursor = function () {
+        p5.prototype.noCursor = function() {
             this.curElement.elt.style.cursor = 'none';
         };
         return p5;
     }({}, core, constants);
-var canvas = function (require, constants) {
+    var canvas = function(require, constants) {
         var constants = constants;
         return {
-            modeAdjust: function (a, b, c, d, mode) {
+            modeAdjust: function(a, b, c, d, mode) {
                 if (mode === constants.CORNER) {
                     return {
                         x: a,
@@ -1122,7 +1133,7 @@ var canvas = function (require, constants) {
                     };
                 }
             },
-            arcModeAdjust: function (a, b, c, d, mode) {
+            arcModeAdjust: function(a, b, c, d, mode) {
                 if (mode === constants.CORNER) {
                     return {
                         x: a + c * 0.5,
@@ -1155,21 +1166,21 @@ var canvas = function (require, constants) {
             }
         };
     }({}, constants);
-var filters = function (require) {
+    var filters = function(require) {
         'use strict';
         var Filters = {};
-        Filters._toPixels = function (canvas) {
+        Filters._toPixels = function(canvas) {
             if (canvas instanceof ImageData) {
                 return canvas.data;
             } else {
                 return canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
             }
         };
-        Filters._getARGB = function (data, i) {
+        Filters._getARGB = function(data, i) {
             var offset = i * 4;
             return data[offset + 3] << 24 & 4278190080 | data[offset] << 16 & 16711680 | data[offset + 1] << 8 & 65280 | data[offset + 2] & 255;
         };
-        Filters._setPixels = function (pixels, data) {
+        Filters._setPixels = function(pixels, data) {
             var offset = 0;
             for (var i = 0, al = pixels.length; i < al; i++) {
                 offset = i * 4;
@@ -1179,19 +1190,19 @@ var filters = function (require) {
                 pixels[offset + 3] = (data[i] & 4278190080) >>> 24;
             }
         };
-        Filters._toImageData = function (canvas) {
+        Filters._toImageData = function(canvas) {
             if (canvas instanceof ImageData) {
                 return canvas;
             } else {
                 return canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
             }
         };
-        Filters._createImageData = function (width, height) {
+        Filters._createImageData = function(width, height) {
             Filters._tmpCanvas = document.createElement('canvas');
             Filters._tmpCtx = Filters._tmpCanvas.getContext('2d');
             return this._tmpCtx.createImageData(width, height);
         };
-        Filters.apply = function (canvas, func, filterParam) {
+        Filters.apply = function(canvas, func, filterParam) {
             var ctx = canvas.getContext('2d');
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             var newImageData = func(imageData, filterParam);
@@ -1201,7 +1212,7 @@ var filters = function (require) {
                 ctx.putImageData(imageData, 0, 0, 0, 0, canvas.width, canvas.height);
             }
         };
-        Filters.threshold = function (canvas, level) {
+        Filters.threshold = function(canvas, level) {
             var pixels = Filters._toPixels(canvas);
             if (level === undefined) {
                 level = 0.5;
@@ -1221,7 +1232,7 @@ var filters = function (require) {
                 pixels[i] = pixels[i + 1] = pixels[i + 2] = val;
             }
         };
-        Filters.gray = function (canvas) {
+        Filters.gray = function(canvas) {
             var pixels = Filters._toPixels(canvas);
             for (var i = 0; i < pixels.length; i += 4) {
                 var r = pixels[i];
@@ -1231,14 +1242,14 @@ var filters = function (require) {
                 pixels[i] = pixels[i + 1] = pixels[i + 2] = gray;
             }
         };
-        Filters.opaque = function (canvas) {
+        Filters.opaque = function(canvas) {
             var pixels = Filters._toPixels(canvas);
             for (var i = 0; i < pixels.length; i += 4) {
                 pixels[i + 3] = 255;
             }
             return pixels;
         };
-        Filters.invert = function (canvas) {
+        Filters.invert = function(canvas) {
             var pixels = Filters._toPixels(canvas);
             for (var i = 0; i < pixels.length; i += 4) {
                 pixels[i] = 255 - pixels[i];
@@ -1246,7 +1257,7 @@ var filters = function (require) {
                 pixels[i + 2] = 255 - pixels[i + 2];
             }
         };
-        Filters.posterize = function (canvas, level) {
+        Filters.posterize = function(canvas, level) {
             var pixels = Filters._toPixels(canvas);
             if (level < 2 || level > 255) {
                 throw new Error('Level must be greater than 2 and less than 255 for posterize');
@@ -1262,7 +1273,7 @@ var filters = function (require) {
                 pixels[i] = 4278190080 & pixels[i] | rlevel << 16 | glevel << 8 | blevel;
             }
         };
-        Filters.dilate = function (canvas) {
+        Filters.dilate = function(canvas) {
             var pixels = Filters._toPixels(canvas);
             var currIdx = 0;
             var maxIdx = pixels.length ? pixels.length / 4 : 0;
@@ -1320,7 +1331,7 @@ var filters = function (require) {
             }
             Filters._setPixels(pixels, out);
         };
-        Filters.erode = function (canvas) {
+        Filters.erode = function(canvas) {
             var pixels = Filters._toPixels(canvas);
             var currIdx = 0;
             var maxIdx = pixels.length ? pixels.length / 4 : 0;
@@ -1380,19 +1391,19 @@ var filters = function (require) {
         };
         return Filters;
     }({});
-var image = function (require, core, canvas, constants, filters) {
+    var image = function(require, core, canvas, constants, filters) {
         'use strict';
         var p5 = core;
         var canvas = canvas;
         var constants = constants;
         var Filters = filters;
-        p5.prototype.createImage = function (width, height) {
+        p5.prototype.createImage = function(width, height) {
             return new PImage(width, height, this);
         };
-        p5.prototype.loadImage = function (path, callback) {
+        p5.prototype.loadImage = function(path, callback) {
             var img = new Image();
             var pImg = new PImage(1, 1, this);
-            img.onload = function () {
+            img.onload = function() {
                 pImg.width = pImg.canvas.width = img.width;
                 pImg.height = pImg.canvas.height = img.height;
                 pImg.canvas.getContext('2d').drawImage(img, 0, 0);
@@ -1404,7 +1415,7 @@ var image = function (require, core, canvas, constants, filters) {
             img.src = path;
             return pImg;
         };
-        p5.prototype.image = function (image, x, y, width, height) {
+        p5.prototype.image = function(image, x, y, width, height) {
             if (width === undefined) {
                 width = image.width;
             }
@@ -1414,11 +1425,12 @@ var image = function (require, core, canvas, constants, filters) {
             var vals = canvas.modeAdjust(x, y, width, height, this.settings.imageMode);
             this.curElement.context.drawImage(image.canvas, vals.x, vals.y, vals.w, vals.h);
         };
-        p5.prototype.imageMode = function (m) {
+        p5.prototype.imageMode = function(m) {
             if (m === constants.CORNER || m === constants.CORNERS || m === constants.CENTER) {
                 this.settings.imageMode = m;
             }
         };
+
         function PImage(width, height, pInst) {
             this.width = width;
             this.height = height;
@@ -1428,7 +1440,7 @@ var image = function (require, core, canvas, constants, filters) {
             this.canvas.height = this.height;
             this.pixels = [];
         }
-        PImage.prototype.loadPixels = function () {
+        PImage.prototype.loadPixels = function() {
             var x = 0;
             var y = 0;
             var w = this.width;
@@ -1446,7 +1458,7 @@ var image = function (require, core, canvas, constants, filters) {
             }
             this.pixels = pixels;
         };
-        PImage.prototype.updatePixels = function (x, y, w, h) {
+        PImage.prototype.updatePixels = function(x, y, w, h) {
             if (x === undefined && y === undefined && w === undefined && h === undefined) {
                 x = 0;
                 y = 0;
@@ -1464,7 +1476,7 @@ var image = function (require, core, canvas, constants, filters) {
             }
             this.canvas.getContext('2d').putImageData(imageData, x, y, 0, 0, w, h);
         };
-        PImage.prototype.get = function (x, y, w, h) {
+        PImage.prototype.get = function(x, y, w, h) {
             if (x === undefined && y === undefined && w === undefined && h === undefined) {
                 x = 0;
                 y = 0;
@@ -1493,7 +1505,7 @@ var image = function (require, core, canvas, constants, filters) {
                 return region;
             }
         };
-        PImage.prototype.set = function (x, y, imgOrCol) {
+        PImage.prototype.set = function(x, y, imgOrCol) {
             var idx = y * this.width + x;
             if (imgOrCol instanceof Array) {
                 if (idx < this.pixels.length) {
@@ -1505,7 +1517,7 @@ var image = function (require, core, canvas, constants, filters) {
                 this.loadPixels();
             }
         };
-        PImage.prototype.resize = function (width, height) {
+        PImage.prototype.resize = function(width, height) {
             var tempCanvas = document.createElement('canvas');
             tempCanvas.width = width;
             tempCanvas.height = height;
@@ -1517,7 +1529,7 @@ var image = function (require, core, canvas, constants, filters) {
                 this.loadPixels();
             }
         };
-        PImage.prototype.copy = function () {
+        PImage.prototype.copy = function() {
             var srcImage, sx, sy, sw, sh, dx, dy, dw, dh;
             if (arguments.length === 9) {
                 srcImage = arguments[0];
@@ -1544,30 +1556,30 @@ var image = function (require, core, canvas, constants, filters) {
             }
             this.canvas.getContext('2d').drawImage(srcImage.canvas, sx, sy, sw, sh, dx, dy, dw, dh);
         };
-        PImage.prototype.mask = function (pImage) {
+        PImage.prototype.mask = function(pImage) {
             if (pImage === undefined) {
                 pImage = this;
             }
             var currBlend = this.canvas.getContext('2d').globalCompositeOperation;
             var copyArgs = [
-                    pImage,
-                    0,
-                    0,
-                    pImage.width,
-                    pImage.height,
-                    0,
-                    0,
-                    this.width,
-                    this.height
-                ];
+                pImage,
+                0,
+                0,
+                pImage.width,
+                pImage.height,
+                0,
+                0,
+                this.width,
+                this.height
+            ];
             this.canvas.getContext('2d').globalCompositeOperation = 'destination-out';
             this.copy.apply(this, copyArgs);
             this.canvas.getContext('2d').globalCompositeOperation = currBlend;
         };
-        PImage.prototype.filter = function (operation, value) {
+        PImage.prototype.filter = function(operation, value) {
             Filters.apply(this.canvas, Filters[operation.toLowerCase()], value);
         };
-        PImage.prototype.blend = function () {
+        PImage.prototype.blend = function() {
             var currBlend = this.canvas.getContext('2d').globalCompositeOperation;
             var blendMode = arguments[arguments.length - 1];
             var copyArgs = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
@@ -1575,21 +1587,21 @@ var image = function (require, core, canvas, constants, filters) {
             this.copy.apply(this, copyArgs);
             this.canvas.getContext('2d').globalCompositeOperation = currBlend;
         };
-        PImage.prototype.save = function (extension) {
+        PImage.prototype.save = function(extension) {
             var mimeType;
             switch (extension.toLowerCase()) {
-            case 'png':
-                mimeType = 'image/png';
-                break;
-            case 'jpeg':
-                mimeType = 'image/jpeg';
-                break;
-            case 'jpg':
-                mimeType = 'image/jpeg';
-                break;
-            default:
-                mimeType = 'image/png';
-                break;
+                case 'png':
+                    mimeType = 'image/png';
+                    break;
+                case 'jpeg':
+                    mimeType = 'image/jpeg';
+                    break;
+                case 'jpg':
+                    mimeType = 'image/jpeg';
+                    break;
+                default:
+                    mimeType = 'image/png';
+                    break;
             }
             if (mimeType !== undefined) {
                 var downloadMime = 'image/octet-stream';
@@ -1600,16 +1612,13 @@ var image = function (require, core, canvas, constants, filters) {
         };
         return PImage;
     }({}, core, canvas, constants, filters);
-var imageloading_displaying = function (require, core) {
+    var imageloading_displaying = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.blend = function () {
-        };
-        p5.prototype.copy = function () {
-        };
-        p5.prototype.filter = function () {
-        };
-        p5.prototype.get = function (x, y) {
+        p5.prototype.blend = function() {};
+        p5.prototype.copy = function() {};
+        p5.prototype.filter = function() {};
+        p5.prototype.get = function(x, y) {
             var width = this.width;
             var height = this.height;
             var pix = this.curElement.context.getImageData(0, 0, width, height).data;
@@ -1617,11 +1626,11 @@ var imageloading_displaying = function (require, core) {
                 if (x >= 0 && x < width && y >= 0 && y < height) {
                     var offset = 4 * y * width + 4 * x;
                     var c = [
-                            pix[offset],
-                            pix[offset + 1],
-                            pix[offset + 2],
-                            pix[offset + 3]
-                        ];
+                        pix[offset],
+                        pix[offset + 1],
+                        pix[offset + 2],
+                        pix[offset + 3]
+                    ];
                     return c;
                 } else {
                     return [
@@ -1640,7 +1649,7 @@ var imageloading_displaying = function (require, core) {
                 ];
             }
         };
-        p5.prototype.loadPixels = function () {
+        p5.prototype.loadPixels = function() {
             var width = this.width;
             var height = this.height;
             var a = this.curElement.context.getImageData(0, 0, width, height).data;
@@ -1655,462 +1664,501 @@ var imageloading_displaying = function (require, core) {
             }
             this._setProperty('pixels', pixels);
         };
-        p5.prototype.set = function () {
-        };
-        p5.prototype.updatePixels = function () {
-        };
+        p5.prototype.set = function() {};
+        p5.prototype.updatePixels = function() {};
         return p5;
     }({}, core);
-!function (name, context, definition) {
-    if (typeof module != 'undefined' && module.exports)
-        module.exports = definition();
-    else if (typeof define == 'function' && define.amd)
-        define('reqwest', definition);
-    else
-        context[name] = definition();
-}('reqwest', this, function () {
-    var win = window, doc = document, twoHundo = /^(20\d|1223)$/, byTag = 'getElementsByTagName', readyState = 'readyState', contentType = 'Content-Type', requestedWith = 'X-Requested-With', head = doc[byTag]('head')[0], uniqid = 0, callbackPrefix = 'reqwest_' + +new Date(), lastValue, xmlHttpRequest = 'XMLHttpRequest', xDomainRequest = 'XDomainRequest', noop = function () {
-        }, isArray = typeof Array.isArray == 'function' ? Array.isArray : function (a) {
-            return a instanceof Array;
-        }, defaultHeaders = {
-            'contentType': 'application/x-www-form-urlencoded',
-            'requestedWith': xmlHttpRequest,
-            'accept': {
-                '*': 'text/javascript, text/html, application/xml, text/xml, */*',
-                'xml': 'application/xml, text/xml',
-                'html': 'text/html',
-                'text': 'text/plain',
-                'json': 'application/json, text/javascript',
-                'js': 'application/javascript, text/javascript'
-            }
-        }, xhr = function (o) {
-            if (o['crossOrigin'] === true) {
-                var xhr = win[xmlHttpRequest] ? new XMLHttpRequest() : null;
-                if (xhr && 'withCredentials' in xhr) {
-                    return xhr;
-                } else if (win[xDomainRequest]) {
-                    return new XDomainRequest();
-                } else {
-                    throw new Error('Browser does not support cross-origin requests');
+    ! function(name, context, definition) {
+        if (typeof module != 'undefined' && module.exports)
+            module.exports = definition();
+        else if (typeof define == 'function' && define.amd)
+            define('reqwest', definition);
+        else
+            context[name] = definition();
+    }('reqwest', this, function() {
+        var win = window,
+            doc = document,
+            twoHundo = /^(20\d|1223)$/,
+            byTag = 'getElementsByTagName',
+            readyState = 'readyState',
+            contentType = 'Content-Type',
+            requestedWith = 'X-Requested-With',
+            head = doc[byTag]('head')[0],
+            uniqid = 0,
+            callbackPrefix = 'reqwest_' + +new Date(),
+            lastValue, xmlHttpRequest = 'XMLHttpRequest',
+            xDomainRequest = 'XDomainRequest',
+            noop = function() {}, isArray = typeof Array.isArray == 'function' ? Array.isArray : function(a) {
+                return a instanceof Array;
+            }, defaultHeaders = {
+                'contentType': 'application/x-www-form-urlencoded',
+                'requestedWith': xmlHttpRequest,
+                'accept': {
+                    '*': 'text/javascript, text/html, application/xml, text/xml, */*',
+                    'xml': 'application/xml, text/xml',
+                    'html': 'text/html',
+                    'text': 'text/plain',
+                    'json': 'application/json, text/javascript',
+                    'js': 'application/javascript, text/javascript'
                 }
-            } else if (win[xmlHttpRequest]) {
-                return new XMLHttpRequest();
+            }, xhr = function(o) {
+                if (o['crossOrigin'] === true) {
+                    var xhr = win[xmlHttpRequest] ? new XMLHttpRequest() : null;
+                    if (xhr && 'withCredentials' in xhr) {
+                        return xhr;
+                    } else if (win[xDomainRequest]) {
+                        return new XDomainRequest();
+                    } else {
+                        throw new Error('Browser does not support cross-origin requests');
+                    }
+                } else if (win[xmlHttpRequest]) {
+                    return new XMLHttpRequest();
+                } else {
+                    return new ActiveXObject('Microsoft.XMLHTTP');
+                }
+            }, globalSetupOptions = {
+                dataFilter: function(data) {
+                    return data;
+                }
+            };
+
+        function handleReadyState(r, success, error) {
+            return function() {
+                if (r._aborted)
+                    return error(r.request);
+                if (r.request && r.request[readyState] == 4) {
+                    r.request.onreadystatechange = noop;
+                    if (twoHundo.test(r.request.status))
+                        success(r.request);
+                    else
+                        error(r.request);
+                }
+            };
+        }
+
+        function setHeaders(http, o) {
+            var headers = o['headers'] || {}, h;
+            headers['Accept'] = headers['Accept'] || defaultHeaders['accept'][o['type']] || defaultHeaders['accept']['*'];
+            if (!o['crossOrigin'] && !headers[requestedWith])
+                headers[requestedWith] = defaultHeaders['requestedWith'];
+            if (!headers[contentType])
+                headers[contentType] = o['contentType'] || defaultHeaders['contentType'];
+            for (h in headers)
+                headers.hasOwnProperty(h) && 'setRequestHeader' in http && http.setRequestHeader(h, headers[h]);
+        }
+
+        function setCredentials(http, o) {
+            if (typeof o['withCredentials'] !== 'undefined' && typeof http.withCredentials !== 'undefined') {
+                http.withCredentials = !! o['withCredentials'];
+            }
+        }
+
+        function generalCallback(data) {
+            lastValue = data;
+        }
+
+        function urlappend(url, s) {
+            return url + (/\?/.test(url) ? '&' : '?') + s;
+        }
+
+        function handleJsonp(o, fn, err, url) {
+            var reqId = uniqid++,
+                cbkey = o['jsonpCallback'] || 'callback',
+                cbval = o['jsonpCallbackName'] || reqwest.getcallbackPrefix(reqId),
+                cbreg = new RegExp('((^|\\?|&)' + cbkey + ')=([^&]+)'),
+                match = url.match(cbreg),
+                script = doc.createElement('script'),
+                loaded = 0,
+                isIE10 = navigator.userAgent.indexOf('MSIE 10.0') !== -1;
+            if (match) {
+                if (match[3] === '?') {
+                    url = url.replace(cbreg, '$1=' + cbval);
+                } else {
+                    cbval = match[3];
+                }
             } else {
-                return new ActiveXObject('Microsoft.XMLHTTP');
+                url = urlappend(url, cbkey + '=' + cbval);
             }
-        }, globalSetupOptions = {
-            dataFilter: function (data) {
-                return data;
+            win[cbval] = generalCallback;
+            script.type = 'text/javascript';
+            script.src = url;
+            script.async = true;
+            if (typeof script.onreadystatechange !== 'undefined' && !isIE10) {
+                script.event = 'onclick';
+                script.htmlFor = script.id = '_reqwest_' + reqId;
             }
-        };
-    function handleReadyState(r, success, error) {
-        return function () {
-            if (r._aborted)
-                return error(r.request);
-            if (r.request && r.request[readyState] == 4) {
-                r.request.onreadystatechange = noop;
-                if (twoHundo.test(r.request.status))
-                    success(r.request);
-                else
-                    error(r.request);
-            }
-        };
-    }
-    function setHeaders(http, o) {
-        var headers = o['headers'] || {}, h;
-        headers['Accept'] = headers['Accept'] || defaultHeaders['accept'][o['type']] || defaultHeaders['accept']['*'];
-        if (!o['crossOrigin'] && !headers[requestedWith])
-            headers[requestedWith] = defaultHeaders['requestedWith'];
-        if (!headers[contentType])
-            headers[contentType] = o['contentType'] || defaultHeaders['contentType'];
-        for (h in headers)
-            headers.hasOwnProperty(h) && 'setRequestHeader' in http && http.setRequestHeader(h, headers[h]);
-    }
-    function setCredentials(http, o) {
-        if (typeof o['withCredentials'] !== 'undefined' && typeof http.withCredentials !== 'undefined') {
-            http.withCredentials = !!o['withCredentials'];
-        }
-    }
-    function generalCallback(data) {
-        lastValue = data;
-    }
-    function urlappend(url, s) {
-        return url + (/\?/.test(url) ? '&' : '?') + s;
-    }
-    function handleJsonp(o, fn, err, url) {
-        var reqId = uniqid++, cbkey = o['jsonpCallback'] || 'callback', cbval = o['jsonpCallbackName'] || reqwest.getcallbackPrefix(reqId), cbreg = new RegExp('((^|\\?|&)' + cbkey + ')=([^&]+)'), match = url.match(cbreg), script = doc.createElement('script'), loaded = 0, isIE10 = navigator.userAgent.indexOf('MSIE 10.0') !== -1;
-        if (match) {
-            if (match[3] === '?') {
-                url = url.replace(cbreg, '$1=' + cbval);
-            } else {
-                cbval = match[3];
-            }
-        } else {
-            url = urlappend(url, cbkey + '=' + cbval);
-        }
-        win[cbval] = generalCallback;
-        script.type = 'text/javascript';
-        script.src = url;
-        script.async = true;
-        if (typeof script.onreadystatechange !== 'undefined' && !isIE10) {
-            script.event = 'onclick';
-            script.htmlFor = script.id = '_reqwest_' + reqId;
-        }
-        script.onload = script.onreadystatechange = function () {
-            if (script[readyState] && script[readyState] !== 'complete' && script[readyState] !== 'loaded' || loaded) {
-                return false;
-            }
-            script.onload = script.onreadystatechange = null;
-            script.onclick && script.onclick();
-            fn(lastValue);
-            lastValue = undefined;
-            head.removeChild(script);
-            loaded = 1;
-        };
-        head.appendChild(script);
-        return {
-            abort: function () {
+            script.onload = script.onreadystatechange = function() {
+                if (script[readyState] && script[readyState] !== 'complete' && script[readyState] !== 'loaded' || loaded) {
+                    return false;
+                }
                 script.onload = script.onreadystatechange = null;
-                err({}, 'Request is aborted: timeout', {});
+                script.onclick && script.onclick();
+                fn(lastValue);
                 lastValue = undefined;
                 head.removeChild(script);
                 loaded = 1;
-            }
-        };
-    }
-    function getRequest(fn, err) {
-        var o = this.o, method = (o['method'] || 'GET').toUpperCase(), url = typeof o === 'string' ? o : o['url'], data = o['processData'] !== false && o['data'] && typeof o['data'] !== 'string' ? reqwest.toQueryString(o['data']) : o['data'] || null, http, sendWait = false;
-        if ((o['type'] == 'jsonp' || method == 'GET') && data) {
-            url = urlappend(url, data);
-            data = null;
-        }
-        if (o['type'] == 'jsonp')
-            return handleJsonp(o, fn, err, url);
-        http = o.xhr && o.xhr(o) || xhr(o);
-        http.open(method, url, o['async'] === false ? false : true);
-        setHeaders(http, o);
-        setCredentials(http, o);
-        if (win[xDomainRequest] && http instanceof win[xDomainRequest]) {
-            http.onload = fn;
-            http.onerror = err;
-            http.onprogress = function () {
             };
-            sendWait = true;
-        } else {
-            http.onreadystatechange = handleReadyState(this, fn, err);
+            head.appendChild(script);
+            return {
+                abort: function() {
+                    script.onload = script.onreadystatechange = null;
+                    err({}, 'Request is aborted: timeout', {});
+                    lastValue = undefined;
+                    head.removeChild(script);
+                    loaded = 1;
+                }
+            };
         }
-        o['before'] && o['before'](http);
-        if (sendWait) {
-            setTimeout(function () {
+
+        function getRequest(fn, err) {
+            var o = this.o,
+                method = (o['method'] || 'GET').toUpperCase(),
+                url = typeof o === 'string' ? o : o['url'],
+                data = o['processData'] !== false && o['data'] && typeof o['data'] !== 'string' ? reqwest.toQueryString(o['data']) : o['data'] || null,
+                http, sendWait = false;
+            if ((o['type'] == 'jsonp' || method == 'GET') && data) {
+                url = urlappend(url, data);
+                data = null;
+            }
+            if (o['type'] == 'jsonp')
+                return handleJsonp(o, fn, err, url);
+            http = o.xhr && o.xhr(o) || xhr(o);
+            http.open(method, url, o['async'] === false ? false : true);
+            setHeaders(http, o);
+            setCredentials(http, o);
+            if (win[xDomainRequest] && http instanceof win[xDomainRequest]) {
+                http.onload = fn;
+                http.onerror = err;
+                http.onprogress = function() {};
+                sendWait = true;
+            } else {
+                http.onreadystatechange = handleReadyState(this, fn, err);
+            }
+            o['before'] && o['before'](http);
+            if (sendWait) {
+                setTimeout(function() {
+                    http.send(data);
+                }, 200);
+            } else {
                 http.send(data);
-            }, 200);
-        } else {
-            http.send(data);
-        }
-        return http;
-    }
-    function Reqwest(o, fn) {
-        this.o = o;
-        this.fn = fn;
-        init.apply(this, arguments);
-    }
-    function setType(url) {
-        var m = url.match(/\.(json|jsonp|html|xml)(\?|$)/);
-        return m ? m[1] : 'js';
-    }
-    function init(o, fn) {
-        this.url = typeof o == 'string' ? o : o['url'];
-        this.timeout = null;
-        this._fulfilled = false;
-        this._successHandler = function () {
-        };
-        this._fulfillmentHandlers = [];
-        this._errorHandlers = [];
-        this._completeHandlers = [];
-        this._erred = false;
-        this._responseArgs = {};
-        var self = this, type = o['type'] || setType(this.url);
-        fn = fn || function () {
-        };
-        if (o['timeout']) {
-            this.timeout = setTimeout(function () {
-                self.abort();
-            }, o['timeout']);
-        }
-        if (o['success']) {
-            this._successHandler = function () {
-                o['success'].apply(o, arguments);
-            };
-        }
-        if (o['error']) {
-            this._errorHandlers.push(function () {
-                o['error'].apply(o, arguments);
-            });
-        }
-        if (o['complete']) {
-            this._completeHandlers.push(function () {
-                o['complete'].apply(o, arguments);
-            });
-        }
-        function complete(resp) {
-            o['timeout'] && clearTimeout(self.timeout);
-            self.timeout = null;
-            while (self._completeHandlers.length > 0) {
-                self._completeHandlers.shift()(resp);
             }
+            return http;
         }
-        function success(resp) {
-            resp = type !== 'jsonp' ? self.request : resp;
-            var filteredResponse = globalSetupOptions.dataFilter(resp.responseText, type), r = filteredResponse;
-            try {
-                resp.responseText = r;
-            } catch (e) {
+
+        function Reqwest(o, fn) {
+            this.o = o;
+            this.fn = fn;
+            init.apply(this, arguments);
+        }
+
+        function setType(url) {
+            var m = url.match(/\.(json|jsonp|html|xml)(\?|$)/);
+            return m ? m[1] : 'js';
+        }
+
+        function init(o, fn) {
+            this.url = typeof o == 'string' ? o : o['url'];
+            this.timeout = null;
+            this._fulfilled = false;
+            this._successHandler = function() {};
+            this._fulfillmentHandlers = [];
+            this._errorHandlers = [];
+            this._completeHandlers = [];
+            this._erred = false;
+            this._responseArgs = {};
+            var self = this,
+                type = o['type'] || setType(this.url);
+            fn = fn || function() {};
+            if (o['timeout']) {
+                this.timeout = setTimeout(function() {
+                    self.abort();
+                }, o['timeout']);
             }
-            if (r) {
-                switch (type) {
-                case 'json':
-                    try {
-                        resp = win.JSON ? win.JSON.parse(r) : eval('(' + r + ')');
-                    } catch (err) {
-                        return error(resp, 'Could not parse JSON in response', err);
+            if (o['success']) {
+                this._successHandler = function() {
+                    o['success'].apply(o, arguments);
+                };
+            }
+            if (o['error']) {
+                this._errorHandlers.push(function() {
+                    o['error'].apply(o, arguments);
+                });
+            }
+            if (o['complete']) {
+                this._completeHandlers.push(function() {
+                    o['complete'].apply(o, arguments);
+                });
+            }
+
+            function complete(resp) {
+                o['timeout'] && clearTimeout(self.timeout);
+                self.timeout = null;
+                while (self._completeHandlers.length > 0) {
+                    self._completeHandlers.shift()(resp);
+                }
+            }
+
+            function success(resp) {
+                resp = type !== 'jsonp' ? self.request : resp;
+                var filteredResponse = globalSetupOptions.dataFilter(resp.responseText, type),
+                    r = filteredResponse;
+                try {
+                    resp.responseText = r;
+                } catch (e) {}
+                if (r) {
+                    switch (type) {
+                        case 'json':
+                            try {
+                                resp = win.JSON ? win.JSON.parse(r) : eval('(' + r + ')');
+                            } catch (err) {
+                                return error(resp, 'Could not parse JSON in response', err);
+                            }
+                            break;
+                        case 'js':
+                            resp = eval(r);
+                            break;
+                        case 'html':
+                            resp = r;
+                            break;
+                        case 'xml':
+                            resp = resp.responseXML && resp.responseXML.parseError && resp.responseXML.parseError.errorCode && resp.responseXML.parseError.reason ? null : resp.responseXML;
+                            break;
+                    }
+                }
+                self._responseArgs.resp = resp;
+                self._fulfilled = true;
+                fn(resp);
+                self._successHandler(resp);
+                while (self._fulfillmentHandlers.length > 0) {
+                    resp = self._fulfillmentHandlers.shift()(resp);
+                }
+                complete(resp);
+            }
+
+            function error(resp, msg, t) {
+                resp = self.request;
+                self._responseArgs.resp = resp;
+                self._responseArgs.msg = msg;
+                self._responseArgs.t = t;
+                self._erred = true;
+                while (self._errorHandlers.length > 0) {
+                    self._errorHandlers.shift()(resp, msg, t);
+                }
+                complete(resp);
+            }
+            this.request = getRequest.call(this, success, error);
+        }
+        Reqwest.prototype = {
+            abort: function() {
+                this._aborted = true;
+                this.request.abort();
+            },
+            retry: function() {
+                init.call(this, this.o, this.fn);
+            },
+            then: function(success, fail) {
+                success = success || function() {};
+                fail = fail || function() {};
+                if (this._fulfilled) {
+                    this._responseArgs.resp = success(this._responseArgs.resp);
+                } else if (this._erred) {
+                    fail(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t);
+                } else {
+                    this._fulfillmentHandlers.push(success);
+                    this._errorHandlers.push(fail);
+                }
+                return this;
+            },
+            always: function(fn) {
+                if (this._fulfilled || this._erred) {
+                    fn(this._responseArgs.resp);
+                } else {
+                    this._completeHandlers.push(fn);
+                }
+                return this;
+            },
+            fail: function(fn) {
+                if (this._erred) {
+                    fn(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t);
+                } else {
+                    this._errorHandlers.push(fn);
+                }
+                return this;
+            }
+        };
+
+        function reqwest(o, fn) {
+            return new Reqwest(o, fn);
+        }
+
+        function normalize(s) {
+            return s ? s.replace(/\r?\n/g, '\r\n') : '';
+        }
+
+        function serial(el, cb) {
+            var n = el.name,
+                t = el.tagName.toLowerCase(),
+                optCb = function(o) {
+                    if (o && !o['disabled'])
+                        cb(n, normalize(o['attributes']['value'] && o['attributes']['value']['specified'] ? o['value'] : o['text']));
+                }, ch, ra, val, i;
+            if (el.disabled || !n)
+                return;
+            switch (t) {
+                case 'input':
+                    if (!/reset|button|image|file/i.test(el.type)) {
+                        ch = /checkbox/i.test(el.type);
+                        ra = /radio/i.test(el.type);
+                        val = el.value;
+                        (!(ch || ra) || el.checked) && cb(n, normalize(ch && val === '' ? 'on' : val));
                     }
                     break;
-                case 'js':
-                    resp = eval(r);
+                case 'textarea':
+                    cb(n, normalize(el.value));
                     break;
-                case 'html':
-                    resp = r;
+                case 'select':
+                    if (el.type.toLowerCase() === 'select-one') {
+                        optCb(el.selectedIndex >= 0 ? el.options[el.selectedIndex] : null);
+                    } else {
+                        for (i = 0; el.length && i < el.length; i++) {
+                            el.options[i].selected && optCb(el.options[i]);
+                        }
+                    }
                     break;
-                case 'xml':
-                    resp = resp.responseXML && resp.responseXML.parseError && resp.responseXML.parseError.errorCode && resp.responseXML.parseError.reason ? null : resp.responseXML;
-                    break;
+            }
+        }
+
+        function eachFormElement() {
+            var cb = this,
+                e, i, serializeSubtags = function(e, tags) {
+                    var i, j, fa;
+                    for (i = 0; i < tags.length; i++) {
+                        fa = e[byTag](tags[i]);
+                        for (j = 0; j < fa.length; j++)
+                            serial(fa[j], cb);
+                    }
+                };
+            for (i = 0; i < arguments.length; i++) {
+                e = arguments[i];
+                if (/input|select|textarea/i.test(e.tagName))
+                    serial(e, cb);
+                serializeSubtags(e, [
+                    'input',
+                    'select',
+                    'textarea'
+                ]);
+            }
+        }
+
+        function serializeQueryString() {
+            return reqwest.toQueryString(reqwest.serializeArray.apply(null, arguments));
+        }
+
+        function serializeHash() {
+            var hash = {};
+            eachFormElement.apply(function(name, value) {
+                if (name in hash) {
+                    hash[name] && !isArray(hash[name]) && (hash[name] = [hash[name]]);
+                    hash[name].push(value);
+                } else
+                    hash[name] = value;
+            }, arguments);
+            return hash;
+        }
+        reqwest.serializeArray = function() {
+            var arr = [];
+            eachFormElement.apply(function(name, value) {
+                arr.push({
+                    name: name,
+                    value: value
+                });
+            }, arguments);
+            return arr;
+        };
+        reqwest.serialize = function() {
+            if (arguments.length === 0)
+                return '';
+            var opt, fn, args = Array.prototype.slice.call(arguments, 0);
+            opt = args.pop();
+            opt && opt.nodeType && args.push(opt) && (opt = null);
+            opt && (opt = opt.type);
+            if (opt == 'map')
+                fn = serializeHash;
+            else if (opt == 'array')
+                fn = reqwest.serializeArray;
+            else
+                fn = serializeQueryString;
+            return fn.apply(null, args);
+        };
+        reqwest.toQueryString = function(o, trad) {
+            var prefix, i, traditional = trad || false,
+                s = [],
+                enc = encodeURIComponent,
+                add = function(key, value) {
+                    value = 'function' === typeof value ? value() : value == null ? '' : value;
+                    s[s.length] = enc(key) + '=' + enc(value);
+                };
+            if (isArray(o)) {
+                for (i = 0; o && i < o.length; i++)
+                    add(o[i]['name'], o[i]['value']);
+            } else {
+                for (prefix in o) {
+                    if (o.hasOwnProperty(prefix))
+                        buildParams(prefix, o[prefix], traditional, add);
                 }
             }
-            self._responseArgs.resp = resp;
-            self._fulfilled = true;
-            fn(resp);
-            self._successHandler(resp);
-            while (self._fulfillmentHandlers.length > 0) {
-                resp = self._fulfillmentHandlers.shift()(resp);
-            }
-            complete(resp);
-        }
-        function error(resp, msg, t) {
-            resp = self.request;
-            self._responseArgs.resp = resp;
-            self._responseArgs.msg = msg;
-            self._responseArgs.t = t;
-            self._erred = true;
-            while (self._errorHandlers.length > 0) {
-                self._errorHandlers.shift()(resp, msg, t);
-            }
-            complete(resp);
-        }
-        this.request = getRequest.call(this, success, error);
-    }
-    Reqwest.prototype = {
-        abort: function () {
-            this._aborted = true;
-            this.request.abort();
-        },
-        retry: function () {
-            init.call(this, this.o, this.fn);
-        },
-        then: function (success, fail) {
-            success = success || function () {
-            };
-            fail = fail || function () {
-            };
-            if (this._fulfilled) {
-                this._responseArgs.resp = success(this._responseArgs.resp);
-            } else if (this._erred) {
-                fail(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t);
-            } else {
-                this._fulfillmentHandlers.push(success);
-                this._errorHandlers.push(fail);
-            }
-            return this;
-        },
-        always: function (fn) {
-            if (this._fulfilled || this._erred) {
-                fn(this._responseArgs.resp);
-            } else {
-                this._completeHandlers.push(fn);
-            }
-            return this;
-        },
-        fail: function (fn) {
-            if (this._erred) {
-                fn(this._responseArgs.resp, this._responseArgs.msg, this._responseArgs.t);
-            } else {
-                this._errorHandlers.push(fn);
-            }
-            return this;
-        }
-    };
-    function reqwest(o, fn) {
-        return new Reqwest(o, fn);
-    }
-    function normalize(s) {
-        return s ? s.replace(/\r?\n/g, '\r\n') : '';
-    }
-    function serial(el, cb) {
-        var n = el.name, t = el.tagName.toLowerCase(), optCb = function (o) {
-                if (o && !o['disabled'])
-                    cb(n, normalize(o['attributes']['value'] && o['attributes']['value']['specified'] ? o['value'] : o['text']));
-            }, ch, ra, val, i;
-        if (el.disabled || !n)
-            return;
-        switch (t) {
-        case 'input':
-            if (!/reset|button|image|file/i.test(el.type)) {
-                ch = /checkbox/i.test(el.type);
-                ra = /radio/i.test(el.type);
-                val = el.value;
-                (!(ch || ra) || el.checked) && cb(n, normalize(ch && val === '' ? 'on' : val));
-            }
-            break;
-        case 'textarea':
-            cb(n, normalize(el.value));
-            break;
-        case 'select':
-            if (el.type.toLowerCase() === 'select-one') {
-                optCb(el.selectedIndex >= 0 ? el.options[el.selectedIndex] : null);
-            } else {
-                for (i = 0; el.length && i < el.length; i++) {
-                    el.options[i].selected && optCb(el.options[i]);
+            return s.join('&').replace(/%20/g, '+');
+        };
+
+        function buildParams(prefix, obj, traditional, add) {
+            var name, i, v, rbracket = /\[\]$/;
+            if (isArray(obj)) {
+                for (i = 0; obj && i < obj.length; i++) {
+                    v = obj[i];
+                    if (traditional || rbracket.test(prefix)) {
+                        add(prefix, v);
+                    } else {
+                        buildParams(prefix + '[' + (typeof v === 'object' ? i : '') + ']', v, traditional, add);
+                    }
                 }
-            }
-            break;
-        }
-    }
-    function eachFormElement() {
-        var cb = this, e, i, serializeSubtags = function (e, tags) {
-                var i, j, fa;
-                for (i = 0; i < tags.length; i++) {
-                    fa = e[byTag](tags[i]);
-                    for (j = 0; j < fa.length; j++)
-                        serial(fa[j], cb);
+            } else if (obj && obj.toString() === '[object Object]') {
+                for (name in obj) {
+                    buildParams(prefix + '[' + name + ']', obj[name], traditional, add);
                 }
-            };
-        for (i = 0; i < arguments.length; i++) {
-            e = arguments[i];
-            if (/input|select|textarea/i.test(e.tagName))
-                serial(e, cb);
-            serializeSubtags(e, [
-                'input',
-                'select',
-                'textarea'
-            ]);
-        }
-    }
-    function serializeQueryString() {
-        return reqwest.toQueryString(reqwest.serializeArray.apply(null, arguments));
-    }
-    function serializeHash() {
-        var hash = {};
-        eachFormElement.apply(function (name, value) {
-            if (name in hash) {
-                hash[name] && !isArray(hash[name]) && (hash[name] = [hash[name]]);
-                hash[name].push(value);
-            } else
-                hash[name] = value;
-        }, arguments);
-        return hash;
-    }
-    reqwest.serializeArray = function () {
-        var arr = [];
-        eachFormElement.apply(function (name, value) {
-            arr.push({
-                name: name,
-                value: value
-            });
-        }, arguments);
-        return arr;
-    };
-    reqwest.serialize = function () {
-        if (arguments.length === 0)
-            return '';
-        var opt, fn, args = Array.prototype.slice.call(arguments, 0);
-        opt = args.pop();
-        opt && opt.nodeType && args.push(opt) && (opt = null);
-        opt && (opt = opt.type);
-        if (opt == 'map')
-            fn = serializeHash;
-        else if (opt == 'array')
-            fn = reqwest.serializeArray;
-        else
-            fn = serializeQueryString;
-        return fn.apply(null, args);
-    };
-    reqwest.toQueryString = function (o, trad) {
-        var prefix, i, traditional = trad || false, s = [], enc = encodeURIComponent, add = function (key, value) {
-                value = 'function' === typeof value ? value() : value == null ? '' : value;
-                s[s.length] = enc(key) + '=' + enc(value);
-            };
-        if (isArray(o)) {
-            for (i = 0; o && i < o.length; i++)
-                add(o[i]['name'], o[i]['value']);
-        } else {
-            for (prefix in o) {
-                if (o.hasOwnProperty(prefix))
-                    buildParams(prefix, o[prefix], traditional, add);
+            } else {
+                add(prefix, obj);
             }
         }
-        return s.join('&').replace(/%20/g, '+');
-    };
-    function buildParams(prefix, obj, traditional, add) {
-        var name, i, v, rbracket = /\[\]$/;
-        if (isArray(obj)) {
-            for (i = 0; obj && i < obj.length; i++) {
-                v = obj[i];
-                if (traditional || rbracket.test(prefix)) {
-                    add(prefix, v);
-                } else {
-                    buildParams(prefix + '[' + (typeof v === 'object' ? i : '') + ']', v, traditional, add);
-                }
+        reqwest.getcallbackPrefix = function() {
+            return callbackPrefix;
+        };
+        reqwest.compat = function(o, fn) {
+            if (o) {
+                o['type'] && (o['method'] = o['type']) && delete o['type'];
+                o['dataType'] && (o['type'] = o['dataType']);
+                o['jsonpCallback'] && (o['jsonpCallbackName'] = o['jsonpCallback']) && delete o['jsonpCallback'];
+                o['jsonp'] && (o['jsonpCallback'] = o['jsonp']);
             }
-        } else if (obj && obj.toString() === '[object Object]') {
-            for (name in obj) {
-                buildParams(prefix + '[' + name + ']', obj[name], traditional, add);
+            return new Reqwest(o, fn);
+        };
+        reqwest.ajaxSetup = function(options) {
+            options = options || {};
+            for (var k in options) {
+                globalSetupOptions[k] = options[k];
             }
-        } else {
-            add(prefix, obj);
-        }
-    }
-    reqwest.getcallbackPrefix = function () {
-        return callbackPrefix;
-    };
-    reqwest.compat = function (o, fn) {
-        if (o) {
-            o['type'] && (o['method'] = o['type']) && delete o['type'];
-            o['dataType'] && (o['type'] = o['dataType']);
-            o['jsonpCallback'] && (o['jsonpCallbackName'] = o['jsonpCallback']) && delete o['jsonpCallback'];
-            o['jsonp'] && (o['jsonpCallback'] = o['jsonp']);
-        }
-        return new Reqwest(o, fn);
-    };
-    reqwest.ajaxSetup = function (options) {
-        options = options || {};
-        for (var k in options) {
-            globalSetupOptions[k] = options[k];
-        }
-    };
-    return reqwest;
-});
-var inputfiles = function (require, core, reqwest) {
+        };
+        return reqwest;
+    });
+    var inputfiles = function(require, core, reqwest) {
         'use strict';
         var p5 = core;
         var reqwest = reqwest;
-        p5.prototype.createInput = function () {
-        };
-        p5.prototype.createReader = function () {
-        };
-        p5.prototype.loadBytes = function () {
-        };
-        p5.prototype.loadJSON = function (url, callback) {
+        p5.prototype.createInput = function() {};
+        p5.prototype.createReader = function() {};
+        p5.prototype.loadBytes = function() {};
+        p5.prototype.loadJSON = function(url, callback) {
             var self = [];
-            reqwest(url, function (resp) {
+            reqwest(url, function(resp) {
                 for (var k in resp) {
                     self[k] = resp[k];
                 }
@@ -2118,15 +2166,16 @@ var inputfiles = function (require, core, reqwest) {
             });
             return self;
         };
-        p5.prototype.loadStrings = function (path, callback) {
+        p5.prototype.loadStrings = function(path, callback) {
             var ret = [];
             var req = new XMLHttpRequest();
             req.open('GET', path, true);
-            req.onreadystatechange = function () {
+            req.onreadystatechange = function() {
                 if (req.readyState === 4 && (req.status === 200 || req.status === 0)) {
                     var arr = req.responseText.match(/[^\r\n]+/g);
                     for (var k in arr) {
                         ret[k] = arr[k];
+                        console.log(k)
                     }
                     if (typeof callback !== 'undefined') {
                         callback(ret);
@@ -2136,13 +2185,12 @@ var inputfiles = function (require, core, reqwest) {
             req.send(null);
             return ret;
         };
-        p5.prototype.loadTable = function () {
-        };
-        p5.prototype.loadXML = function (path, callback) {
+        p5.prototype.loadTable = function() {};
+        p5.prototype.loadXML = function(path, callback) {
             var ret = [];
             var self = this;
             self.temp = [];
-            reqwest(path, function (resp) {
+            reqwest(path, function(resp) {
                 self.print(resp);
                 self.temp = resp;
                 ret[0] = resp;
@@ -2151,25 +2199,20 @@ var inputfiles = function (require, core, reqwest) {
                 }
             });
         };
-        p5.prototype.open = function () {
-        };
-        p5.prototype.parseXML = function () {
-        };
-        p5.prototype.saveTable = function () {
-        };
-        p5.prototype.selectFolder = function () {
-        };
-        p5.prototype.selectInput = function () {
-        };
+        p5.prototype.open = function() {};
+        p5.prototype.parseXML = function() {};
+        p5.prototype.saveTable = function() {};
+        p5.prototype.selectFolder = function() {};
+        p5.prototype.selectInput = function() {};
         return p5;
     }({}, core, reqwest);
-var inputkeyboard = function (require, core) {
+    var inputkeyboard = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.isKeyPressed = p5.prototype.keyIsPressed = function () {
+        p5.prototype.isKeyPressed = p5.prototype.keyIsPressed = function() {
             return this.keyDown;
         };
-        p5.prototype.onkeydown = function (e) {
+        p5.prototype.onkeydown = function(e) {
             var keyPressed = this.keyPressed || window.keyPressed;
             this._setProperty('keyDown', true);
             this._setProperty('keyCode', e.keyCode);
@@ -2178,14 +2221,14 @@ var inputkeyboard = function (require, core) {
                 keyPressed(e);
             }
         };
-        p5.prototype.onkeyup = function (e) {
+        p5.prototype.onkeyup = function(e) {
             var keyReleased = this.keyReleased || window.keyReleased;
             this._setProperty('keyDown', false);
             if (typeof keyReleased === 'function') {
                 keyReleased(e);
             }
         };
-        p5.prototype.onkeypress = function (e) {
+        p5.prototype.onkeypress = function(e) {
             var keyTyped = this.keyTyped || window.keyTyped;
             if (typeof keyTyped === 'function') {
                 keyTyped(e);
@@ -2193,43 +2236,43 @@ var inputkeyboard = function (require, core) {
         };
         return p5;
     }({}, core);
-var inputtime_date = function (require, core) {
+    var inputtime_date = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.day = function () {
+        p5.prototype.day = function() {
             return new Date().getDate();
         };
-        p5.prototype.hour = function () {
+        p5.prototype.hour = function() {
             return new Date().getHours();
         };
-        p5.prototype.minute = function () {
+        p5.prototype.minute = function() {
             return new Date().getMinutes();
         };
-        p5.prototype.millis = function () {
+        p5.prototype.millis = function() {
             return new Date().getTime() - this._startTime;
         };
-        p5.prototype.month = function () {
+        p5.prototype.month = function() {
             return new Date().getMonth();
         };
-        p5.prototype.second = function () {
+        p5.prototype.second = function() {
             return new Date().getSeconds();
         };
-        p5.prototype.year = function () {
+        p5.prototype.year = function() {
             return new Date().getFullYear();
         };
         return p5;
     }({}, core);
-var mathrandom = function (require, core) {
+    var mathrandom = function(require, core) {
         'use strict';
         var p5 = core;
         var randConst = 100000;
         var seed = Math.ceil(Math.random() * randConst);
         var seeded = false;
-        p5.prototype.randomSeed = function (nseed) {
+        p5.prototype.randomSeed = function(nseed) {
             seed = Math.ceil(Math.abs(nseed));
             seeded = true;
         };
-        p5.prototype.random = function (min, max) {
+        p5.prototype.random = function(min, max) {
             var rand;
             if (seeded) {
                 rand = Math.sin(seed++) * randConst;
@@ -2252,7 +2295,7 @@ var mathrandom = function (require, core) {
         };
         return p5;
     }({}, core);
-var mathnoise = function (require, core) {
+    var mathnoise = function(require, core) {
         'use strict';
         var p5 = core;
         var PERLIN_YWRAPB = 4;
@@ -2274,7 +2317,7 @@ var mathnoise = function (require, core) {
         var perlin_PI = SINCOS_LENGTH;
         perlin_PI >>= 1;
         var perlin;
-        p5.prototype.noise = function (x, y, z) {
+        p5.prototype.noise = function(x, y, z) {
             y = y || 0;
             z = z || 0;
             if (perlin == null) {
@@ -2292,7 +2335,9 @@ var mathnoise = function (require, core) {
             if (z < 0) {
                 z = -z;
             }
-            var xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+            var xi = Math.floor(x),
+                yi = Math.floor(y),
+                zi = Math.floor(z);
             var xf = x - xi;
             var yf = y - yi;
             var zf = z - zi;
@@ -2300,7 +2345,7 @@ var mathnoise = function (require, core) {
             var r = 0;
             var ampl = 0.5;
             var n1, n2, n3;
-            var noise_fsc = function (i) {
+            var noise_fsc = function(i) {
                 return 0.5 * (1 - cosLUT[Math.floor(i * perlin_PI) % SINCOS_LENGTH]);
             };
             for (var o = 0; o < perlin_octaves; o++) {
@@ -2342,7 +2387,7 @@ var mathnoise = function (require, core) {
             }
             return r;
         };
-        p5.prototype.noiseDetail = function (lod, falloff) {
+        p5.prototype.noiseDetail = function(lod, falloff) {
             if (lod > 0) {
                 perlin_octaves = lod;
             }
@@ -2350,21 +2395,20 @@ var mathnoise = function (require, core) {
                 perlin_amp_falloff = falloff;
             }
         };
-        p5.prototype.noiseSeed = function (seed) {
-        };
+        p5.prototype.noiseSeed = function(seed) {};
         return p5;
     }({}, core);
-var polargeometry = function (require) {
+    var polargeometry = function(require) {
         return {
-            degreesToRadians: function (x) {
+            degreesToRadians: function(x) {
                 return 2 * Math.PI * x / 360;
             },
-            radiansToDegrees: function (x) {
+            radiansToDegrees: function(x) {
                 return 360 * x / (2 * Math.PI);
             }
         };
     }({});
-var mathtrigonometry = function (require, core, polargeometry, constants) {
+    var mathtrigonometry = function(require, core, polargeometry, constants) {
         'use strict';
         var p5 = core;
         var polarGeometry = polargeometry;
@@ -2373,97 +2417,86 @@ var mathtrigonometry = function (require, core, polargeometry, constants) {
         p5.prototype.asin = Math.asin;
         p5.prototype.atan = Math.atan;
         p5.prototype.atan2 = Math.atan2;
-        p5.prototype.cos = function (x) {
+        p5.prototype.cos = function(x) {
             return Math.cos(this.radians(x));
         };
-        p5.prototype.degrees = function (angle) {
+        p5.prototype.degrees = function(angle) {
             return this.settings.angleMode === constants.DEGREES ? angle : polarGeometry.radiansToDegrees(angle);
         };
-        p5.prototype.radians = function (angle) {
+        p5.prototype.radians = function(angle) {
             return this.settings.angleMode === constants.RADIANS ? angle : polarGeometry.degreesToRadians(angle);
         };
-        p5.prototype.sin = function (x) {
+        p5.prototype.sin = function(x) {
             return Math.sin(this.radians(x));
         };
-        p5.prototype.tan = function (x) {
+        p5.prototype.tan = function(x) {
             return Math.tan(this.radians(x));
         };
-        p5.prototype.angleMode = function (mode) {
+        p5.prototype.angleMode = function(mode) {
             if (mode === constants.DEGREES || mode === constants.RADIANS) {
                 this.settings.angleMode = mode;
             }
         };
         return p5;
     }({}, core, polargeometry, constants);
-var outputfiles = function (require, core) {
+    var outputfiles = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.beginRaw = function () {
-        };
-        p5.prototype.beginRecord = function () {
-        };
-        p5.prototype.createOutput = function () {
-        };
-        p5.prototype.createWriter = function (name) {
+        p5.prototype.beginRaw = function() {};
+        p5.prototype.beginRecord = function() {};
+        p5.prototype.createOutput = function() {};
+        p5.prototype.createWriter = function(name) {
             if (this.pWriters.indexOf(name) === -1) {
                 this.pWriters.name = new this.PrintWriter(name);
             }
         };
-        p5.prototype.endRaw = function () {
-        };
-        p5.prototype.endRecord = function () {
-        };
-        p5.prototype.escape = function (content) {
+        p5.prototype.endRaw = function() {};
+        p5.prototype.endRecord = function() {};
+        p5.prototype.escape = function(content) {
             return content;
         };
-        p5.prototype.PrintWriter = function (name) {
+        p5.prototype.PrintWriter = function(name) {
             this.name = name;
             this.content = '';
-            this.print = function (data) {
+            this.print = function(data) {
                 this.content += data;
             };
-            this.println = function (data) {
+            this.println = function(data) {
                 this.content += data + '\n';
             };
-            this.flush = function () {
+            this.flush = function() {
                 this.content = '';
             };
-            this.close = function () {
+            this.close = function() {
                 this.writeFile(this.content);
             };
         };
-        p5.prototype.saveBytes = function () {
-        };
-        p5.prototype.saveJSONArray = function () {
-        };
-        p5.prototype.saveJSONObject = function () {
-        };
-        p5.prototype.saveStream = function () {
-        };
-        p5.prototype.saveStrings = function (list) {
+        p5.prototype.saveBytes = function() {};
+        p5.prototype.saveJSONArray = function() {};
+        p5.prototype.saveJSONObject = function() {};
+        p5.prototype.saveStream = function() {};
+        p5.prototype.saveStrings = function(list) {
             this.writeFile(list.join('\n'));
         };
-        p5.prototype.saveXML = function () {
-        };
-        p5.prototype.selectOutput = function () {
-        };
-        p5.prototype.writeFile = function (content) {
+        p5.prototype.saveXML = function() {};
+        p5.prototype.selectOutput = function() {};
+        p5.prototype.writeFile = function(content) {
             this.open('data:text/json;charset=utf-8,' + this.escape(content), 'download');
         };
         return p5;
     }({}, core);
-var outputimage = function (require, core) {
+    var outputimage = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.save = function () {
+        p5.prototype.save = function() {
             this.open(this.curElement.elt.toDataURL('image/png'));
         };
         return p5;
     }({}, core);
-var outputtext_area = function (require, core) {
+    var outputtext_area = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.print = function () {
+        p5.prototype.print = function() {
             if (window.console && console.log) {
                 console.log.apply(console, arguments);
             }
@@ -2471,14 +2504,16 @@ var outputtext_area = function (require, core) {
         p5.prototype.println = p5.prototype.print;
         return p5;
     }({}, core);
-var shape2d_primitives = function (require, core, canvas, constants) {
+    var shape2d_primitives = function(require, core, canvas, constants) {
         'use strict';
         var p5 = core;
         var canvas = canvas;
         var constants = constants;
-        p5.prototype.arc = function (a, b, c, d, start, stop, mode) {
+        p5.prototype.arc = function(a, b, c, d, start, stop, mode) {
             var vals = canvas.arcModeAdjust(a, b, c, d, this.settings.ellipseMode);
-            var radius = vals.h > vals.w ? vals.h / 2 : vals.w / 2, xScale = vals.h > vals.w ? vals.w / vals.h : 1, yScale = vals.h > vals.w ? 1 : vals.h / vals.w;
+            var radius = vals.h > vals.w ? vals.h / 2 : vals.w / 2,
+                xScale = vals.h > vals.w ? vals.w / vals.h : 1,
+                yScale = vals.h > vals.w ? 1 : vals.h / vals.w;
             this.curElement.context.scale(xScale, yScale);
             this.curElement.context.beginPath();
             this.curElement.context.arc(vals.x, vals.y, radius, start, stop);
@@ -2495,9 +2530,15 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             }
             return this;
         };
-        p5.prototype.ellipse = function (a, b, c, d) {
+        p5.prototype.ellipse = function(a, b, c, d) {
             var vals = canvas.modeAdjust(a, b, c, d, this.settings.ellipseMode);
-            var kappa = 0.5522848, ox = vals.w / 2 * kappa, oy = vals.h / 2 * kappa, xe = vals.x + vals.w, ye = vals.y + vals.h, xm = vals.x + vals.w / 2, ym = vals.y + vals.h / 2;
+            var kappa = 0.5522848,
+                ox = vals.w / 2 * kappa,
+                oy = vals.h / 2 * kappa,
+                xe = vals.x + vals.w,
+                ye = vals.y + vals.h,
+                xm = vals.x + vals.w / 2,
+                ym = vals.y + vals.h / 2;
             this.curElement.context.beginPath();
             this.curElement.context.moveTo(vals.x, ym);
             this.curElement.context.bezierCurveTo(vals.x, ym - oy, xm - ox, vals.y, xm, vals.y);
@@ -2509,7 +2550,7 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.line = function (x1, y1, x2, y2) {
+        p5.prototype.line = function(x1, y1, x2, y2) {
             if (this.curElement.context.strokeStyle === 'rgba(0,0,0,0)') {
                 return;
             }
@@ -2519,7 +2560,7 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.point = function (x, y) {
+        p5.prototype.point = function(x, y) {
             var s = this.curElement.context.strokeStyle;
             var f = this.curElement.context.fillStyle;
             if (s === 'rgba(0,0,0,0)') {
@@ -2538,7 +2579,7 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             this.curElement.context.fillStyle = f;
             return this;
         };
-        p5.prototype.quad = function (x1, y1, x2, y2, x3, y3, x4, y4) {
+        p5.prototype.quad = function(x1, y1, x2, y2, x3, y3, x4, y4) {
             this.curElement.context.beginPath();
             this.curElement.context.moveTo(x1, y1);
             this.curElement.context.lineTo(x2, y2);
@@ -2549,7 +2590,7 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.rect = function (a, b, c, d) {
+        p5.prototype.rect = function(a, b, c, d) {
             var vals = canvas.modeAdjust(a, b, c, d, this.settings.rectMode);
             this.curElement.context.beginPath();
             this.curElement.context.rect(vals.x, vals.y, vals.w, vals.h);
@@ -2557,7 +2598,7 @@ var shape2d_primitives = function (require, core, canvas, constants) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.triangle = function (x1, y1, x2, y2, x3, y3) {
+        p5.prototype.triangle = function(x1, y1, x2, y2, x3, y3) {
             this.curElement.context.beginPath();
             this.curElement.context.moveTo(x1, y1);
             this.curElement.context.lineTo(x2, y2);
@@ -2569,45 +2610,45 @@ var shape2d_primitives = function (require, core, canvas, constants) {
         };
         return p5;
     }({}, core, canvas, constants);
-var shapeattributes = function (require, core, constants) {
+    var shapeattributes = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var constants = constants;
-        p5.prototype.ellipseMode = function (m) {
+        p5.prototype.ellipseMode = function(m) {
             if (m === constants.CORNER || m === constants.CORNERS || m === constants.RADIUS || m === constants.CENTER) {
                 this.settings.ellipseMode = m;
             }
             return this;
         };
-        p5.prototype.noSmooth = function () {
+        p5.prototype.noSmooth = function() {
             this.curElement.context.mozImageSmoothingEnabled = false;
             this.curElement.context.webkitImageSmoothingEnabled = false;
             return this;
         };
-        p5.prototype.rectMode = function (m) {
+        p5.prototype.rectMode = function(m) {
             if (m === constants.CORNER || m === constants.CORNERS || m === constants.RADIUS || m === constants.CENTER) {
                 this.settings.rectMode = m;
             }
             return this;
         };
-        p5.prototype.smooth = function () {
+        p5.prototype.smooth = function() {
             this.curElement.context.mozImageSmoothingEnabled = true;
             this.curElement.context.webkitImageSmoothingEnabled = true;
             return this;
         };
-        p5.prototype.strokeCap = function (cap) {
+        p5.prototype.strokeCap = function(cap) {
             if (cap === constants.ROUND || cap === constants.SQUARE || cap === constants.PROJECT) {
                 this.curElement.context.lineCap = cap;
             }
             return this;
         };
-        p5.prototype.strokeJoin = function (join) {
+        p5.prototype.strokeJoin = function(join) {
             if (join === constants.ROUND || join === constants.BEVEL || join === constants.MITER) {
                 this.curElement.context.lineJoin = join;
             }
             return this;
         };
-        p5.prototype.strokeWeight = function (w) {
+        p5.prototype.strokeWeight = function(w) {
             if (typeof w === 'undefined' || w === 0) {
                 this.curElement.context.lineWidth = 0.0001;
             } else {
@@ -2617,10 +2658,10 @@ var shapeattributes = function (require, core, constants) {
         };
         return p5;
     }({}, core, constants);
-var shapecurves = function (require, core) {
+    var shapecurves = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.bezier = function (x1, y1, x2, y2, x3, y3, x4, y4) {
+        p5.prototype.bezier = function(x1, y1, x2, y2, x3, y3, x4, y4) {
             this.curElement.context.beginPath();
             this.curElement.context.moveTo(x1, y1);
             for (var i = 0; i <= this._bezierDetail; i++) {
@@ -2632,19 +2673,19 @@ var shapecurves = function (require, core) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.bezierDetail = function (d) {
+        p5.prototype.bezierDetail = function(d) {
             this._setProperty('_bezierDetail', d);
             return this;
         };
-        p5.prototype.bezierPoint = function (a, b, c, d, t) {
+        p5.prototype.bezierPoint = function(a, b, c, d, t) {
             var adjustedT = 1 - t;
             return Math.pow(adjustedT, 3) * a + 3 * Math.pow(adjustedT, 2) * t * b + 3 * adjustedT * Math.pow(t, 2) * c + Math.pow(t, 3) * d;
         };
-        p5.prototype.bezierTangent = function (a, b, c, d, t) {
+        p5.prototype.bezierTangent = function(a, b, c, d, t) {
             var adjustedT = 1 - t;
             return 3 * d * Math.pow(t, 2) - 3 * c * Math.pow(t, 2) + 6 * c * adjustedT * t - 6 * b * adjustedT * t + 3 * b * Math.pow(adjustedT, 2) - 3 * a * Math.pow(adjustedT, 2);
         };
-        p5.prototype.curve = function (x1, y1, x2, y2, x3, y3, x4, y4) {
+        p5.prototype.curve = function(x1, y1, x2, y2, x3, y3, x4, y4) {
             this.curElement.context.moveTo(x1, y1);
             this.curElement.context.beginPath();
             for (var i = 0; i <= this._curveDetail; i++) {
@@ -2657,29 +2698,36 @@ var shapecurves = function (require, core) {
             this.curElement.context.closePath();
             return this;
         };
-        p5.prototype.curveDetail = function (d) {
+        p5.prototype.curveDetail = function(d) {
             this._setProperty('_curveDetail', d);
             return this;
         };
-        p5.prototype.curvePoint = function (a, b, c, d, t) {
-            var t3 = t * t * t, t2 = t * t, f1 = -0.5 * t3 + t2 - 0.5 * t, f2 = 1.5 * t3 - 2.5 * t2 + 1, f3 = -1.5 * t3 + 2 * t2 + 0.5 * t, f4 = 0.5 * t3 - 0.5 * t2;
+        p5.prototype.curvePoint = function(a, b, c, d, t) {
+            var t3 = t * t * t,
+                t2 = t * t,
+                f1 = -0.5 * t3 + t2 - 0.5 * t,
+                f2 = 1.5 * t3 - 2.5 * t2 + 1,
+                f3 = -1.5 * t3 + 2 * t2 + 0.5 * t,
+                f4 = 0.5 * t3 - 0.5 * t2;
             return a * f1 + b * f2 + c * f3 + d * f4;
         };
-        p5.prototype.curveTangent = function (a, b, c, d, t) {
-            var t2 = t * t, f1 = -3 * t2 / 2 + 2 * t - 0.5, f2 = 9 * t2 / 2 - 5 * t, f3 = -9 * t2 / 2 + 4 * t + 0.5, f4 = 3 * t2 / 2 - t;
+        p5.prototype.curveTangent = function(a, b, c, d, t) {
+            var t2 = t * t,
+                f1 = -3 * t2 / 2 + 2 * t - 0.5,
+                f2 = 9 * t2 / 2 - 5 * t,
+                f3 = -9 * t2 / 2 + 4 * t + 0.5,
+                f4 = 3 * t2 / 2 - t;
             return a * f1 + b * f2 + c * f3 + d * f4;
         };
-        p5.prototype.curveTightness = function () {
-        };
+        p5.prototype.curveTightness = function() {};
         return p5;
     }({}, core);
-var shapevertex = function (require, core, constants) {
+    var shapevertex = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var constants = constants;
-        p5.prototype.beginContour = function () {
-        };
-        p5.prototype.beginShape = function (kind) {
+        p5.prototype.beginContour = function() {};
+        p5.prototype.beginShape = function(kind) {
             if (kind === constants.POINTS || kind === constants.LINES || kind === constants.TRIANGLES || kind === constants.TRIANGLE_FAN || kind === constants.TRIANGLE_STRIP || kind === constants.QUADS || kind === constants.QUAD_STRIP) {
                 this.shapeKind = kind;
             } else {
@@ -2689,15 +2737,13 @@ var shapevertex = function (require, core, constants) {
             this.curElement.context.beginPath();
             return this;
         };
-        p5.prototype.bezierVertex = function (x1, y1, x2, y2, x3, y3) {
+        p5.prototype.bezierVertex = function(x1, y1, x2, y2, x3, y3) {
             this.curElement.context.bezierCurveTo(x1, y1, x2, y2, x3, y3);
             return this;
         };
-        p5.prototype.curveVertex = function () {
-        };
-        p5.prototype.endContour = function () {
-        };
-        p5.prototype.endShape = function (mode) {
+        p5.prototype.curveVertex = function() {};
+        p5.prototype.endContour = function() {};
+        p5.prototype.endShape = function(mode) {
             if (mode === constants.CLOSE) {
                 this.curElement.context.closePath();
                 this.curElement.context.fill();
@@ -2705,11 +2751,11 @@ var shapevertex = function (require, core, constants) {
             this.curElement.context.stroke();
             return this;
         };
-        p5.prototype.quadraticVertex = function (cx, cy, x3, y3) {
+        p5.prototype.quadraticVertex = function(cx, cy, x3, y3) {
             this.curElement.context.quadraticCurveTo(cx, cy, x3, y3);
             return this;
         };
-        p5.prototype.vertex = function (x, y) {
+        p5.prototype.vertex = function(x, y) {
             if (this.shapeInited) {
                 this.curElement.context.moveTo(x, y);
             } else {
@@ -2720,19 +2766,19 @@ var shapevertex = function (require, core, constants) {
         };
         return p5;
     }({}, core, constants);
-var structure = function (require, core) {
+    var structure = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.exit = function () {
+        p5.prototype.exit = function() {
             throw 'Not implemented';
         };
-        p5.prototype.noLoop = function () {
+        p5.prototype.noLoop = function() {
             this.settings.loop = false;
         };
-        p5.prototype.loop = function () {
+        p5.prototype.loop = function() {
             this.settings.loop = true;
         };
-        p5.prototype.pushStyle = function () {
+        p5.prototype.pushStyle = function() {
             this.styles.push({
                 fillStyle: this.curElement.context.fillStyle,
                 strokeStyle: this.curElement.context.strokeStyle,
@@ -2750,7 +2796,7 @@ var structure = function (require, core) {
                 textStyle: this.settings.textStyle
             });
         };
-        p5.prototype.popStyle = function () {
+        p5.prototype.popStyle = function() {
             var lastS = this.styles.pop();
             this.curElement.context.fillStyle = lastS.fillStyle;
             this.curElement.context.strokeStyle = lastS.strokeStyle;
@@ -2767,17 +2813,17 @@ var structure = function (require, core) {
             this.settings.textSize = lastS.textSize;
             this.settings.textStyle = lastS.textStyle;
         };
-        p5.prototype.redraw = function () {
+        p5.prototype.redraw = function() {
             throw 'Not implemented';
         };
-        p5.prototype.size = function () {
+        p5.prototype.size = function() {
             throw 'Not implemented';
         };
         return p5;
     }({}, core);
-var linearalgebra = function (require) {
+    var linearalgebra = function(require) {
         return {
-            pMultiplyMatrix: function (m1, m2) {
+            pMultiplyMatrix: function(m1, m2) {
                 var result = [];
                 var m1Length = m1.length;
                 var m2Length = m2.length;
@@ -2796,11 +2842,11 @@ var linearalgebra = function (require) {
             }
         };
     }({});
-var transform = function (require, core, linearalgebra, outputtext_area) {
+    var transform = function(require, core, linearalgebra, outputtext_area) {
         'use strict';
         var p5 = core;
         var linearAlgebra = linearalgebra;
-        p5.prototype.applyMatrix = function (n00, n01, n02, n10, n11, n12) {
+        p5.prototype.applyMatrix = function(n00, n01, n02, n10, n11, n12) {
             this.curElement.context.transform(n00, n01, n02, n10, n11, n12);
             var m = this.matrices[this.matrices.length - 1];
             m = linearAlgebra.pMultiplyMatrix(m, [
@@ -2813,16 +2859,16 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             ]);
             return this;
         };
-        p5.prototype.popMatrix = function () {
+        p5.prototype.popMatrix = function() {
             this.curElement.context.restore();
             this.matrices.pop();
             return this;
         };
-        p5.prototype.printMatrix = function () {
+        p5.prototype.printMatrix = function() {
             this.print(this.matrices[this.matrices.length - 1]);
             return this;
         };
-        p5.prototype.pushMatrix = function () {
+        p5.prototype.pushMatrix = function() {
             this.curElement.context.save();
             this.matrices.push([
                 1,
@@ -2834,7 +2880,7 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             ]);
             return this;
         };
-        p5.prototype.resetMatrix = function () {
+        p5.prototype.resetMatrix = function() {
             this.curElement.context.setTransform();
             this.matrices[this.matrices.length - 1] = [
                 1,
@@ -2846,7 +2892,7 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             ];
             return this;
         };
-        p5.prototype.rotate = function (r) {
+        p5.prototype.rotate = function(r) {
             r = this.radians(r);
             this.curElement.context.rotate(r);
             var m = this.matrices[this.matrices.length - 1];
@@ -2862,14 +2908,12 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             m[3] = m22;
             return this;
         };
-        p5.prototype.rotateX = function () {
-        };
-        p5.prototype.rotateY = function () {
-        };
-        p5.prototype.rotateZ = function () {
-        };
-        p5.prototype.scale = function () {
-            var x = 1, y = 1;
+        p5.prototype.rotateX = function() {};
+        p5.prototype.rotateY = function() {};
+        p5.prototype.rotateZ = function() {};
+        p5.prototype.scale = function() {
+            var x = 1,
+                y = 1;
             if (arguments.length === 1) {
                 x = y = arguments[0];
             } else {
@@ -2884,7 +2928,7 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             m[3] *= y;
             return this;
         };
-        p5.prototype.shearX = function (angle) {
+        p5.prototype.shearX = function(angle) {
             this.curElement.context.transform(1, 0, this.tan(angle), 1, 0, 0);
             var m = this.matrices[this.matrices.length - 1];
             m = linearAlgebra.pMultiplyMatrix(m, [
@@ -2897,7 +2941,7 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             ]);
             return this;
         };
-        p5.prototype.shearY = function (angle) {
+        p5.prototype.shearY = function(angle) {
             this.curElement.context.transform(1, this.tan(angle), 0, 1, 0, 0);
             var m = this.matrices[this.matrices.length - 1];
             m = linearAlgebra.pMultiplyMatrix(m, [
@@ -2910,7 +2954,7 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
             ]);
             return this;
         };
-        p5.prototype.translate = function (x, y) {
+        p5.prototype.translate = function(x, y) {
             this.curElement.context.translate(x, y);
             var m = this.matrices[this.matrices.length - 1];
             m[4] += m[0] * x + m[2] * y;
@@ -2919,41 +2963,41 @@ var transform = function (require, core, linearalgebra, outputtext_area) {
         };
         return p5;
     }({}, core, linearalgebra, outputtext_area);
-var typographyattributes = function (require, core, constants) {
+    var typographyattributes = function(require, core, constants) {
         'use strict';
         var p5 = core;
         var constants = constants;
-        p5.prototype.textAlign = function (a) {
+        p5.prototype.textAlign = function(a) {
             if (a === constants.LEFT || a === constants.RIGHT || a === constants.CENTER) {
                 this.curElement.context.textAlign = a;
             }
         };
-        p5.prototype.textFont = function (str) {
+        p5.prototype.textFont = function(str) {
             this._setProperty('_textFont', str);
         };
-        p5.prototype.textHeight = function (s) {
+        p5.prototype.textHeight = function(s) {
             return this.curElement.context.measureText(s).height;
         };
-        p5.prototype.textLeading = function (l) {
+        p5.prototype.textLeading = function(l) {
             this._setProperty('_textLeading', l);
         };
-        p5.prototype.textSize = function (s) {
+        p5.prototype.textSize = function(s) {
             this._setProperty('_textSize', s);
         };
-        p5.prototype.textStyle = function (s) {
+        p5.prototype.textStyle = function(s) {
             if (s === constants.NORMAL || s === constants.ITALIC || s === constants.BOLD) {
                 this._setProperty('_textStyle', s);
             }
         };
-        p5.prototype.textWidth = function (s) {
+        p5.prototype.textWidth = function(s) {
             return this.curElement.context.measureText(s).width;
         };
         return p5;
     }({}, core, constants);
-var typographyloading_displaying = function (require, core) {
+    var typographyloading_displaying = function(require, core) {
         'use strict';
         var p5 = core;
-        p5.prototype.text = function () {
+        p5.prototype.text = function() {
             this.curElement.context.font = this._textStyle + ' ' + this._textSize + 'px ' + this._textFont;
             if (arguments.length === 3) {
                 this.curElement.context.fillText(arguments[0], arguments[1], arguments[2]);
@@ -2986,11 +3030,11 @@ var typographyloading_displaying = function (require, core) {
         };
         return p5;
     }({}, core);
-var src_app = function (require, core, mathpvector, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathrandom, mathnoise, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying) {
+    var src_app = function(require, core, mathpvector, colorcreating_reading, colorsetting, dataarray_functions, datastring_functions, dommanipulate, dompelement, environment, image, imageloading_displaying, inputfiles, inputkeyboard, inputmouse, inputtime_date, inputtouch, mathcalculation, mathrandom, mathnoise, mathtrigonometry, outputfiles, outputimage, outputtext_area, shape2d_primitives, shapeattributes, shapecurves, shapevertex, structure, transform, typographyattributes, typographyloading_displaying) {
         'use strict';
         var p5 = core;
         var PVector = mathpvector;
-        var _globalInit = function () {
+        var _globalInit = function() {
             if (window.setup && typeof window.setup === 'function' || window.draw && typeof window.draw === 'function') {
                 new p5();
             }

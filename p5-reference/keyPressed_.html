@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.3/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    function setup() {
+        createCanvas(100, 100);
+        background(200);
+    }
+    // Click on the image to give it focus,
+    // and then press any key.
+
+    var value = 0;
+
+    function draw() {
+        fill(value);
+        rect(25, 25, 50, 50);
+    }
+
+    function keyPressed() {
+        if (value == 0) {
+            value = 255;
+        } else {
+            value = 0;
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">// Click on the image to give it focus,
+// and then press any key.
+
+var value = 0;
+
+function draw() {
+    fill(value);
+    rect(25, 25, 50, 50);
+}
+
+function keyPressed() {
+    if (value == 0) {
+        value = 255;
+    } else {
+        value = 0;
+    }
+}
+        </code>
+    </pre>
+</body>
+
+</html>
