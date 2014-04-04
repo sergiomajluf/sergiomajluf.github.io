@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Loading JSON form Google Spreadhseet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    var myJSONPre = "https://spreadsheets.google.com/feeds/list/";
+    var myJSONKey = "0AoP_IGF5WvFedDZWdlZxMEJSV2xCdDAzUDlXVnpTS0E"; //Comentarios
+    var myJSONEnd = "/od6/public/basic?hl=en_US&alt=json";
+
+    var myJSON = myJSONPre + myJSONKey + myJSONEnd;
+
+    //var myJSON = "https://docs.google.com/spreadsheet/ccc?key=0AoP_IGF5WvFedDZWdlZxMEJSV2xCdDAzUDlXVnpTS0E#gid=0public/basic?alt=json";
+    jQuery(document).ready(function() {
+        console.log(myJSON);
+        jQuery.noConflict(); // probably I need this because in the JSON-feed there are $t-objects
+        jQuery.getJSON(myJSON, function(json) {
+
+            for (var i = 0; i < json.feed.entry.length; i++) {
+                var title = json.feed.entry[i].title.$t;
+                var content = json.feed.entry[i].content.$t;
+                jQuery("dl").append("<dt>" + title + "</dt>");
+                jQuery("dl").append("<dd>" + content + "</dd>");
+            }
+
+
+        });
+    });
+
+    // I'm getting the data. No move on to formatting
+    </script>
+</head>
+
+<body>
+    <dl id="p1" class="content">
+        <dt>Please wait. I'm loading data from a Google Spreadhseet...</dt>
+    </dl>
+</body>
+
+</html>

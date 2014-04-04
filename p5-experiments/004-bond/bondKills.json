@@ -1,0 +1,209 @@
+[{
+    "Film": "Dr. No ",
+    "Official Bond": "Official",
+    "Year": 1962,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 4,
+    "Others' kills": 8,
+    "Total": 12
+}, {
+    "Film": "From Russia With Love ",
+    "Official Bond": "Official",
+    "Year": 1963,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 11,
+    "Others' kills": 16,
+    "Total": 27
+}, {
+    "Film": "Goldfinger ",
+    "Official Bond": "Official",
+    "Year": 1964,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 9,
+    "Others' kills": 68,
+    "Total": 77
+}, {
+    "Film": "Thunderball ",
+    "Official Bond": "Official",
+    "Year": 1965,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 20,
+    "Others' kills": 90,
+    "Total": 110
+}, {
+    "Film": "You Only Live Twice ",
+    "Official Bond": "Official",
+    "Year": 1967,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 21,
+    "Others' kills": 175,
+    "Total": 196
+}, {
+    "Film": "On Her Majesty's Secret Service ",
+    "Official Bond": "Official",
+    "Year": 1969,
+    "Bond actor": "George Lazenby",
+    "Bond kills": 5,
+    "Others' kills": 37,
+    "Total": 42
+}, {
+    "Film": "Diamonds Are Forever ",
+    "Official Bond": "Official",
+    "Year": 1971,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 7,
+    "Others' kills": 42,
+    "Total": 49
+}, {
+    "Film": "Live and Let Die ",
+    "Official Bond": "Official",
+    "Year": 1973,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 8,
+    "Others' kills": 5,
+    "Total": 13
+}, {
+    "Film": "The Man with the Golden Gun ",
+    "Official Bond": "Official",
+    "Year": 1974,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 1,
+    "Others' kills": 5,
+    "Total": 6
+}, {
+    "Film": "The Spy Who Loved Me ",
+    "Official Bond": "Official",
+    "Year": 1977,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 31,
+    "Others' kills": 116,
+    "Total": 147
+}, {
+    "Film": "Moonraker ",
+    "Official Bond": "Official",
+    "Year": 1979,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 12,
+    "Others' kills": 69,
+    "Total": 81
+}, {
+    "Film": "For Your Eyes Only ",
+    "Official Bond": "Official",
+    "Year": 1981,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 18,
+    "Others' kills": 36,
+    "Total": 54
+}, {
+    "Film": "Octopussy ",
+    "Official Bond": "Official",
+    "Year": 1983,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 15,
+    "Others' kills": 43,
+    "Total": 58
+}, {
+    "Film": "A View to a Kill ",
+    "Official Bond": "Official",
+    "Year": 1985,
+    "Bond actor": "Roger Moore",
+    "Bond kills": 5,
+    "Others' kills": 57,
+    "Total": 62
+}, {
+    "Film": "The Living Daylights ",
+    "Official Bond": "Official",
+    "Year": 1987,
+    "Bond actor": "Timothy Dalton",
+    "Bond kills": 13,
+    "Others' kills": 29,
+    "Total": 42
+}, {
+    "Film": "Licence to Kill ",
+    "Official Bond": "Official",
+    "Year": 1989,
+    "Bond actor": "Timothy Dalton",
+    "Bond kills": 10,
+    "Others' kills": 13,
+    "Total": 23
+}, {
+    "Film": "GoldenEye ",
+    "Official Bond": "Official",
+    "Year": 1995,
+    "Bond actor": "Pierce Brosnan",
+    "Bond kills": 47,
+    "Others' kills": 25,
+    "Total": 72
+}, {
+    "Film": "Tomorrow Never Dies ",
+    "Official Bond": "Official",
+    "Year": 1997,
+    "Bond actor": "Pierce Brosnan",
+    "Bond kills": 30,
+    "Others' kills": 24,
+    "Total": 54
+}, {
+    "Film": "The World is Not Enough ",
+    "Official Bond": "Official",
+    "Year": 1999,
+    "Bond actor": "Pierce Brosnan",
+    "Bond kills": 27,
+    "Others' kills": 43,
+    "Total": 70
+}, {
+    "Film": "Die Another Day ",
+    "Official Bond": "Official",
+    "Year": 2002,
+    "Bond actor": "Pierce Brosnan",
+    "Bond kills": 31,
+    "Others' kills": 20,
+    "Total": 51
+}, {
+    "Film": "Casino Royale ",
+    "Official Bond": "Official",
+    "Year": 2006,
+    "Bond actor": "Daniel Craig",
+    "Bond kills": 11,
+    "Others' kills": 11,
+    "Total": 22
+}, {
+    "Film": "Quantum of Solace ",
+    "Official Bond": "Official",
+    "Year": 2008,
+    "Bond actor": "Daniel Craig",
+    "Bond kills": 16,
+    "Others' kills": 15,
+    "Total": 31
+}, {
+    "Film": "Skyfall ",
+    "Official Bond": "Official",
+    "Year": 2012,
+    "Bond actor": "Daniel Craig",
+    "Bond kills": null,
+    "Others' kills": null,
+    "Total": null
+}, {
+    "Film": "Casino Royale ",
+    "Official Bond": "Unoffocial",
+    "Year": 1954,
+    "Bond actor": "Barry Nelson",
+    "Bond kills": null,
+    "Others' kills": null,
+    "Total": null
+}, {
+    "Film": "Casino Royale",
+    "Official Bond": "Unoffocial",
+    "Year": 1967,
+    "Bond actor": "David Niven & Peter Sellers",
+    "Bond kills": null,
+    "Others' kills": null,
+    "Total": null
+}, {
+    "Film": "Never Say Never Again ",
+    "Official Bond": "Unoffocial",
+    "Year": 1983,
+    "Bond actor": "Sean Connery",
+    "Bond kills": 2,
+    "Others' kills": null,
+    "Total": null
+}]
