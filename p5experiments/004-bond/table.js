@@ -17,8 +17,9 @@ Status:
 
 
 
-var bondData, lion;
-var films = new Array();
+var bondData;
+var films = [];
+var separator = "___________________________________________";
 
 function preload() {
     bondData = loadJSON('bondKills.json');
@@ -26,8 +27,8 @@ function preload() {
 
 function setup() {
 
-    createCanvas(800, 480);
-    background(30);
+    createCanvas(1000, 600);
+    //background(30);
 
     // Async Call
     /*
@@ -36,18 +37,21 @@ function setup() {
     });
 	*/
 
-    f = new Film();
+    //f = new Film();
     loadData();
+
 
 }
 
 function draw() {
-    //background(0);
+    background(30);
 
-    // for (var f in films) {
-    //     f.update();
-    //     f.dibuja();
-    // }
+    films.forEach(
+        function(f) {
+            f.updateFilm();
+            f.renderFilm();
+        }
+    );
 }
 
 function loadData() {
@@ -56,79 +60,129 @@ function loadData() {
 
     for (var i = 0; i < bondData.length; i++) { // or use t.getRowCount()
         var f = new Film();
-        f.filmName = bondData[i]["Film"];
-        f.year = bondData[i]["Year"];
+        f.filmName = bondData[i].Film;
+        f.year = bondData[i].Year;
         f.bondActor = bondData[i]["Bond actor"];
         f.bondKills = bondData[i]["Bond kills"];
         f.otherKills = bondData[i]["Others' kills"];
         f.totalKills = f.bondKills + f.otherKills;
+        f.posX = 600;
+        f.posY = 300;
         //println(f.filmName);
         films.push(f); // add each objetc into the Array films
     }
 }
 
 function scatter() {
-    console.log("scatter");
-    for (var f in films) {
-        f.tpos.x = random(100, width - 100);
-        f.tpos.y = random(100, height - 100);
-    }
+    console.log(separator);
+    console.log("X - Scatter");
+    console.log(separator);
+    films.forEach(
+        function(f) {
+            f.tpos.x = random(100, width - 100);
+            f.tpos.y = random(100, height - 100);
+            console.log(f.tpos);
+        }
+    );
 }
 
 function sortOnKills() {
-    console.log("Sort on Kills");
-    for (var f in films) {
-        f.tpos.y = height - map(f.totalKills, 0, 200, 100, height - 100);
-    }
+    console.log(separator);
+    console.log("K - Sort on Kills");
+    console.log(separator);
+    films.forEach(
+        function(f) {
+            f.tpos.y = height - map(f.totalKills, 0, 200, 100, height - 100);
+        }
+    );
 }
 
 function sortOnYear() {
-    console.log("Sort on Years");
-    for (var f in films) {
-        f.tpos.x = map(f.year, 1962, 2012, 100, width - 100);
+    console.log(separator);
+    console.log("Y - Sort on Years");
+    console.log(separator);
+    films.forEach(
+        function(f) {
+            f.tpos.x = map(f.year, 1962, 2012, 100, width - 100);
+        }
+    );
+}
+
+function keyPressed() {
+    if (key == 'x' || key == 'X') {
+        scatter();
+        listAllFilms();
+    }
+    if (key == 'k' || key == 'K') {
+        sortOnKills();
+        listAllFilms();
+    }
+    if (key == 'y' || key == 'Y') {
+        sortOnYear();
+        listAllFilms();
+    }
+    if (key == 'r' || key == 'R') {
+        renameAllFilms();
     }
 }
 
-function iskeyPressed() {
-    if (key == 'x') scatter();
-    if (key == 'k') sortOnKills();
-    if (key == 'y') sortOnYear();
+function renameAllFilms() {
+    films.forEach(
+        function(item) {
+            item.rename();
+        }
+    );
+}
+
+function listAllFilms() {
+    films.forEach(
+        function(item) {
+            console.log(item.filmName);
+        }
+    );
 }
 
 function Film() {
     // data types first
-    var filmName;
-    var year;
-    var bondActor;
-    var bondKills;
-    var otherKills;
-    var totalKills;
+    this.filmName = "";
+    this.year = 0;
+    this.bondActor = "";
+    this.bondKills = 0;
+    this.otherKills = 0;
+    this.totalKills = 0;
 
-    var pos = new PVector();
-    var tpos = new PVector();
+    // var posX, posY, posZ, tposX, tposY, tposZ;
 
-    this.update = function() {
-        //pos.lerp(tpos, 0.1); // PVector Linear Interpolattion only works in Processing 2.x
+    this.pos = new PVector();
+    this.tpos = new PVector();
+    this.rename = function() {
+        var new_name = newname;
+        this.filmName = new_name;
+    };
 
-        pos.x = lerp(pos.x, tpos.x, 0.1);
-        pos.y = lerp(pos.y, tpos.y, 0.1);
-        pos.z = lerp(pos.z, tpos.z, 0.1);
-        // pos.z = 0;
-    }
+    this.updateFilm = function() {
+        this.pos.lerp(this.tpos, 0.1); // PVector Linear Interpolattion only works in Processing 2.x
+        // posX = lerp(this.posX, this.tposX, 0.1);
+        // posY = lerp(this.posY, this.tposY, 0.1);
+        // console.log()
+        // pos.z = lerp(position().z, tpos.z, 0.1);
 
-    this.dibuja = function() {
+    };
+    this.renderFilm = function() {
         pushMatrix();
-        translate(pos.x, pos.y, pos.z);
-        var d = sqrt(totalKills) * 10;
+        translate(this.pos.x, this.pos.y);
+        var d = sqrt(this.totalKills) * 10;
         noStroke();
-        fill(255, 150);
+        fill(255, 90);
         ellipse(0, 0, d, d);
-
-        d = sqrt(bondKills) * 10;
-        fill(255, 0, 0, 150);
+        console.log(this.bondKills);
+        d = sqrt(this.bondKills) * 10;
+        fill(255, 0, 0, 90);
         ellipse(0, 0, d, d);
-
+        console.log(d);
         popMatrix();
-    }
-
+    };
 }
+
+// Film.prototype.pos = new PVector();
+// Film.prototype.tpos = new PVector();
