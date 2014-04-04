@@ -12,12 +12,26 @@
 
     <script type="text/javascript">
     // Declare and construct two objects (h1, h2) from the class HLine 
-    var h1 = new HLine(20, 2.0);
-    var h2 = new HLine(50, 2.5);
+    var h1;
+    var h2;
+
+    function HLine(y, s) {
+        this.ypos = y;
+        this.speed = s;
+    }
+
+    HLine.prototype.update = function() {
+        this.ypos += this.speed;
+        if (this.ypos > height) {
+            this.ypos = 0;
+        }
+        line(0, this.ypos, width, this.ypos);
+    }
 
     function setup() {
         createCanvas(100, 100);
-        frameRate(30);
+        h1 = new HLine(20, 2.0);
+        h2 = new HLine(50, 2.5);
     }
 
     function draw() {
@@ -25,52 +39,37 @@
         h1.update();
         h2.update();
     }
-
-    function HLine(y, s) {
-        var ypos = y;
-        var speed = s;
-        
-        this.update = function() {
-            ypos += speed;
-            if (ypos > height) {
-                ypos = 0;
-            }
-            line(0, ypos, width, ypos);
-        }
-    }
-    
     </script>
 </head>
 
 <body>
-    <pre><code class="javascript">// Declare and construct two objects (h1, h2) from the class HLine 
-var h1 = new HLine(20, 2.0);
-var h2 = new HLine(50, 2.5);
+    <pre><code class="javascript">var h1;
+var h2;
+
+function HLine(y, s) {
+    this.ypos = y;
+    this.speed = s;
+}
+
+HLine.prototype.update = function() {
+    this.ypos += this.speed;
+    if (this.ypos > height) {
+        this.ypos = 0;
+    }
+    line(0, this.ypos, width, this.ypos);
+}
 
 function setup() {
     createCanvas(100, 100);
-    frameRate(30);
+    h1 = new HLine(20, 2.0);
+    h2 = new HLine(50, 2.5);
 }
 
 function draw() {
     background(204);
     h1.update();
     h2.update();
-}
-
-function HLine(y, s) {
-    var ypos = y;
-    var speed = s;
-    
-    this.update = function() {
-        ypos += speed;
-        if (ypos > height) {
-            ypos = 0;
-        }
-        line(0, ypos, width, ypos);
-    }
-}
-        </code>
+}</code>
     </pre>
     <div class="offset"><hr><h2>Class was not ported into P5 & classes in Javascript are different than in Processing (java)</h2><p>They are created like functions, and thus, there's no special Class syntax. You can read more about this on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript" title"OOP in Javascript">Mozilla MDN</a></p></div>
 </body>
