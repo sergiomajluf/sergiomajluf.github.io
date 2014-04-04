@@ -23,14 +23,32 @@
             <p>I'l try to keep it up with the <a href="https://github.com/lmccart/p5.js/wiki/API-Progress">API official progress</a> page</p>
 		</div>
 
-            <div class="well well-lg"><div class="btn-group">
-                Key:&nbsp;&nbsp;
-              <span class="fa fa-check" title="Implemented"> Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="fa fa-clock-o" title="To Be Implemented"> To Be Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="fa fa-trash-o" title="Removed"> Removed</span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="fa fa-ellipsis-h" title="Future Version"> Future Version</span>
-            </div>
-            </div>
+        <div class="well well-lg">
+                <div class="row">
+                    <div class="col-sm-8 btn-group">
+                        <h5>P5.js Reference Key:</h5>
+                      <span class="fa fa-check" title="Implemented"> Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-clock-o" title="To Be Implemented"> To Be Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-trash-o" title="Removed"> Removed</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-ellipsis-h" title="Future Version"> Future Version</span>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <h5>This Reference Progress:</h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-info" id="barDone">
+                            <span class="sr-only">35% Complete (success)</span>
+                          </div>
+                          <div class="progress-bar progress-bar-warning" id="barPending">
+                            <span class="sr-only">20% Complete (warning)</span>
+                          </div>
+                          <div class="progress-bar progress-bar-danger" id="barRemoved">
+                            <span class="sr-only">10% Complete (danger)</span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
             
 
         <div class="row">
@@ -993,6 +1011,22 @@
 		$("a.ref-link").not(".done").addClass( "pending" );
 
 		$("div.category b").wrap("<h3 class='panel-title'>");
+
+        var totalLinks = $('a.ref-link').length;
+        var alreadyDone = $("a.done").length;
+        var removedFunctions = $('a.removed').length;
+        var futureLinks = $('a.future').length;
+        var toBeImplemented = $('a.toBeImplemented').length;
+        var revisit = $('a.revisit').length;
+
+        var percPending = ((futureLinks + toBeImplemented + revisit)/totalLinks*10).toFixed(2);
+        var percRemoved = (removedFunctions/totalLinks*10).toFixed(2);
+        var percDone = (alreadyDone/(totalLinks-percRemoved-percPending)*10).toFixed(2);
+
+        console.log('Done:%s \tPending:%s \tRemoved:%s', percDone, percPending, percRemoved);
+        $('#barDone').css("width",(percDone+"%"));
+        $('#barPending').css("width",(percPending+"%"));
+        $('#barRemoved').css("width",(percRemoved+"%"));
 
 	});
 

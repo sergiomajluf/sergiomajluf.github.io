@@ -15,7 +15,7 @@ a.ref-link {
     transition:background-color 0.5s, transform 0.5s;
 }
 a.ref-link:hover {
-    background-color: rgba(222, 251, 222, 0.53);
+    background-color: rgba(222, 247, 251, 0.53);
 }
 a.ref-link.pending:hover {
     background-color: rgba(252, 249, 231, 0.53);
@@ -35,6 +35,10 @@ a.ref-link.revisit {
 }
 a.ref-link.removed {
     text-decoration:line-through;
+    color: #d99c9c;
+}
+a.ref-link.removed:hover{
+	background-color: rgba(252, 231, 231, 0.53);
 }
 #canvas0 {
     position: absolute;
@@ -62,6 +66,12 @@ pre {
 }
 #pre2 {
     top: 250px;
+}
+
+div.progress {
+	background-color: #fff;
+	-moz-box-shadow: 0 1px 1px #e5d7d7;
+	box-shadow: 0 1px 1px #e5d7d7;
 }
 /**
  * http://nicolasgallagher.com/micro-clearfix-hack/
