@@ -27,10 +27,10 @@
                 <div class="row">
                     <div class="col-sm-8 btn-group">
                         <h5>P5.js Reference Key:</h5>
-                      <span class="fa fa-check" title="Implemented"> Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span class="fa fa-clock-o" title="To Be Implemented"> To Be Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span class="fa fa-trash-o" title="Removed"> Removed</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span class="fa fa-ellipsis-h" title="Future Version"> Future Version</span>
+                      <span class="fa fa-check" title="Implemented" id="txtDone"> Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-clock-o" title="To Be Implemented" id="txtPending"> To Be Implemented</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-trash-o" title="Removed" id="txtRemoved"> Removed</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span class="fa fa-ellipsis-h" title="Future Version" id="txtFuture"> Future Version</span>
                     </div>
                     
                     <div class="col-sm-4">
@@ -1027,6 +1027,11 @@
         $('#barDone').css("width",(percDone+"%"));
         $('#barPending').css("width",(percPending+"%"));
         $('#barRemoved').css("width",(percRemoved+"%"));
+
+        $('#txtDone').append("<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+percDone+"%");
+        $('#txtPending').append("<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+percPending+"%");
+        $('#txtRemoved').append("<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+percRemoved+"%");
+        $('#txtFuture').append("<br/>&nbsp;&nbsp;&nbsp;&nbsp;"+(futureLinks/(totalLinks-percRemoved-percPending)*10).toFixed(2)+"%");
 
 	});
 
