@@ -7,11 +7,14 @@ https://docs.google.com/spreadsheet/ccc?key=0AonYZs4MzlZbdEgyUE9aQktJR0ZEWFlURGl
 Originally developed within Jerr Thorp Data Rep class at ITP
 
 Ported to P5.js by Sergio Majluf
+April 2014
 
 Status:
 - Converted data to JSON using http://www.convertcsv.com/csv-to-json.htm
 - Reading data works OK
 - table() still not implemented
+- keyboard and mouse input (js) trigger functions
+- OOP implemented
 
  */
 
@@ -20,14 +23,26 @@ Status:
 var bondData;
 var films = [];
 var separator = "___________________________________________";
+var w = 1024;
+var h = window.innerHeight - 160;
 
 function preload() {
     bondData = loadJSON('bondKills.json');
 }
 
+
+function renameCanvas() {
+    $("canvas").each(function(index) {
+        $(this).removeAttr("style");
+        $(this).attr("id", "canvas" + index);
+    });
+    $("canvas").wrap("<div id='sketch'>");
+
+}
+
 function setup() {
 
-    createCanvas(1000, 600);
+    createCanvas(w, h);
     //background(30);
 
     // Async Call
@@ -35,16 +50,18 @@ function setup() {
     bondDataAsync = loadJSON('bondKills.json', function(resp) {
         console.log("Async call is done. I loaded: ");
     });
-	*/
+    */
 
     //f = new Film();
     loadData();
 
-
+    renameCanvas();
 }
 
+
 function draw() {
-    background(30);
+    background(0, 0);
+    drawLines();
 
     films.forEach(
         function(f) {
@@ -52,6 +69,15 @@ function draw() {
             f.renderFilm();
         }
     );
+}
+
+function drawLines() {
+    stroke(100);
+    strokeWeight(0.5);
+    for (var i = 0; i < height; i++) {
+        var ypos = 50 * i;
+        line(0, ypos, width, ypos);
+    }
 }
 
 function loadData() {
@@ -66,8 +92,6 @@ function loadData() {
         f.bondKills = bondData[i]["Bond kills"];
         f.otherKills = bondData[i]["Others' kills"];
         f.totalKills = f.bondKills + f.otherKills;
-        f.posX = 600;
-        f.posY = 300;
         //println(f.filmName);
         films.push(f); // add each objetc into the Array films
     }
@@ -81,7 +105,6 @@ function scatter() {
         function(f) {
             f.tpos.x = random(100, width - 100);
             f.tpos.y = random(100, height - 100);
-            console.log(f.tpos);
         }
     );
 }
@@ -111,28 +134,18 @@ function sortOnYear() {
 function keyPressed() {
     if (key == 'x' || key == 'X') {
         scatter();
-        listAllFilms();
+        //listAllFilms();
     }
     if (key == 'k' || key == 'K') {
         sortOnKills();
-        listAllFilms();
+        //listAllFilms();
     }
     if (key == 'y' || key == 'Y') {
         sortOnYear();
-        listAllFilms();
-    }
-    if (key == 'r' || key == 'R') {
-        renameAllFilms();
+        //listAllFilms();
     }
 }
 
-function renameAllFilms() {
-    films.forEach(
-        function(item) {
-            item.rename();
-        }
-    );
-}
 
 function listAllFilms() {
     films.forEach(
@@ -161,12 +174,7 @@ function Film() {
     };
 
     this.updateFilm = function() {
-        this.pos.lerp(this.tpos, 0.1); // PVector Linear Interpolattion only works in Processing 2.x
-        // posX = lerp(this.posX, this.tposX, 0.1);
-        // posY = lerp(this.posY, this.tposY, 0.1);
-        // console.log()
-        // pos.z = lerp(position().z, tpos.z, 0.1);
-
+        this.pos.lerp(this.tpos, 0.12); // PVector Linear Interpolattion only works in Processing 2.x
     };
     this.renderFilm = function() {
         pushMatrix();
@@ -175,14 +183,9 @@ function Film() {
         noStroke();
         fill(255, 90);
         ellipse(0, 0, d, d);
-        console.log(this.bondKills);
         d = sqrt(this.bondKills) * 10;
         fill(255, 0, 0, 90);
         ellipse(0, 0, d, d);
-        console.log(d);
         popMatrix();
     };
 }
-
-// Film.prototype.pos = new PVector();
-// Film.prototype.tpos = new PVector();
