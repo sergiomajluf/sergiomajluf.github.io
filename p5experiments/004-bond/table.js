@@ -20,16 +20,16 @@ Status:
 
 
 
-var bondData;
+var bondData = [];
 var films = [];
 var separator = "___________________________________________";
 var w = 1024;
 var h = window.innerHeight - 160;
 
+/* Preload data into Array of objects*/
 function preload() {
     bondData = loadJSON('bondKills.json');
 }
-
 
 function renameCanvas() {
     $("canvas").each(function(index) {
@@ -37,24 +37,18 @@ function renameCanvas() {
         $(this).attr("id", "canvas" + index);
     });
     $("canvas").wrap("<div id='sketch'>");
-
 }
 
 function setup() {
-
     createCanvas(w, h);
-    //background(30);
 
-    // Async Call
+    // This would be the way to make an Async Load
     /*
     bondDataAsync = loadJSON('bondKills.json', function(resp) {
         console.log("Async call is done. I loaded: ");
     });
     */
-
-    //f = new Film();
-    loadData();
-
+    createObjects();
     renameCanvas();
 }
 
@@ -71,6 +65,7 @@ function draw() {
     );
 }
 
+/* Just some horizontal lines */
 function drawLines() {
     stroke(100);
     strokeWeight(0.5);
@@ -80,7 +75,9 @@ function drawLines() {
     }
 }
 
-function loadData() {
+/* Create and init film objects from preloaded data*/
+function createObjects() {
+
     //Table t = loadTable(url);
     //t.removeTitleRow();
 
@@ -100,7 +97,6 @@ function loadData() {
 function scatter() {
     console.log(separator);
     console.log("X - Scatter");
-    console.log(separator);
     films.forEach(
         function(f) {
             f.tpos.x = random(100, width - 100);
@@ -112,7 +108,6 @@ function scatter() {
 function sortOnKills() {
     console.log(separator);
     console.log("K - Sort on Kills");
-    console.log(separator);
     films.forEach(
         function(f) {
             f.tpos.y = height - map(f.totalKills, 0, 200, 100, height - 100);
@@ -123,7 +118,6 @@ function sortOnKills() {
 function sortOnYear() {
     console.log(separator);
     console.log("Y - Sort on Years");
-    console.log(separator);
     films.forEach(
         function(f) {
             f.tpos.x = map(f.year, 1962, 2012, 100, width - 100);
@@ -134,57 +128,40 @@ function sortOnYear() {
 function keyPressed() {
     if (key == 'x' || key == 'X') {
         scatter();
-        //listAllFilms();
     }
     if (key == 'k' || key == 'K') {
         sortOnKills();
-        //listAllFilms();
     }
     if (key == 'y' || key == 'Y') {
         sortOnYear();
-        //listAllFilms();
     }
 }
 
-
-function listAllFilms() {
-    films.forEach(
-        function(item) {
-            console.log(item.filmName);
-        }
-    );
-}
-
+/* Fill Class - object template and Draw/Update methods */
 function Film() {
-    // data types first
+    // create variables with 'this.' so they are exposed to the object
     this.filmName = "";
     this.year = 0;
     this.bondActor = "";
     this.bondKills = 0;
     this.otherKills = 0;
     this.totalKills = 0;
-
-    // var posX, posY, posZ, tposX, tposY, tposZ;
-
     this.pos = new PVector();
     this.tpos = new PVector();
-    this.rename = function() {
-        var new_name = newname;
-        this.filmName = new_name;
-    };
 
     this.updateFilm = function() {
-        this.pos.lerp(this.tpos, 0.12); // PVector Linear Interpolattion only works in Processing 2.x
+        this.pos.lerp(this.tpos, 0.12);
     };
+
     this.renderFilm = function() {
         pushMatrix();
         translate(this.pos.x, this.pos.y);
         var d = sqrt(this.totalKills) * 10;
         noStroke();
-        fill(255, 90);
+        fill(255, 130);
         ellipse(0, 0, d, d);
         d = sqrt(this.bondKills) * 10;
-        fill(255, 0, 0, 90);
+        fill(255, 0, 0, 130);
         ellipse(0, 0, d, d);
         popMatrix();
     };
