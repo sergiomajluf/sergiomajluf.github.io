@@ -15,7 +15,7 @@
         background-color: rgb(30, 30, 30);
         margin:0;
         padding: 0;
-        background: url(http://i210.photobucket.com/albums/bb254/Dmix_347/casino-royale2_wide-1.jpg) top;
+        background: #000 url(http://i210.photobucket.com/albums/bb254/Dmix_347/casino-royale2_wide-1.jpg) top;
                 background-size:cover;
         background-repeat:no-repeat;
     }
@@ -31,13 +31,23 @@
     }
     h1 {
     	text-transform: uppercase;
+        font-weight: bold;
+        margin: 10px 0 0;
+        width: 100%;
+
     }
     h1, h3 {
     font-family: 'Rambla', sans-serif;
     font-style: italic;
-    font-weight: bold;
+    
     	color: #fff;
     	text-align: center;
+    }
+    h3 {
+        font-family: Gerogia, serif;
+        font-weight: normal;
+        margin-top: 0;
+        padding-bottom: 1rem;
     }
     a {
     	color: red;
@@ -47,7 +57,7 @@
 
 <body>
     <h1>Deadliest James Bond movies</h1>
-    <h3>Sort Bond Kills by <a href="#" onclick="sortOnYear();">(Y)ear</a> - Number of <a href="#" onclick="sortOnKills();">(K)ills</a> - just (X) Scatter</h3>
+    <h3>Sort Bond Kills by <a href="#" onclick="sortOnYear();">(Y)ear</a> - Number of <a href="#" onclick="sortOnKills();">(K)ills</a> - just <a href="#" onclick="scatter();">(X) Scatter</a></h3>
     <!-- fuuunnnnn -->
 
 </body>

@@ -25,6 +25,11 @@ var films = [];
 var separator = "___________________________________________";
 var w = 1024;
 var h = window.innerHeight - 160;
+var today = new Date();
+var minYear = today.getFullYear();
+var maxYear = 0;
+var minKills;
+var totalKills;
 
 /* Preload data into Array of objects*/
 function preload() {
@@ -50,12 +55,15 @@ function setup() {
     */
     createObjects();
     renameCanvas();
+
 }
 
 
 function draw() {
-    background(0, 0);
+    background(30);
+    drawTicks();
     drawLines();
+
 
     films.forEach(
         function(f) {
@@ -65,21 +73,56 @@ function draw() {
     );
 }
 
+/* Find min and max year */
+function drawTicks() {
+    var i = 0;
+    stroke(100);
+    strokeWeight(2);
+    films.forEach(function(f) {
+        var tickX = map(f.year, minYear, maxYear, 100, width - 100);
+
+        fill(220, 0, 0)
+        stroke(220, 0, 0, 100)
+        textAlign(CENTER)
+
+        if (i % 2) {
+            line(tickX, (height - 100), tickX, (height - 90));
+            text(f.year, tickX, height - 80)
+        } else {
+            line(tickX, (height - 100), tickX, (height - 70));
+            text(f.year, tickX, height - 60)
+        }
+        i++;
+    });
+
+}
 /* Just some horizontal lines */
 function drawLines() {
     stroke(100);
     strokeWeight(0.5);
-    for (var i = 0; i < height; i++) {
-        var ypos = 50 * i;
-        line(0, ypos, width, ypos);
+    for (var i = 0; i < 13; i++) {
+        var ypos = height - (50 * i);
+        //line(0, ypos, width, ypos);
     }
+
+    films.forEach(function(f) {
+        var tickY = height - map(f.totalKills, 0, 200, 100, height - 100);
+        line(100, tickY, width - 100, tickY);
+    });
+
+    //  Baseline
+    stroke(200);
+    strokeWeight(1.5);
+    line(100, (height - 100), width - 100, height - 100);
+
 }
 
 /* Create and init film objects from preloaded data*/
 function createObjects() {
 
-    //Table t = loadTable(url);
-    //t.removeTitleRow();
+    //  There is a Table object in Processing, still not ported to P5.js
+    //  Table t = loadTable(url);
+    //  t.removeTitleRow();
 
     for (var i = 0; i < bondData.length; i++) { // or use t.getRowCount()
         var f = new Film();
@@ -89,8 +132,14 @@ function createObjects() {
         f.bondKills = bondData[i]["Bond kills"];
         f.otherKills = bondData[i]["Others' kills"];
         f.totalKills = f.bondKills + f.otherKills;
-        //println(f.filmName);
-        films.push(f); // add each objetc into the Array films
+
+        // add each objetc into the Array films
+        films.push(f);
+
+        //Save the first and last year ti create the timeline
+        if (f.year < minYear) minYear = f.year;
+        if (f.year > maxYear) maxYear = f.year;
+        if (f.totalKills < totalKills) totalKills = f.totalKills;
     }
 }
 
@@ -120,7 +169,7 @@ function sortOnYear() {
     console.log("Y - Sort on Years");
     films.forEach(
         function(f) {
-            f.tpos.x = map(f.year, 1962, 2012, 100, width - 100);
+            f.tpos.x = map(f.year, minYear, maxYear, 100, width - 100);
         }
     );
 }
