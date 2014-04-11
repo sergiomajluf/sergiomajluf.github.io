@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.2/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    var yPos = 0.0;
+
+    function setup() {  // setup() runs once
+        createCanvas(100, 100);
+        frameRate(30);
+    }
+
+    function draw() {  // draw() loops forever, until stopped
+        background(204);
+        yPos = yPos - 1.0;
+        if (yPos < 0) {
+            yPos = height;
+        }
+        line(0, yPos, width, yPos);
+    }
+    </script>
+</head>
+
+<body>
+    <pre><code class="javascript">var yPos = 0.0;
+function setup() {  // setup() runs once
+    createCanvas(100, 100);
+    frameRate(30);
+}
+
+function draw() {  // draw() loops forever, until stopped
+    background(204);
+    yPos = yPos - 1.0;
+    if (yPos < 0) {
+        yPos = height;
+    }
+    line(0, yPos, width, yPos);
+}</code>
+    </pre>
+    <div class="offset"><hr><h2>Class was not ported into P5 & classes in Javascript are different than in Processing (java)</h2><p>They are created like functions, and thus, there's no special Class syntax. You can read more about this on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript" title"OOP in Javascript">Mozilla MDN</a></p></div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+    <script language="javascript" type="text/javascript" src="jquery-2.0.3.js"></script>
+    <script language="javascript" type="text/javascript" src="p5.js"></script> 
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.selectbox-0.2.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript">
+    $(function () {
+        $("#selector").selectbox();
+    });
+    </script>
+</head>
+<body>
+    <img style="position: absolute; top: 64px; left: 905px; width:75px" src="logo.png" />
+    <div style="position: absolute; top: 65px; left: 1000px">
+        <select id="selector">
+            <option>Choose the City!</option>
+            <optgroup label="+Asia">
+            <option value="shanghai">Shanghai</option>
+            <option value="beijing">Beijing</option>
+            <option value="tokyo">Tokyo</option>
+            
+            <optgroup label="+North America">
+            <option value="Providence">Providence</option>
+            <option value="Boston">Boston</option>
+            <option value="San Francisco">San Francisco</option>
+            <option value="chicago">Chicago</option>
+            <option value="nyc">New York</option>
+
+            <optgroup label="+South America">
+            <option value="Argentina">Argentina</option>
+            
+            <optgroup label="+Europe">
+            <option value="London,uk">London</option>
+            <option value="Lisbon">Lisbon</option>
+            
+            <optgroup label="+Africa">
+            <option value="Egypt">Egypt</option>
+            
+            <optgroup label="+Oceania">
+            <option value="sydney">Sydney</option>
+        </select></div>
+
+        <div id="title" style="position: absolute; top: 110px; left: 1000px;"><p id="pattern" ></p></div>
+        <div class="text" id="rangeName"style="position: absolute; top: 250px; left: 720px">
+        TEMPERATURE
+        <br><br>TIME
+        <br><br>WIND DIRECTION
+        <br><br>WIND SPEED
+        <br><br>SNOW
+        <br><br>PRECIPITATION
+        <br><br>CLOUD COVER
+        <br><br>STAR</div>
+    <div style="position: absolute; top: 250px; left: 870px">
+        <input id="temperature" type="range" min="-50" max="50" value="0" onchange="tempValue(this.value)"/>
+        <input id="sky" type="range" min="0" max="23" value="12" onchange="skyValue(this.value)"/>
+        <input id="windSpeed" type="range" min="0" max="150" step="0.1" value="0" onchange="windsValue(this.value)"/>
+        <input id="windDirection" type="range" min="0" max="360" value="0" onchange="winddValue(this.value)"/>
+        <input id="rain" type="range" min="0" max="30" step="0.1" value="0" onchange="rainValue(this.value)"/>
+        <input id="snow" type="range" min="0.0" max="2.0" step="0.1" value="0.0" onchange="snowValue(this.value)"/>
+        <input id="cloud" type="range" min="0" max="200" value="0" onchange="cloudValue(this.value)"/>
+        <input id="star" type="range" min="0" max="150" value="0" onchange="starValue(this.value)"/>
+    </div>
+    <div class="text" id="value" style="position: absolute; top: 233px; left: 1135px; width: 150px">
+        <p id="valueTemp"></p>
+        <p id="valueTime"></p>
+        <p id="valueDirection"></p>
+        <p id="valueSpeed"></p>
+        <p id="valueRain"></p>
+        <p id="valueSnow"></p>
+        <p id="valueCloud"></p>
+    </div>
+    </body>
+</html>

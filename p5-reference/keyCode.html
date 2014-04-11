@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.3/p5.min.js"></script>
+    <link rel="stylesheet" href="p5documentation.css">
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css">
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>
+    hljs.initHighlightingOnLoad();
+    </script>
+
+    <script type="text/javascript">
+    // Fill white on UP; black on down, grey everything else
+    var fillVal = 126;
+
+    function setup() {
+        createCanvas(100, 100);        
+    }
+
+    function draw() {
+      fill(fillVal);
+      rect(25, 25, 50, 50);
+    }
+
+    function keyPressed() {
+     // Get key CODES http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+        if (keyCode == 38) {
+            fillVal = 255;
+        } else if (keyCode == 40) {
+            fillVal = 0;
+        } else {
+            fillVal = 126;
+        }
+    }
+
+      
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">// Fill white on UP; black on down, grey everything else
+var fillVal = 126;
+
+function setup() {
+    createCanvas(100, 100);        
+}
+
+function draw() {
+  fill(fillVal);
+  rect(25, 25, 50, 50);
+}
+
+function keyPressed() {
+ // Get key CODES http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+    if (keyCode == 38) {
+        fillVal = 255;
+    } else if (keyCode == 40) {
+        fillVal = 0;
+    } else {
+        fillVal = 126;
+    }
+} </code>
+    </pre>
+</body>
+
+</html>
