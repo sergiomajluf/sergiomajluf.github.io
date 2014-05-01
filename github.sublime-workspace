@@ -4,6 +4,102 @@
 		"selected_items":
 		[
 			[
+				"myp5",
+				"myp5_0"
+			],
+			[
+				"load",
+				"load	loadStrings"
+			],
+			[
+				"rec",
+				"rect	rectMode"
+			],
+			[
+				"he",
+				"height	height"
+			],
+			[
+				"this",
+				"this	$(this)"
+			],
+			[
+				"remo",
+				"removeClass	.removeClass"
+			],
+			[
+				"thi",
+				"this	$(this)"
+			],
+			[
+				"for",
+				"for	for"
+			],
+			[
+				"pac",
+				"particle"
+			],
+			[
+				"arra",
+				"arraylist	ArrayList"
+			],
+			[
+				"wi",
+				"with"
+			],
+			[
+				"var",
+				"var	var object"
+			],
+			[
+				"ler",
+				"lerpcolor	lerpColor"
+			],
+			[
+				"cv",
+				"canvas1"
+			],
+			[
+				"create",
+				"createCanvas	createCanvas"
+			],
+			[
+				"ke",
+				"key	keyPressed"
+			],
+			[
+				"set",
+				"setup	setup"
+			],
+			[
+				"f",
+				"for	for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"siz",
+				"sizeInit"
+			],
+			[
+				"inn",
+				"innerWidth	jsWindow"
+			],
+			[
+				"win",
+				"window"
+			],
+			[
+				"canv",
+				"canvas1"
+			],
+			[
+				"margin",
+				"margin"
+			],
+			[
 				"bubb",
 				"bubble2"
 			],
@@ -44,10 +140,6 @@
 				"minYear"
 			],
 			[
-				"he",
-				"height"
-			],
-			[
 				"bond",
 				"bondData"
 			],
@@ -58,10 +150,6 @@
 			[
 				"op",
 				"opacity"
-			],
-			[
-				"wi",
-				"width"
 			],
 			[
 				"dra",
@@ -102,10 +190,6 @@
 			[
 				"new",
 				"newKills"
-			],
-			[
-				"pos",
-				"posX"
 			],
 			[
 				"ne",
@@ -174,10 +258,6 @@
 			[
 				"dis",
 				"disableSelection"
-			],
-			[
-				"margin",
-				"margin-left"
 			],
 			[
 				"act",
@@ -324,10 +404,6 @@
 				"formidable"
 			],
 			[
-				"for",
-				"formidable"
-			],
-			[
 				"w",
 				"write"
 			],
@@ -342,22 +418,190 @@
 			[
 				"get",
 				"getTime"
-			],
-			[
-				"thi",
-				"thingToSpin"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "p5-experiments/week5/00_instance_default_append/sketch.js",
+			"settings":
+			{
+				"buffer_size": 437,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/07_two_instances_same_sketch/index.html",
+			"settings":
+			{
+				"buffer_size": 333,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/07_two_instances_same_sketch/sketch.js",
+			"settings":
+			{
+				"buffer_size": 437,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/08_two_instances_listeners/sketch.js",
+			"settings":
+			{
+				"buffer_size": 1458,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/simple_video/index.html",
+			"settings":
+			{
+				"buffer_size": 239,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/simple_video/sketch.js",
+			"settings":
+			{
+				"buffer_size": 992,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/simple_webcam/sketch.js",
+			"settings":
+			{
+				"buffer_size": 1408,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/13_popcorn_events/index.html",
+			"settings":
+			{
+				"buffer_size": 442,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/13_popcorn_events/sketch.js",
+			"settings":
+			{
+				"buffer_size": 1181,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "p5-experiments/week5/13_popcorn_events/particle.js",
+			"settings":
+			{
+				"buffer_size": 784,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system": "Packages/P5/P5.sublime-build",
 	"command_palette":
 	{
-		"height": 47.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"pro",
+				"Project: Close"
+			],
+			[
+				"p5",
+				"Set Syntax: P5"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syn tex",
+				"Set Syntax: TeX"
+			],
+			[
+				"text",
+				"Snippet: text data"
+			],
+			[
+				"jq",
+				"Snippet: jQuery.inArray"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Set Syntax: P5"
+			],
+			[
+				"syn",
+				"Set Syntax: SQL"
+			],
+			[
+				"proce",
+				"Set Syntax: Processing"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"uui",
+				"Generate UUID v4"
+			],
+			[
+				"syn ",
+				"Set Syntax: Processing"
+			],
+			[
+				"syn ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"syn pro",
+				"Set Syntax: Processing"
+			],
+			[
+				"tidy",
+				"TidyHTML"
+			],
+			[
+				"pretty",
+				"HTMLPrettify: Set `node` Path"
+			],
+			[
+				"sunt java",
+				"Set Syntax: Unity JavaScript"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -365,14 +609,6 @@
 			[
 				"insta",
 				"Package Control: Install Package"
-			],
-			[
-				"syn",
-				"Set Syntax: HTML"
-			],
-			[
-				"pretty",
-				"HTMLPrettify"
 			],
 			[
 				"synt ht",
@@ -392,10 +628,6 @@
 			],
 			[
 				"pret",
-				"HTMLPrettify"
-			],
-			[
-				"prett",
 				"HTMLPrettify"
 			],
 			[
@@ -471,10 +703,6 @@
 				"Pretty JSON: Reformat (Pretty Print) JSON"
 			],
 			[
-				"tidy",
-				"TidyHTML"
-			],
-			[
 				"cd	",
 				"Package Control: Disable Package"
 			],
@@ -499,10 +727,6 @@
 				"Set Syntax: Arduino"
 			],
 			[
-				"inst",
-				"Package Control: Install Package"
-			],
-			[
 				"fold",
 				"Code Folding: Unfold All"
 			],
@@ -513,10 +737,6 @@
 			[
 				"colo",
 				"Snippet: Color(r, g, b, a)"
-			],
-			[
-				"ins",
-				"Package Control: Install Package"
 			],
 			[
 				"root",
@@ -559,7 +779,7 @@
 				"Set Syntax: C#"
 			]
 		],
-		"width": 593.0
+		"width": 476.0
 	},
 	"console":
 	{
@@ -576,134 +796,134 @@
 	},
 	"file_history":
 	[
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/draw_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/005-w2-object/sketch_4-constructor_arguments.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/005-w2-object/sketch_4-constructor_prototype.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/005-w2-object/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/index.html",
-		"/Users/sergiomajluf/Sites/lab/composer.phar",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/p5documentation.css",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/keyCode.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/004-bond/table.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/002-ball-object/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/002-ball-object/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/004-bond/index.html",
+		"/Users/sergiomajluf/Desktop/view-source https   dl.dropboxusercontent.com u 27398465 last_eats_project index.html",
+		"/Users/sergiomajluf/Dropbox/Public/lasteats.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/swap.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/index.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/006-ripple/ripple.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/w4/nytimes/sketch.js",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5.tmLanguage",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/JavaScript/JavaScript.tmLanguage",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Indentation Rules.tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/var.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/package.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/ActionScript/ActionScript.tmLanguage",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/JavaScript/JSON.tmLanguage",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/JavaScript/Completion Rules.tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/JavaScript/Comments.tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/float.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/var object.sublime-snippet",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/004-bond/sketch.js",
+		"/Users/sergiomajluf/Development/p5.js-sublime/.gitignore",
+		"/Users/sergiomajluf/Development/p5.js-sublime/.git/config",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/createCavas.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/size.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/copy.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5.sublime-build",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5.sublime-settings",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5.tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/package-metadata.json",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/param.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5 Indent.tmPreferences.cache",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Object.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/doc - class.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Comments.tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/@param.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/@private.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/@public.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/@return.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ambient.sublime-snippet",
+		"/Users/sergiomajluf/Development/p5.js-sublime/rect.sublime-snippet",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/006-ripple/sketch.js",
 		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/arrayaccess.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/003-json/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/rect_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/line_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-bond/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-bond/bondKills.json",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/comma.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/class.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/keyPressed_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/key.html",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/app.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/custom.js",
-		"/Users/sergiomajluf/Dropbox/Processing/_ITP/Data-Representation/Bond_body_Count/data/bondData.csv",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/preload/object.json",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/preload/main.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-bond/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/dist/p5.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/loadStrings_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-bond/mammals.csv",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-hotel/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/004-hotel/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/private/node_modules/mongoose/examples/aggregate/template.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/003-json/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/002/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/002/003-json/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/002/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/001/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/p5.min.js",
-		"/Users/sergiomajluf/Dropbox/Processing/_ITP/Data-Representation/hotel-data/hotel-sample-8.csv",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case0/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case1/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case1/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case4/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case2/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case2/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case5/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case3/index.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/dot.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case4/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/arc_.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case5/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/examples/instantiation-instance/case3/sketch.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-reference/catch.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5experiments/001/sketch.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/print.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/summernote.min.custom.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/app.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.env",
-		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/.env",
-		"/Users/sergiomajluf/Downloads/DWD-NodeJS-S3-Demo-master/app.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/Procfile",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.git/description",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/.git/config",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_print.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_edit.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/student_spiral.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/layout.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/views/users.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/print.css",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/style.css",
-		"/Users/sergiomajluf/Sites/thesis/timeline2.html",
-		"/Users/sergiomajluf/Sites/thesis/timeline.html",
-		"/Users/sergiomajluf/Sites/lab/summernote-master/examples/index-.html",
-		"/Users/sergiomajluf/Sites/lab/summernote-master/examples/textarea.html",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/js/summernote.min.js",
-		"/Users/sergiomajluf/Sites/moral-courage/v03-file/public/css/demo.html",
-		"/Users/sergiomajluf/Sites/moral-courage/v5DWD-NodeJS-S3/Procfile",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v03-alpha/views/employee_new.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/views/student_new.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/app.js",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/v02-alpha/package.json",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/spiral.html",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/private/jquery-post.html",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/spiral.html",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/js/custom.js",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_spiral.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_edit.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/index.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/layout.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/studentprovider.js",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_new.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/moralcourage.sublime-project",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_new2.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/stylesheets/style.styl",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/employee_edit.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/employee_new.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/public/stylesheets/modal.css",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/student_view.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/views/admin.jade",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/employeeprovider.js",
-		"/Users/sergiomajluf/Sites/lab/EmployeeDB/package.json",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/routes/routes.js",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/app.js",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/index.jade",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/layout.jade",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/routes/user.js",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/todo.jade",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/menu.jade",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/package.json",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/views/user.jade",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/app.js",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/post.js",
-		"/Users/sergiomajluf/Sites/moral-courage/sergiomajluf.github.io/app-demo/thread.js",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/new/views/layout.jade",
-		"/Users/sergiomajluf/Sites/lab/JSPlaygroundToDo/new/views/index.jade",
-		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/TemperatureMonitor/TemperatureMonitor.ino",
-		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/state/state.ino",
-		"/Users/sergiomajluf/Dropbox/_ITP/3-Undertanding Networks/Goldberg-machine/physical_in_xbee_out/physical_in_xbee_out.ino",
-		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/PingInterruptCode.ino",
-		"/Users/sergiomajluf/Sites/lab/temp-monitor/arduino/ethernet_temp_sensor/ethernet_temp_sensor.ino",
-		"/Users/sergiomajluf/Dropbox/Arduino/_ITP/networks/RGBledPWM/RGBledPWM.ino",
-		"/Users/sergiomajluf/Sites/lab/network-examples/restToSerial/index.html",
-		"/Users/sergiomajluf/Documents/UnityProjects/Aurora Game/Assets/Scripts/accelerometer.cs",
-		"/Users/sergiomajluf/Downloads/torrent/ap-ttsdcavsedd2h/AudioP2P.nfo",
-		"/Users/sergiomajluf/Downloads/torrent/ToonTrack.Superior.Drummer.Custom.And.Vintage.SDX.Expansion.DVDR.D3.HYBRID-AudioP2P/AudioP2P.nfo"
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/006-ripple/particle_system.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/006-ripple/particle.js",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/doc - newline.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/README.md",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/setup OpenGL.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/beginRecord.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/beginGL.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/beginCamera.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/background.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/background rgba.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/background rgb.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/background grey.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/background grey alpha.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/atan2.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/atan.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/asin.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ArrayList.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/arrayCopy.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Array.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/arc.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/append.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ambientLight.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/alpha.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/acos.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/abs.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/beginShape.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezier.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezier3D.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezierDetail.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezierPoint.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezierTangent.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezierVertex 3D.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/bezierVertex.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/binary.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/blue.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/boolean.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/box.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/break.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/brightness.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/byte.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/camera.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/case.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/catch.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ceil.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/char.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/class.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/color.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Comments (P5).tmPreferences",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/concat.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/const.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/constrain.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/cos.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/createReader.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/createShape.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/createWriter.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curve 3D.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curve.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveDetail.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curvePoint.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveTightness.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveVertex 3D.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveVertex.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/default.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/degrees.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/directionalLight.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/dist 3D.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/dist.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/doc - comment.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ellipse.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ellipseMode.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/else if.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/else.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/emissive.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endCamera.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endRecord.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endShape.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/exp.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/expand.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill grey alpha.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill grey.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill rgb.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill rgba.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/floor.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/focused.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/for in.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/for.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/frameCount.sublime-snippet"
 	],
 	"find":
 	{
@@ -714,6 +934,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5",
 			""
 		]
 	},
@@ -722,6 +943,13 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Processing",
+			"var",
+			"processing",
+			"pde",
+			"processing",
+			"color",
+			"position",
 			"alert",
 			"offs",
 			"rename",
@@ -772,6 +1000,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"p5",
+			"js",
 			"\"",
 			"Student",
 			"student",
@@ -789,8 +1019,283 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "p5-experiments/week5/00_instance_default_append/sketch.js",
+					"settings":
+					{
+						"buffer_size": 437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "p5-experiments/week5/07_two_instances_same_sketch/index.html",
+					"settings":
+					{
+						"buffer_size": 333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "p5-experiments/week5/07_two_instances_same_sketch/sketch.js",
+					"settings":
+					{
+						"buffer_size": 437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								305,
+								360
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "p5-experiments/week5/08_two_instances_listeners/sketch.js",
+					"settings":
+					{
+						"buffer_size": 1458,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								95
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "p5-experiments/week5/simple_video/index.html",
+					"settings":
+					{
+						"buffer_size": 239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "p5-experiments/week5/simple_video/sketch.js",
+					"settings":
+					{
+						"buffer_size": 992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "p5-experiments/week5/simple_webcam/sketch.js",
+					"settings":
+					{
+						"buffer_size": 1408,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1241,
+								1241
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "p5-experiments/week5/13_popcorn_events/index.html",
+					"settings":
+					{
+						"buffer_size": 442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "p5-experiments/week5/13_popcorn_events/sketch.js",
+					"settings":
+					{
+						"buffer_size": 1181,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1000,
+								1000
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 175.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "p5-experiments/week5/13_popcorn_events/particle.js",
+					"settings":
+					{
+						"buffer_size": 784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								590,
+								590
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

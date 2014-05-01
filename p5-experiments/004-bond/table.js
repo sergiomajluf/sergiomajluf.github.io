@@ -60,7 +60,8 @@ function setup() {
 
 
 function draw() {
-    background(30);
+    //background(30);
+    clear();
     drawTicks();
     drawLines();
 

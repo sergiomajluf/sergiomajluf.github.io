@@ -1,0 +1,120 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>UnTile.me</title>
+
+<style type="text/css">
+a.square {
+	position:absolute;
+	width: 24px;
+	height:24px;
+	background-color: #fff;
+	transition: background-color 0.5s;
+}
+a.square:hover {
+	background-color: #bada55;
+	box-shadow: 0 0 10px 0 #333;
+}
+a.square:active {
+	background-color: red;
+	// box-shadow: 0 0 10px 0 #333;
+}
+a.selected {
+	background-color: red;
+}
+#playingBoard {
+	position: relative;
+}
+</style>
+
+<!-- <script src="p5.js"></script> -->
+<script src="jquery-2.1.0.min.js"></script>
+<!-- <script src="swap-oop.js"></script>
+ -->
+
+</head>
+
+<body>
+<div id="playingBoard"></div>
+<script type="text/javascript">
+var cols = 20;
+var rows = 10;
+var cellSize = 25;
+var cells = [];
+
+function Square(_col, _row, _state, _size) {
+	this.row = _row; 
+	this.col = _col; 
+	this.state = _state; 
+	this.size = _size;
+	// A boolean variable keeps track of the object's state.
+	this.mouse = false;
+}
+
+for (var i = 0; i < cols; ++i) {
+		for (var j = 0; j < rows; ++j) {
+			var temp = new Square();
+			temp = {
+				col	: i, 
+				row : j, 
+				state : 0, 
+				size : cellSize
+			};
+			if (i == 0) {
+				temp.id = j
+			} else {
+				temp.id = i+''+j
+			};
+
+			cells.push(temp);
+			var square = '<a href="#" id="'+temp.id+'" class="square" data-col='+temp.col+' data-row='+temp.row+' \
+			data-state='+temp.state+' style="left: '+temp.col*cellSize+'px; top: '+temp.row*cellSize+'px;"></a>';
+			$(square).appendTo( "#playingBoard" );
+		}
+	}
+
+for (var i = 0; i < cells.length; ++i) {
+	
+}
+
+var setState = function (obj_id) {
+	var col   = cells[obj_id].col;
+	var row   = cells[obj_id].row;
+	var state = parseInt(cells[obj_id].state);
+	
+	if (state < 2) {
+		state = state+1;
+	} else {
+		state = 0;
+	}
+
+	cells[obj_id].state = state;
+
+}
+
+var checkNeighbours = function(obj_id){
+	var top_n		= ''+ (cells[obj_id].col  ) + (cells[obj_id].row-1);
+	var bottom_n	= ''+ (cells[obj_id].col  ) + (cells[obj_id].row+1);
+	var left_n		= ''+ (cells[obj_id].col-1) + (cells[obj_id].row  );
+	var right_n		= ''+ (cells[obj_id].col+1) + (cells[obj_id].row  );
+
+	$('a.square#'+top_n).toggleClass('selected');
+	$('a.square#'+bottom_n).toggleClass('selected');
+	$('a.square#'+left_n).toggleClass('selected');
+	$('a.square#'+right_n).toggleClass('selected');
+}
+
+$(function() {
+	$('#playingBoard').on('click','a.square',  function(data){
+		data.preventDefault();
+		setState($(this).attr('id'));
+		checkNeighbours($(this).attr('id'));
+	});
+});
+
+
+</script>
+</body>
+</html>

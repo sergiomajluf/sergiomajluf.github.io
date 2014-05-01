@@ -1,0 +1,43 @@
+[ {
+    "name": "Morgan",
+    "age": "30",
+    "location": "Boston",
+    "desire": "Singing",
+    "fear": "Violence"
+  },
+  {
+    "name": "Joss",
+    "age": "42",
+    "location": "Boston",
+    "desire": "Hiking",
+    "fear": "Irrationality"
+  },
+  {
+    "name": "Karen",
+    "age": "49",
+    "location": "Boston",
+    "desire": "Hiking",
+    "fear": "Irrationality"
+  },
+  {
+    "name": "George",
+    "age": "32",
+    "location": "Boston",
+    "desire": "Hiking",
+    "fear": "Irrationality"
+  },
+  {
+    "name": "Simon",
+    "age": "12",
+    "location": "Boston",
+    "desire": "Hiking",
+    "fear": "Irrationality"
+  },
+  {
+    "name": "Amira",
+    "age": "16",
+    "location": "Boston",
+    "desire": "Hiking",
+    "fear": "Irrationality"
+  }
+]
