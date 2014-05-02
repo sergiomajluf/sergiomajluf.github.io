@@ -5,38 +5,8 @@
 	<meta charset="utf-8">
 	<title>UnTile.me</title>
 
-<style type="text/css">
-body {
-	background-color: #dedede;
-	text-align: center;
-	font-family: helvetica, "Helvetica Neue", sans;
-}
-a.square {
-	position:absolute;
-	width: 24px;
-	height:24px;
-	background-color: #fff;
-	transition: background-color 0.5s;
-}
-a.square:hover {
-	background-color: #b7d37f;
-	box-shadow: 0 0 10px 0 #333;
-}
-a.square:active {
-	background-color: #7eae11;
-	// box-shadow: 0 0 10px 0 #333;
-}
-a.selected {
-	background-color: #7eae11;
-}
-#playingBoard {
-	position:relative;
-	width: 250px;
-	margin: auto auto;
-	
-}
-</style>
-
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
 <!-- <script src="p5.js"></script> -->
 <script src="jquery-2.1.0.min.js"></script>
 <!-- <script src="swap-oop.js"></script>
@@ -45,8 +15,9 @@ a.selected {
 </head>
 
 <body>
-<h1>Swap.me!</h1>
+<h1>Untile me!</h1>
 <p>Fill the board with color.</p>
+<h2 id="timer">30s</h2>
 <div id="playingBoard"></div>
 <script type="text/javascript">
 var cols = 10;
@@ -66,6 +37,7 @@ function Square(_col, _row, _state, _size) {
 for (var i = 0; i < cols; ++i) {
 		for (var j = 0; j < rows; ++j) {
 			var temp = new Square();
+			var obj_id
 			temp = {
 				col	: i, 
 				row : j, 
@@ -73,7 +45,8 @@ for (var i = 0; i < cols; ++i) {
 				size : cellSize
 			};
 			if (i == 0) {
-				temp.id = j
+				temp.id = i+''+j // i+''+j or just j?
+				obj_id = j;
 			} else {
 				temp.id = i+''+j
 			};
@@ -90,6 +63,7 @@ for (var i = 0; i < cells.length; ++i) {
 }
 
 var setState = function (obj_id) {
+	obj_id = parseInt(obj_id)
 	var col   = cells[obj_id].col;
 	var row   = cells[obj_id].row;
 	var state = parseInt(cells[obj_id].state);
@@ -108,8 +82,10 @@ var setState = function (obj_id) {
 var checkNeighbours = function(obj_id){
 	var top_n		= ''+ (cells[obj_id].col  ) + (cells[obj_id].row-1);
 	var bottom_n	= ''+ (cells[obj_id].col  ) + (cells[obj_id].row+1);
-	var left_n		= ''+ (cells[obj_id].col-1) + (cells[obj_id].row  );
+	var left_n		= ''+ ((cells[obj_id].col-1 == -1) ? 0 : cells[obj_id].col-1 ) + (cells[obj_id].row  );
 	var right_n		= ''+ (cells[obj_id].col+1) + (cells[obj_id].row  );
+
+	if (obj_id < 10) console.log(left_n);
 
 	$('a.square#'+top_n).toggleClass('selected');
 	$('a.square#'+bottom_n).toggleClass('selected');
@@ -120,11 +96,59 @@ var checkNeighbours = function(obj_id){
 $(function() {
 	$('#playingBoard').on('click','a.square',  function(data){
 		data.preventDefault();
+		//console.log('clicked ', $(this).attr('id'));
 		setState($(this).attr('id'));
 		checkNeighbours($(this).attr('id'));
 	});
 });
 
+
+// set the date we're counting down to
+//var target_date = new Date("Aug 15, 2019").getTime();
+
+var d1 = new Date (),
+    target_date = new Date ( d1 );
+target_date.setSeconds ( d1.getSeconds() + 30 );
+//alert ( d2 );
+ 
+// variables for time units
+var days, hours, minutes, seconds;
+ 
+// get tag element
+var countdown = document.getElementById("timer");
+ 
+var refreshIntervalId = setInterval(function () {
+	$('body').removeClass('finished');
+ 
+    // find the amount of "seconds" between now and target
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+ 
+    // do some time calculations
+    days = parseInt(seconds_left / 86400);
+    seconds_left = seconds_left % 86400;
+     
+    hours = parseInt(seconds_left / 3600);
+    seconds_left = seconds_left % 3600;
+     
+    minutes = parseInt(seconds_left / 60);
+    seconds = parseInt(seconds_left % 60);
+     
+    // format countdown string + set tag value
+    // countdown.innerHTML = days + "d, " + hours + "h, "
+    // + minutes + "m, " + seconds + "s";  
+ 
+ 	countdown.innerHTML = seconds + "s";  
+
+}, 1000);
+
+/* later */
+var stoptheGame = setInterval(function(){
+	clearInterval(refreshIntervalId);
+	countdown.innerHTML = "Time's up!"; 
+	$('body').addClass('finished'); 
+
+}, 30000);
 
 </script>
 </body>
