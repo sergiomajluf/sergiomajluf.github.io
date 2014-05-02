@@ -6,6 +6,11 @@
 	<title>UnTile.me</title>
 
 <style type="text/css">
+body {
+	background-color: #dedede;
+	text-align: center;
+	font-family: helvetica, "Helvetica Neue", sans;
+}
 a.square {
 	position:absolute;
 	width: 24px;
@@ -14,18 +19,21 @@ a.square {
 	transition: background-color 0.5s;
 }
 a.square:hover {
-	background-color: #bada55;
+	background-color: #b7d37f;
 	box-shadow: 0 0 10px 0 #333;
 }
 a.square:active {
-	background-color: red;
+	background-color: #7eae11;
 	// box-shadow: 0 0 10px 0 #333;
 }
 a.selected {
-	background-color: red;
+	background-color: #7eae11;
 }
 #playingBoard {
-	position: relative;
+	position:relative;
+	width: 250px;
+	margin: auto auto;
+	
 }
 </style>
 
@@ -37,9 +45,11 @@ a.selected {
 </head>
 
 <body>
+<h1>Swap.me!</h1>
+<p>Fill the board with color.</p>
 <div id="playingBoard"></div>
 <script type="text/javascript">
-var cols = 20;
+var cols = 10;
 var rows = 10;
 var cellSize = 25;
 var cells = [];
@@ -69,7 +79,7 @@ for (var i = 0; i < cols; ++i) {
 			};
 
 			cells.push(temp);
-			var square = '<a href="#" id="'+temp.id+'" class="square" data-col='+temp.col+' data-row='+temp.row+' \
+			var square = '<a id="'+temp.id+'" class="square" data-col='+temp.col+' data-row='+temp.row+' \
 			data-state='+temp.state+' style="left: '+temp.col*cellSize+'px; top: '+temp.row*cellSize+'px;"></a>';
 			$(square).appendTo( "#playingBoard" );
 		}
@@ -91,6 +101,7 @@ var setState = function (obj_id) {
 	}
 
 	cells[obj_id].state = state;
+	$('a.square#'+cells[obj_id].id).toggleClass('selected');
 
 }
 
