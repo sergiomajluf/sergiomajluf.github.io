@@ -2,13 +2,14 @@
 	http://dev.github/p5-experiments/007-final/style.css */
 
 body {
-	background-color: #dedede;
+	background-color: #e7eef2;
+	
 	text-align: center;
 	font-family: 'Nixie One', cursive;
 	transition: background-color 0.2s;
 }
 body.finished {
-	background-color:#smoothing;
+	background-color: #c8d7ec;
 }
 a.square {
 	position:absolute;
@@ -31,7 +32,7 @@ a.selected {
 #playingBoard {
 	position:relative;
 	width: 250px;
-	margin: auto auto;
+	margin: 30px auto;
 	
 }
 
@@ -41,35 +42,13 @@ a.selected {
 ---------------------------------------------*/
 html,body {
   color: #57676e;
-  background: #e7eef2;
   -webkit-font-smoothing: antialiased;
   height: 100%;
   line-height: 1.5em;
+  margin: 0;
+  padding: 20px
   }
 
-body,
-textarea,
-input { font: 13px/20px 'OpenSans', sans-serif; }
-
-a {
-  color: #434c50;
-  text-decoration: none;
-  -moz-transition: background-color 100ms linear, color 100ms linear;
-  -o-transition: background-color 100ms linear, color 100ms linear;
-  -webkit-transition: background-color 100ms linear, color 100ms linear;
-  transition: background-color 100ms linear, color 100ms linear;
-  }
-a:hover {
-  color: #2e3335;
-  }
-
-a:focus {
-  outline: none;
-  }
-
-a:active {
-  outline: none;
-  }
 
 p > a {font-weight: 700;}
 
@@ -83,10 +62,11 @@ h4, h5, h6 {
 h1 { font-size: 24px; }
 h1 small { font-size: 13px; font-weight: 400; }
 h2 { 
-  font-weight: 400;
-  font-size: 16px;
-  padding: 5px 0 5px 30px;
-  }
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px 0;
+	color: #2f4307;
+}
 h2 small { font-size: 16px; font-weight: 400; }
 h3 { 
   font-size: 11px;
