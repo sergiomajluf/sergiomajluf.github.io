@@ -18,12 +18,15 @@
 <h1>Untile me!</h1>
 <p>Fill the board with color.</p>
 <h2 id="timer">30s</h2>
+<div id="score">Score</div>
 <div id="playingBoard"></div>
+
 <script type="text/javascript">
 var cols = 10;
 var rows = 10;
 var cellSize = 25;
 var cells = [];
+var totalScore = 0;
 
 function Square(_col, _row, _state, _size) {
 	this.row = _row; 
@@ -93,12 +96,23 @@ var checkNeighbours = function(obj_id){
 	$('a.square#'+right_n).toggleClass('selected');
 }
 
+var updateScore = function() {
+	totalScore = 0;
+	var maxScore = cells.length;
+	for (var i = 0; i < maxScore; i++) {
+		totalScore += cells[i].state;
+	};
+	console.log(totalScore)
+	$('#score').text(totalScore + ' of ' + maxScore);
+}
+
 $(function() {
 	$('#playingBoard').on('click','a.square',  function(data){
 		data.preventDefault();
 		//console.log('clicked ', $(this).attr('id'));
 		setState($(this).attr('id'));
 		checkNeighbours($(this).attr('id'));
+		updateScore();
 	});
 });
 
