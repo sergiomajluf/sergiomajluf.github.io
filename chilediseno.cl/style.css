@@ -851,11 +851,11 @@ img {
 }
 
 .empresaAsociada {
+    position: relative;
     display: inline-block;
     height: 150px;
-    margin: 10px;
-    position: relative;
-    width: 250px;
+    width: 230px;
+    margin:0 10px 10px 0;
 }
 
 .empresaAsociada img {
@@ -869,20 +869,20 @@ p.text-content span {
 }
 
 p.text-content {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     cursor: pointer;
     display: table;
-    height: 95px;
+    height: 150px;
     left: 5px;
     position: absolute;
-    top: -5px;
-    width: 200px;
+    top: -11px;
+    width: 230px;
     opacity: 0;
-    -webkit-transition: opacity 500ms;
-    -moz-transition: opacity 500ms;
-    -o-transition: opacity 500ms;
-    transition: opacity 500ms;
+    -webkit-transition: opacity 250ms;
+    -moz-transition: opacity 250ms;
+    -o-transition: opacity 250ms;
+    transition: opacity 250ms;
 }
 
 .empresaAsociada:hover p.text-content {
@@ -891,30 +891,49 @@ p.text-content {
 
 a.verTodos {
     display: inline-block;
+    font-size: 13px;
 
 }
 .col-128 {
-    width: 192px;
+    width: 150px;
     float: left;
-    margin: 0;
+    margin: 0 15px 0 0;
     padding-top: 0;
     font-size: smaller;
+    border-right: 1px solid #D9D9D9;
+}
+
+.col-128.dgrafico {
+    width: 260px;
+    
+}
+
+.col-128.dgrafico a {
+    display: inline-block;
+    float: left;
+    width: 110px;
+    
 }
 
 .col-128 h5 {
-    margin-bottom: 5px;
+    margin: 10px 0 5px 5px;
+
     text-transform: uppercase;
+
 }
 
 .col-128 a {
     margin: 0;
     padding: 5px;
+    display: block;
+    text-transform: capitalize;
+    width: 90%;
 
 }
 .col-128 a.current {
-    padding: 3px;
+    padding: 4px;
     font-weight: bold;
     /*background-color: #FE660A;*/
-    border: 2px solid #000;
+    border: 1px solid #000;
     /*color:#ffffff;*/
 }
