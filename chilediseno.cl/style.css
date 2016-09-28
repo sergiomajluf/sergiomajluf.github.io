@@ -1,0 +1,920 @@
+/*   
+Theme Name: Chilediseño
+Theme URI: 
+Description: 
+Author: 
+Author URI: 
+Version: 1
+*/
+
+
+/*@import 'https://fonts.googleapis.com/css?family=Montserrat';
+*/
+
+@font-face {
+    font-family: 'MontserratLight';
+    src: url('Montserrat-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('Montserrat-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'MontserratHairline';
+    src: url('Montserrat-Hairline.otf') format('opentype');
+}
+
+body {
+    background: white;
+    font-family: 'MontserratLight', sans-serif;
+}
+
+#page-wrap {
+    width: 960px;
+    margin: 20px auto;
+}
+
+.light {
+    font-weight: lighter;
+    font-family: MontserratHairLine;
+}
+
+.h2blanco {
+    color: white !important;
+}
+
+.bold {
+    font-weight: bolder;
+    font-family: MontserratBold;
+}
+
+.hairline {
+    font-family: 'MontserratHairline', sans-serif;
+}
+
+.clear {
+    clear: both;
+}
+
+.col-300.mensajeHome {
+    margin-top: 15px;
+    margin-right: 40px;
+}
+
+.col-300.mensajeHome > img {
+    max-width: 150px;
+}
+
+.col-300 {
+    width: 200px;
+    float: left;
+    margin: 0;
+    padding-top: 0;
+}
+
+.col-300.infoHome {
+    margin: 0 70px 0 0;
+    width: 210px;
+}
+
+.col-300.infoHome.categoriasSocios {
+    width: 145px;
+    margin: 0 0 0 10px;
+}
+
+#wrap-contenido {
+    width: 960px;
+    margin: 0 auto;
+}
+
+a,
+a:active {
+    color: #ED0874;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #86D1D7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:visited {
+    color: #EF5C4A;
+    cursor: pointer;
+}
+
+img.alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+
+1 1img.alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+
+img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alignright {
+    float: right;
+}
+
+.alignleft {
+    float: left;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*HEADER*/
+
+header {
+    background-color: white;
+    left: 0;
+    padding: 30px 40px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99;
+}
+
+#wrap-header {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#wrap-logo {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: block;
+    position: fixed;
+    z-index: 100;
+}
+
+.logo img {
+    transition: all 0.5s ease;
+}
+
+.logo-chico img {
+    width: 55px !important;
+    transition: all 0.5s ease;
+}
+
+#banner {
+    margin-top: 75px;
+    margin-bottom: 10px;
+    max-width: 960px;
+}
+
+img#banner {
+    width: 960px;
+}
+
+div#wrap-logo img {
+    background-color: #fff;
+    max-width: 100px;
+    margin-left: 50px;
+}
+
+
+/*INDEX*/
+
+.mensajeHome h2 {
+    font-size: 16pt;
+}
+
+.infoHome h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.infoHome p {
+    line-height: 1.5;
+    font-size: 13px;
+}
+
+.infoHome ul {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0 23px;
+}
+
+#asociados-home {
+    float: left;
+    margin-top: 0px;
+    width: 734px;
+}
+
+.asociados-home-single {
+    display: inline-block;
+    width: 237px;
+    height: 192px;
+    margin-bottom: 3px;
+    margin-right: 1px;
+}
+
+.asociados-home-single img {
+    max-width: 240px;
+}
+
+span.descCatHome p {
+    margin: 0 0 2px;
+}
+
+.imgWrap {
+    position: relative;
+    height: 192px;
+    width: 240px;
+    cursor: pointer;
+}
+
+.imgDescription {
+    position: absolute;
+    top: 170px;
+    bottom: 0;
+    1 left: 0;
+    right: 0;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    width: 240px;
+    text-align: center;
+    padding: 4px 0 0;
+    background: rgba(0, 0, 0, .5);
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 100;
+    transition: all .15s ease-out;
+    -webkit-transition: all .15s ease-out;
+    -moz-transition: all .15s ease-out;
+}
+
+.imgWrap:hover .imgDescription {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: visibility opacity 0.2s;
+}
+
+#home-right {
+    width: 220px;
+    float: right;
+}
+
+
+/*HOME*/
+
+#wrap-contenido.home {
+    width: 955px;
+    margin: 0 auto;
+}
+
+
+/*CARRUSEL HOME*/
+
+.item {
+    height: 192px;
+}
+
+#info-carruselhome {
+    color: white;
+    background: #ed0874;
+    padding: 5px 10px;
+    font-family: "MontserratHairline";
+    height: 32px;
+}
+
+#info-carruselhome a {
+    text-decoration: none;
+    color: white;
+}
+
+#info-carruselhome h3 {
+    margin: 0px 0 5px 0;
+    font-family: MontserratHairLine;
+    font-size: 13px;
+    width: 120px;
+    text-transform: uppercase;
+}
+
+#info-carruselhome p {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.owl-theme .owl-controls {
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 10px;
+    margin: 0 !important;
+}
+
+.owl-theme .owl-controls .owl-page span {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 5px 3px !important;
+    background: white !important;
+}
+
+.owl-carousel {
+    margin-top: 0px;
+}
+
+
+/*CALENDARIO HOME*/
+
+.contenthover {
+    color: white;
+    padding: 10px;
+}
+
+.contenthover p {
+    margin: 0;
+}
+
+.evento {
+    height: 190px;
+    margin-top: 3px;
+}
+
+.evento h3,
+.evento h2 {
+    margin: 0;
+}
+
+.infoEvento {
+    padding: 5px 10px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    float: left;
+    width: 200px;
+    text-transform: uppercase;
+}
+
+.eventoWrap {
+    position: relative;
+    height: 190px;
+    width: 220px;
+    cursor: pointer;
+}
+
+.eventoDescription {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    text-align: left;
+    padding: 5px 10px 0;
+    background: rgba(0, 0, 0, .7);
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 100;
+    transition: all .15s ease-out;
+    -webkit-transition: all .15s ease-out;
+    -moz-transition: all .15s ease-out;
+}
+
+.eventoWrap:hover .eventoDescription {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: visibility opacity 0.2s;
+}
+
+.fechaEvento h2 {
+    font-size: 20px;
+    font-family: MontserratHairline;
+}
+
+.tituloEvento h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 0;
+    font-family: MontserratHairLine;
+}
+
+
+/*PAGE CALENDARIO*/
+
+.fechasCalendario {
+    display: inline-block;
+    width: 220px;
+}
+
+.wrapCalendario {
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+/*PAGE NOTICIAS*/
+
+.noticia {
+    width: 100%;
+    overflow: hidden;
+}
+
+.attachment-post-thumbnail.wp-post-image {
+    float: left;
+    width: 220px;
+    display: block;
+}
+
+.excerpt-noticia {
+    float: left;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    width: 690px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.titulo-noticia {
+    padding: 10px;
+    background: #ed0874;
+    color: white;
+    font-family: MontserratHairLine;
+}
+
+.titulo-noticia h3 {
+    margin: 0;
+}
+
+.titulo-noticia p {
+    margin: 0;
+}
+
+
+/*MENU*/
+
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.menu {
+    background: white none repeat scroll 0 0;
+    border-right: 1px solid #1c1c1c;
+    float: right;
+    list-style: outside none none;
+    margin: 8px 0 0;
+    padding: 0;
+    text-align: right;
+}
+
+.menu strong a {
+    padding: 0;
+}
+
+.menu ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.menu .col {
+    float: left;
+    width: 150px;
+}
+
+.menu strong {
+    color: #4d4d4d;
+    display: block;
+    padding: 10px;
+    font-family: 'MontserratLight', sans-serif;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    font-family: 'MontserratLight', sans-serif;
+    font-weight: lighter;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.menu a:hover {
+    font-weight: bold;
+}
+
+.menu li li {
+    border: medium none;
+    height: auto;
+}
+
+.menu .bdr {
+    border-right: 1px solid #1c1c1c;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: block;
+}
+
+
+/*NOSOTROS*/
+
+#nosotros-left {
+    float: left;
+    width: 375px;
+    margin-right: 140px;
+    line-height: 1.5;
+}
+
+#nosotros-right {
+    float: right;
+    width: 30%;
+    line-height: 1.5;
+}
+
+#img-nosotros {
+    float: left;
+}
+
+#nosotros-right b {
+    color: #ff4280;
+    text-transform: uppercase;
+}
+
+#directorio-nosotros {
+    display: block;
+    clear: both;
+    width: 880px;
+    background: black;
+    margin-top: 50px;
+    float: left;
+    padding: 0 40px 30px;
+}
+
+#directorio-nosotros h1 {
+    color: white;
+}
+
+#directorio-nosotros img {
+    margin: auto;
+    display: block;
+}
+
+
+/* ASOCIADOS */
+
+h2.light.titAsoc {
+    font-size: 32px;
+}
+
+#socios-plenos {
+    width: 460px;
+    float: left;
+    margin-right: 50px;
+}
+
+#socios-plenos h3,
+div#emergentes h3,
+div#empresas h3,
+div#academia h3 {
+    border-bottom: 1px solid #bfbfbf;
+    padding-bottom: 10px;
+}
+
+ul.colAsoc,
+ul.colAsocEmer,
+ul.colAsocEmp {
+    padding: 0;
+    float: left;
+    margin: 15px 0;
+    width: 100%;
+    list-style-type: none;
+}
+
+ul.colAsocEmer li,
+ul.colAsocEmp li {
+    padding: 2px;
+}
+
+ul.colAsoc li {
+    padding: 2px;
+    display: inline;
+    float: left;
+    width: 48%;
+}
+
+.colAsoc li a,
+.colAsocEmp li a,
+.colAsocEmer {
+    color: #000;
+    text-transform: uppercase;
+    font-family: 'MontserratBold';
+    font-size: 13px;
+}
+
+div#emergentes {
+    width: 200px;
+    float: left;
+    /* margin-right: 40px;*/
+}
+
+div#empresas {
+    float: right;
+    width: 200px;
+}
+
+div#academia {
+    width: 200px;
+    float: left;
+    margin-right: 40px;
+}
+
+.infoAsociado {
+    height: 240px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.imagenAsociado {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 300px;
+    height: 240px;
+}
+
+.descAsociado {
+    float: left;
+    width: 370px;
+    font-size: 13px;
+    font-family: 'MontserratLight';
+}
+
+.sepAsociados {
+    float: left;
+    height: 250px;
+    width: 1px;
+    display: block;
+    background-color: #e7e7e8;
+    margin: 0 20px;
+}
+
+.logoAsociado {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.logoAsociado img {
+    /*max-height: 65px;
+    margin: 20px 0 10px;*/
+    width: auto;
+}
+
+.datosAsociado {
+    float: left;
+    width: 220px;
+    font-size: 13px;
+}
+
+.datosAsociado h3 {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: 'MontserratBold';
+}
+
+#empresas h4 {
+    font-size: 14px;
+}
+
+#empresas ul.colAsocEmp {
+    margin: 0 0 30px;
+}
+
+h3.titleEmpresas {
+    margin-bottom: 36px;
+}
+
+
+/* NOTICIAS */
+
+.imagenSingleNoticia {
+    float: left;
+    width: 35%;
+    margin: 0 20px 0 0;
+}
+
+.imagenSingleNoticia img {
+    max-width: 95%;
+    height: auto;
+}
+
+.tituloSingleNoticia {
+    float: right;
+    width: 55%;
+    background: #EB1775;
+    color: #fff;
+    padding: 0 20px;
+    margin: 0 0 0;
+}
+
+.tituloSingleNoticia h2 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 15px 0 0;
+    padding-bottom: 20px;
+}
+
+.tituloSingleNoticia p {
+    font-size: 15px;
+    font-family: 'MontserratHairline';
+    text-transform: uppercase;
+}
+
+.contenidoSingleNoticia {
+    float: right;
+    width: 58%;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* FOOTER */
+
+div#footer {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#footer p {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.infoFooter {
+    width: 550px;
+    border-top: 1px solid #999;
+    padding: 10px 0;
+    float: left;
+}
+
+.auspiciadoresFooter {
+    float: right;
+    width: 360px;
+    padding: 10px 0 0;
+}
+
+.auspiciadoresFooter a {
+    padding: 8px;
+}
+
+.portfolioFilter a {
+    color: #666;
+    text-decoration: none;
+    padding: 5px;
+    margin: 0px;
+}
+
+.portfolioFilter a.current {
+
+}
+
+img {
+    margin: 5px;
+}
+
+.isotope-item {
+    z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+
+.isotope,
+.isotope .isotope-item {
+    /* change duration value to whatever you like */
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    transition-property: height, width;
+}
+
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    transition-property: transform, opacity;
+}
+
+.empresaAsociada {
+    display: inline-block;
+    height: 150px;
+    margin: 10px;
+    position: relative;
+    width: 250px;
+}
+
+.empresaAsociada img {
+    height: 100%;
+}
+
+p.text-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+p.text-content {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 95px;
+    left: 5px;
+    position: absolute;
+    top: -5px;
+    width: 200px;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}
+
+.empresaAsociada:hover p.text-content {
+    opacity: 1;
+}
+
+a.verTodos {
+    display: inline-block;
+
+}
+.col-128 {
+    width: 192px;
+    float: left;
+    margin: 0;
+    padding-top: 0;
+    font-size: smaller;
+}
+
+.col-128 h5 {
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.col-128 a {
+    margin: 0;
+    padding: 5px;
+
+}
+.col-128 a.current {
+    padding: 3px;
+    font-weight: bold;
+    /*background-color: #FE660A;*/
+    border: 2px solid #000;
+    /*color:#ffffff;*/
+}

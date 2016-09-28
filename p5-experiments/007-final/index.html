@@ -37,6 +37,7 @@ function Square(_col, _row, _state, _size) {
 	this.mouse = false;
 }
 
+// Set up game board
 for (var i = 0; i < cols; ++i) {
 		for (var j = 0; j < rows; ++j) {
 			var temp = new Square();
@@ -88,7 +89,14 @@ var checkNeighbours = function(obj_id){
 	var left_n		= ''+ ((cells[obj_id].col-1 == -1) ? 0 : cells[obj_id].col-1 ) + (cells[obj_id].row  );
 	var right_n		= ''+ (cells[obj_id].col+1) + (cells[obj_id].row  );
 
-	if (obj_id < 10) console.log(left_n);
+	if (obj_id < 10) {
+		console.log(left_n);
+
+		$('a.square#'+top_n).toggleClass('selected');
+		$('a.square#'+bottom_n).toggleClass('selected');
+		$('a.square#'+left_n).toggleClass('selected');
+		$('a.square#'+right_n).toggleClass('selected');
+	}
 
 	$('a.square#'+top_n).toggleClass('selected');
 	$('a.square#'+bottom_n).toggleClass('selected');
@@ -109,7 +117,7 @@ var updateScore = function() {
 $(function() {
 	$('#playingBoard').on('click','a.square',  function(data){
 		data.preventDefault();
-		//console.log('clicked ', $(this).attr('id'));
+		console.log('clicked ', $(this).attr('id'));
 		setState($(this).attr('id'));
 		checkNeighbours($(this).attr('id'));
 		updateScore();
@@ -120,8 +128,8 @@ $(function() {
 // set the date we're counting down to
 //var target_date = new Date("Aug 15, 2019").getTime();
 
-var d1 = new Date (),
-    target_date = new Date ( d1 );
+var d1		= new Date (),
+target_date = new Date ( d1 );
 target_date.setSeconds ( d1.getSeconds() + 30 );
 //alert ( d2 );
  

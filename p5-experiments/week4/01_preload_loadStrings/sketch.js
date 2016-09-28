@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(600, 800);
   //lines = loadStrings("lines.txt"); // doesn't load in time
   textSize(20);
   fill(0);

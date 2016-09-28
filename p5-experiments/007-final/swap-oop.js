@@ -6,8 +6,8 @@
  *
  */
 
-var w = 500;
-var h = 500;
+var w = 300;
+var h = 300;
 var rad = 5;
 var thickness = 3;
 var count = 0;
@@ -32,14 +32,14 @@ function setup() {
     // this notation allow creating and manipulatin multiple canvasses
     canvas1 = createCanvas();
     canvas1.size(w, h);
-    background(240);
-    canvas1.position(((window.innerWidth / 2) - w / 2), ((window.innerHeight / 2) - h / 2));
+    background('#ff6600');
+    //canvas1.position(((window.innerWidth / 2) - w / 2), ((window.innerHeight / 2) - h / 2));
     smooth();
     noFill();
     var square = '<a href="#" class="square" data-col=i data-row=j></a>';
     
-    for (var i = 0; i < 20; ++i) {
-    	for (var j = 0; j < 20; ++j) {
+    for (var i = 0; i < 10; ++i) {
+    	for (var j = 0; j < 10; ++j) {
 	    	var temp = new Square();
 	    	temp.x = (25*i);
 	    	temp.y = (25*j);
@@ -79,7 +79,7 @@ function Square() {
 }
 
 Square.prototype.display = function() {
-  // Boolean variable determines Stripe color.
+  // Boolean variable determines Square color.
   if (this.mouse) { 
     fill(255);
   } else {
@@ -91,7 +91,7 @@ Square.prototype.display = function() {
 }
 
 
-// Check to see if point (mx,my) is inside the Stripe.
+// Check to see if point (mx,my) is inside the Square.
 Square.prototype.rollover = function(mx, my) { 
   // Left edge is x, Right edge is x + w
   if (mx > this.x && mx < this.x + this.w) {

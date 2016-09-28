@@ -4,6 +4,82 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"upda",
+				"updateScore"
+			],
+			[
+				"fini",
+				"finished"
+			],
+			[
+				"tar",
+				"target_date"
+			],
+			[
+				"pars",
+				"parseInt"
+			],
+			[
+				"obj",
+				"obj_id"
+			],
+			[
+				"left",
+				"left_n"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"sta",
+				"state"
+			],
+			[
+				"set",
+				"setState"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"row",
+				"rows"
+			],
+			[
+				"ce",
+				"cells"
+			],
+			[
+				"sq",
+				"square"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
 				"myp5",
 				"myp5_0"
 			],
@@ -30,10 +106,6 @@
 			[
 				"thi",
 				"this	$(this)"
-			],
-			[
-				"for",
-				"for	for"
 			],
 			[
 				"pac",
@@ -66,10 +138,6 @@
 			[
 				"ke",
 				"key	keyPressed"
-			],
-			[
-				"set",
-				"setup	setup"
 			],
 			[
 				"f",
@@ -108,20 +176,12 @@
 				"bubble2"
 			],
 			[
-				"pa",
-				"padding-bottom"
-			],
-			[
 				"bo",
 				"border"
 			],
 			[
 				"fon",
 				"font-family"
-			],
-			[
-				"font",
-				"font-weight"
 			],
 			[
 				"tot",
@@ -142,10 +202,6 @@
 			[
 				"bond",
 				"bondData"
-			],
-			[
-				"ba",
-				"background"
 			],
 			[
 				"op",
@@ -226,10 +282,6 @@
 			[
 				"myJS",
 				"myJSONKey"
-			],
-			[
-				"ma",
-				"margin-top"
 			],
 			[
 				"function",
@@ -424,82 +476,49 @@
 	"buffers":
 	[
 		{
-			"file": "p5-experiments/week5/00_instance_default_append/sketch.js",
+			"file": "p5-experiments/007-final/index.html",
 			"settings":
 			{
-				"buffer_size": 437,
+				"buffer_size": 4185,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "p5-experiments/week5/07_two_instances_same_sketch/index.html",
 			"settings":
 			{
-				"buffer_size": 333,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "p5-experiments/week5/07_two_instances_same_sketch/sketch.js",
+			"file": "noimage.hmtl.html",
 			"settings":
 			{
-				"buffer_size": 437,
+				"buffer_size": 997,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "p5-experiments/week5/08_two_instances_listeners/sketch.js",
+			"file": "p5-experiments/005-w2-object/sketch_4-constructor_arguments.js",
 			"settings":
 			{
-				"buffer_size": 1458,
+				"buffer_size": 667,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "p5-experiments/week5/simple_video/index.html",
+			"file": "p5-experiments/005-w2-object/sketch_4-constructor_prototype.js",
 			"settings":
 			{
-				"buffer_size": 239,
+				"buffer_size": 858,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "p5-experiments/week5/simple_video/sketch.js",
+			"file": "p5-experiments/007-final/p5.js",
 			"settings":
 			{
-				"buffer_size": 992,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "p5-experiments/week5/simple_webcam/sketch.js",
-			"settings":
-			{
-				"buffer_size": 1408,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "p5-experiments/week5/13_popcorn_events/index.html",
-			"settings":
-			{
-				"buffer_size": 442,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "p5-experiments/week5/13_popcorn_events/sketch.js",
-			"settings":
-			{
-				"buffer_size": 1181,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "p5-experiments/week5/13_popcorn_events/particle.js",
-			"settings":
-			{
-				"buffer_size": 784,
+				"buffer_size": 125494,
 				"line_ending": "Unix"
 			}
 		}
@@ -507,9 +526,49 @@
 	"build_system": "Packages/P5/P5.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 27.0,
 		"selected_items":
 		[
+			[
+				"temp",
+				"Create file from Template"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"colo",
+				"Color Picker"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"prev",
+				"Bookmarks: Select Previous"
+			],
 			[
 				"pro",
 				"Project: Close"
@@ -517,10 +576,6 @@
 			[
 				"p5",
 				"Set Syntax: P5"
-			],
-			[
-				"java",
-				"Set Syntax: JavaScript"
 			],
 			[
 				"ja",
@@ -537,10 +592,6 @@
 			[
 				"jq",
 				"Snippet: jQuery.inArray"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"p",
@@ -573,10 +624,6 @@
 			[
 				"syn ja",
 				"Set Syntax: JavaScript"
-			],
-			[
-				"htm",
-				"Set Syntax: HTML"
 			],
 			[
 				"remo",
@@ -621,10 +668,6 @@
 			[
 				"temple",
 				"Snippet: bs3-html5-template"
-			],
-			[
-				"temp",
-				"Create file from Template"
 			],
 			[
 				"pret",
@@ -711,10 +754,6 @@
 				"Snippet: console.dir"
 			],
 			[
-				"javas",
-				"Set Syntax: JavaScript"
-			],
-			[
 				"uni",
 				"Set Syntax: Unity C#"
 			],
@@ -733,10 +772,6 @@
 			[
 				"foi",
 				"Code Folding: Fold Tag Attributes"
-			],
-			[
-				"colo",
-				"Snippet: Color(r, g, b, a)"
 			],
 			[
 				"root",
@@ -779,7 +814,7 @@
 				"Set Syntax: C#"
 			]
 		],
-		"width": 476.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -796,10 +831,40 @@
 	},
 	"file_history":
 	[
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/swap-oop.js",
+		"/Users/sergiomajluf/Dropbox/_ITP/4-Thesis/mustachio/template.html",
+		"/Users/sergiomajluf/Dropbox/_ITP/4-Thesis/mustachio/template-grid.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/style.css",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5.js/dist/p5.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/005-w2-object/sketch_3-multiple.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/index.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/03_preload_loadJSON_OOP/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/03_preload_loadJSON_OOP/data.json",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/005-w2-object/index.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/swap.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/00_preload_loadImage/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/01_preload_loadStrings/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/01_preload_loadStrings_DOM/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/02_json/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/03_preload_loadJSON/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/03_preload_loadJSON/data.json",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week4/00_preload_loadImage/large.jpg",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/00_instance_default_append/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week2/example_9_10_array_interactive_objects/stripe.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week2/example_9_10_array_interactive_objects/sketch.js",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Syntax/for in.sublime-snippet",
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/Syntax/for.sublime-snippet",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/13_popcorn_events/index.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/13_popcorn_events/particle.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/13_popcorn_events/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/simple_webcam/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/simple_video/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/simple_video/index.html",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/08_two_instances_listeners/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/07_two_instances_same_sketch/sketch.js",
+		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/week5/07_two_instances_same_sketch/index.html",
 		"/Users/sergiomajluf/Desktop/view-source https   dl.dropboxusercontent.com u 27398465 last_eats_project index.html",
 		"/Users/sergiomajluf/Dropbox/Public/lasteats.html",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/swap.js",
-		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/007-final/index.html",
 		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/006-ripple/ripple.js",
 		"/Users/sergiomajluf/Sites/sergiomajluf.github.io/p5-experiments/w4/nytimes/sketch.js",
 		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/P5.tmLanguage",
@@ -893,37 +958,7 @@
 		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/createWriter.sublime-snippet",
 		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curve 3D.sublime-snippet",
 		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curve.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveDetail.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curvePoint.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveTightness.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveVertex 3D.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveVertex.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/default.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/degrees.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/directionalLight.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/dist 3D.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/dist.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/doc - comment.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ellipse.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/ellipseMode.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/else if.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/else.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/emissive.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endCamera.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endRecord.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/endShape.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/exp.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/expand.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill grey alpha.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill grey.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill rgb.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill rgba.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/fill.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/floor.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/focused.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/for in.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/for.sublime-snippet",
-		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/frameCount.sublime-snippet"
+		"/Users/sergiomajluf/Library/Application Support/Sublime Text 2/Packages/P5/curveDetail.sublime-snippet"
 	],
 	"find":
 	{
@@ -943,6 +978,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"my_object",
+			"HTML",
+			"createHTML",
+			"',\n",
 			"Processing",
 			"var",
 			"processing",
@@ -1024,25 +1063,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "p5-experiments/week5/00_instance_default_append/sketch.js",
+					"file": "p5-experiments/007-final/index.html",
 					"settings":
 					{
-						"buffer_size": 437,
+						"buffer_size": 4185,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								125,
-								125
+								2616,
+								2616
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1052,10 +1090,9 @@
 				},
 				{
 					"buffer": 1,
-					"file": "p5-experiments/week5/07_two_instances_same_sketch/index.html",
 					"settings":
 					{
-						"buffer_size": 333,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -1068,7 +1105,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1078,23 +1115,23 @@
 				},
 				{
 					"buffer": 2,
-					"file": "p5-experiments/week5/07_two_instances_same_sketch/sketch.js",
+					"file": "noimage.hmtl.html",
 					"settings":
 					{
-						"buffer_size": 437,
+						"buffer_size": 997,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								305,
-								360
+								552,
+								552
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/P5/P5.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1106,24 +1143,24 @@
 				},
 				{
 					"buffer": 3,
-					"file": "p5-experiments/week5/08_two_instances_listeners/sketch.js",
+					"file": "p5-experiments/005-w2-object/sketch_4-constructor_arguments.js",
 					"settings":
 					{
-						"buffer_size": 1458,
+						"buffer_size": 667,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								95,
-								95
+								236,
+								348
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1134,10 +1171,10 @@
 				},
 				{
 					"buffer": 4,
-					"file": "p5-experiments/week5/simple_video/index.html",
+					"file": "p5-experiments/005-w2-object/sketch_4-constructor_prototype.js",
 					"settings":
 					{
-						"buffer_size": 239,
+						"buffer_size": 858,
 						"regions":
 						{
 						},
@@ -1150,7 +1187,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/P5/P5.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1160,138 +1199,28 @@
 				},
 				{
 					"buffer": 5,
-					"file": "p5-experiments/week5/simple_video/sketch.js",
+					"file": "p5-experiments/007-final/p5.js",
 					"settings":
 					{
-						"buffer_size": 992,
+						"buffer_size": 125494,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								37780,
+								37790
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "p5-experiments/week5/simple_webcam/sketch.js",
-					"settings":
-					{
-						"buffer_size": 1408,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1241,
-								1241
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "p5-experiments/week5/13_popcorn_events/index.html",
-					"settings":
-					{
-						"buffer_size": 442,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "p5-experiments/week5/13_popcorn_events/sketch.js",
-					"settings":
-					{
-						"buffer_size": 1181,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1000,
-								1000
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 175.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "p5-experiments/week5/13_popcorn_events/particle.js",
-					"settings":
-					{
-						"buffer_size": 784,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								590,
-								590
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/P5/P5.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 15256.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
