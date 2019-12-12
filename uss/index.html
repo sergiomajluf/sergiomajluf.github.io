@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carreras USS</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --spacing: 2px;
+            --ancho: 160px;
+        }
+        
+        body {
+            top: 0;
+            left: 0;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1.1em;
+            color: rgb(56, 56, 56);
+        }
+        
+        .carrera {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 1em;
+            margin: var(--spacing);
+            width: var(--ancho);
+            min-height: 5.5em;
+            background-color: rgb(160, 226, 247);
+            float: left;
+            cursor: crosshair;
+        }
+        
+        .carrera small {
+            font-size: 0.5em;
+            display: block;
+        }
+        
+        .carrera:hover {
+            background-color: rgb(114, 208, 231);
+        }
+        
+        .carrera.done {
+            text-decoration: line-through;
+            color: rgb(0, 0, 0);
+            background-color: rgb(207, 239, 248);
+        }
+        
+        #controles {
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255);
+        }
+        
+        #controles input[type=range] {
+            color: #ee0a0a;
+        }
+        
+        #controles:hover {
+            color: rgb(0, 0, 0);
+            background-color: rgb(207, 239, 248);
+        }
+        
+        .controls input,
+        .controls label {
+            display: inline-block;
+        }
+        
+        .open.done {
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+        
+        .open,
+        .open:hover,
+        .carrera.open.done {
+            background-color: lightgreen;
+            text-decoration: none;
+        }
+        
+        .overlay {
+            height: 0%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-y: hidden;
+            transition: 0.5s;
+        }
+        
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+        }
+        
+        .overlay li {
+            padding: 8px;
+            margin-left: 300px;
+            text-decoration: none;
+            font-size: 2em;
+            color: #ffffff;
+            display: block;
+            transition: 0.3s;
+            text-shadow: 3px 3px 3px rgb(0, 0, 0);
+            text-align: left;
+        }
+        
+        .overlay a:hover,
+        .overlay a:focus {
+            color: #f1f1f1;
+        }
+        
+        .overlay .closebtn {
+            position: absolute;
+            top: 55px;
+            left: 250px;
+            font-size: 60px;
+            color: #ffffff;
+        }
+        
+        @media screen and (max-height: 450px) {
+            .overlay {
+                overflow-y: auto;
+            }
+            .overlay a {
+                font-size: 20px
+            }
+            .overlay .closebtn {
+                font-size: 40px;
+                top: 15px;
+                right: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="controles" class="controls carrera">
+        <label for="ancho">Ancho:</label>
+        <input id="ancho" type="range" name="ancho" min="0" max="300" value="150" data-sizing="px">
+
+        <label for="spacing">Margen:</label>
+        <input id="spacing" type="range" name="spacing" min="0" max="30" value="3" data-sizing="px">
+
+    </div>
+
+    <div id="carreras">
+
+        <div class="carrera arq"><small>ARQUITECTURA, ARTE Y DISEÑO</small>Arquitectura</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Educación Parvularia</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía en Educación Básica</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía en Educación Diferencial</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía en Educación Física</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía Ed. Media en Historia y Geografía</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía Ed. Media en Inglés</div>
+        <div class="carrera csed"><small>CIENCIAS DE LA EDUCACIÓN</small>Pedagogía Ed. Media en Lenguaje y Comunicación</div>
+        <div class="carrera css"><small>CIENCIAS DE LA SALUD</small>Fonoaudiología</div>
+        <div class="carrera css"><small>CIENCIAS DE LA SALUD</small>Kinesiología</div>
+        <div class="carrera css"><small>CIENCIAS DE LA SALUD</small>Tecnología Médica</div>
+        <div class="carrera css"><small>CIENCIAS DE LA SALUD</small>Terapia Ocupacional</div>
+        <div class="carrera der"><small>DERECHO Y GOBIERNO</small>Derecho</div>
+        <div class="carrera der"><small>DERECHO Y GOBIERNO</small>Administración Pública</div>
+        <div class="carrera der"><small>DERECHO Y GOBIERNO</small>Ciencias Políticas</div>
+        <div class="carrera fen"><small>ECONOMÍA Y NEGOCIOS</small>Ingeniería Comercial</div>
+        <div class="carrera fen"><small>ECONOMÍA Y NEGOCIOS</small>Ingeniería en Gestión de Expediciones y Ecoturismo</div>
+        <div class="carrera cscs"><small>CIENCIAS PARA EL CUIDADO DE LA SALUD</small>Enfermería</div>
+        <div class="carrera cscs"><small>CIENCIAS PARA EL CUIDADO DE LA SALUD</small>Nutrición y Dietética</div>
+        <div class="carrera mvet"><small>MEDICINA VETERINARIA</small>Medicina Veterinaria</div>
+        <div class="carrera medcs"><small>MEDICINA Y CIENCIA</small>Medicina</div>
+        <div class="carrera medcs"><small>MEDICINA Y CIENCIA</small>Obstetricia</div>
+        <div class="carrera medcs"><small>MEDICINA Y CIENCIA</small>Química y Farmacia</div>
+        <div class="carrera medcs"><small>MEDICINA Y CIENCIA</small>Bioquímica</div>
+        <div class="carrera medcs"><small>MEDICINA Y CIENCIA</small>Bachillerato en Ciencias de la Salud</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería Civil - Plan Común</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería Civil</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería Civil en Minas</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería Civil Industrial</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería Civil Informática</div>
+        <div class="carrera fit"><small>INGENIERÍA Y TECNOLOGÍA</small>Ingeniería en Energía y Sustentabilidad Ambiental</div>
+        <div class="carrera odo"><small>ODONTOLOGÍA</small>Odontología</div>
+        <div class="carrera psi"><small>PSICOLOGÍA</small>Psicología</div>
+        <div class="carrera psi"><small>PSICOLOGÍA</small>Trabajo Social</div>
+
+    </div>
+
+    <div id="instrucciones" class="overlay">
+        <div class="overlay-content">
+
+            <ul>
+                <li>
+                    <h1>Hola!</h1>
+                </li>
+                <li>» selecciona carreras con el mouse</li>
+                <li>» para terminar, presiona <code>ESC</code></li>
+            </ul>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+    </div>
+
+    <script>
+        let abiertos;
+        let lastCarrera;
+        let classname = document.getElementsByClassName("carrera");
+
+        function openNav() {
+            document.getElementById("instrucciones").style.height = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("instrucciones").style.height = "0%";
+        }
+
+        //closeNav();
+        //openNav();
+
+        instrucciones.addEventListener('click', myFunction, false);
+
+        document.onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 27) {
+                lastCarrera.classList.toggle('open');;
+            }
+        };
+
+
+        var myFunction = function() {
+            toggleNavigation(this);
+
+        };
+
+        for (var i = 0; i < classname.length; i++) {
+            classname[i].addEventListener('click', myFunction, false);
+        }
+
+
+
+        function toggleNavigation(element) {
+
+            abiertos = document.getElementsByClassName("open");
+
+            for (let i = 0; i < abiertos.length; i++) {
+                const element = abiertos[i];
+                element.classList.toggle('open');
+
+            }
+
+            element.classList.toggle('open');
+            element.classList.add("done");
+            lastCarrera = element;
+
+        }
+
+        const inputs = document.querySelectorAll('.controls input');
+
+        function handleUpdate() {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            console.log(this.value);
+
+        }
+
+        inputs.forEach(input => input.addEventListener('change', handleUpdate));
+        inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    </script>
+
+</body>
+
+</html>
