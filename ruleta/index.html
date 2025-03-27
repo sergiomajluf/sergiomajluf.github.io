@@ -171,15 +171,15 @@
     <script>
         // Configuración de los slots
         let slots = [
-            { name: "Slot 1", color: "#FF5252", probability: 5, message: "¡Puedes jugar otra vez!" },
-            { name: "Slot 2", color: "#69F0AE", probability: 5, message: "¡Ganaste una botella!" },
-            { name: "Slot 3", color: "#40C4FF", probability: 5, message: "¡Oh no!" },
-            { name: "Slot 4", color: "#FFD740", probability: 10, message: "¡Oh no!" },
-            { name: "Slot 5", color: "#E040FB", probability: 10, message: "Polera MaihueGo" },
-            { name: "Slot 6", color: "#58D68D", probability: 5, message: "Suscripción gratis por 6 meses" },
-            { name: "Slot 7", color: "#F7DC6F", probability: 20, message: "Oh no" },
-            { name: "Slot 8", color: "#85C1E9", probability: 20, message: "Oh no" },
-            { name: "Slot 9", color: "#BB8FCE", probability: 20, message: "Juega de nuevo" }
+            { name: "Juega\notra vez", color: "#FF5252", probability: 5, message: "¡Puedes jugar otra vez!" },
+            { name: "Botella", color: "#69F0AE", probability: 5, message: "¡Ganaste una botella!" },
+            { name: "Oh no", color: "#40C4FF", probability: 5, message: "¡Oh no!" },
+            { name: "Lo siento", color: "#FFD740", probability: 10, message: "¡Oh no!" },
+            { name: "Juega\notra vez", color: "#BB8FCE", probability: 20, message: "Juega de nuevo" },
+            { name: "Polera", color: "#E040FB", probability: 10, message: "Polera MaihueGo" },
+            { name: "Suscripción", color: "#58D68D", probability: 5, message: "Suscripción gratis por 6 meses" },
+            { name: "Oh no", color: "#F7DC6F", probability: 20, message: "Oh no" },
+            { name: "Oh no", color: "#85C1E9", probability: 20, message: "Oh no" }
         ];
         
         let roulette;
@@ -207,8 +207,8 @@
                     this.slotsAngles = this.calculateSlotsAngles();
                     
                     // Parámetros de la ruleta
-                    this.spinSpeed = 8;           // Velocidad de giro (radianes por segundo)
-                    this.minRotations = 2;         // Mínimo de rotaciones completas
+                    this.spinSpeed = 24;           // Velocidad de giro (radianes por segundo)
+                    this.minRotations = 3;         // Mínimo de rotaciones completas
                     this.accelerationDuration = 2.0; // Duración de aceleración en segundos
                     this.decelerationDuration = 2.0; // Duración de desaceleración en segundos
                     
