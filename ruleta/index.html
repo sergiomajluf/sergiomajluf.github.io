@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ruleta Interactiva</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            touch-action: none;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: clamp(24px, 6vw, 36px);
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        
+        .game-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        
+        .play-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: clamp(16px, 5vw, 20px);
+            padding: clamp(10px, 3vw, 15px) clamp(20px, 6vw, 40px);
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .play-button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        
+        .play-button:active {
+            transform: scale(0.98);
+        }
+        
+        .instructions {
+            font-size: clamp(14px, 4vw, 18px);
+            color: #555;
+            margin: 10px 0;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .result-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .result-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .result-message {
+            background-color: white;
+            padding: clamp(20px, 5vw, 30px) clamp(30px, 8vw, 50px);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 90%;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .result-message h2 {
+            margin-top: 0;
+            font-size: clamp(20px, 6vw, 28px);
+        }
+        
+        .result-message p {
+            font-size: clamp(18px, 5vw, 22px);
+            margin-bottom: 0;
+        }
+        
+        .close-message {
+            font-size: clamp(12px, 3vw, 14px);
+            color: #777;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* Media queries para ajustes responsivos */
+        @media (max-width: 768px) {
+            canvas {
+                margin: 10px auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .play-button {
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+        
+        /* Prevenir zoom en dispositivos táctiles */
+        @media (max-width: 1024px) {
+            html {
+                touch-action: manipulation;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ruleta de Premios</h1>
+    
+    <div class="game-controls">
+        <button id="play-button" class="play-button">¡JUGAR!</button>
+        <div class="instructions">Toca el botón o la ruleta para jugar</div>
+    </div>
+    
+    <div id="result-overlay" class="result-overlay">
+        <div class="result-message">
+            <h2 id="result-title">¡Resultado!</h2>
+            <p id="result-text">Tu premio aparecerá aquí</p>
+            <div class="close-message">Toca en cualquier lugar para continuar</div>
+        </div>
+    </div>
+    
+    <script>
+        // Configuración de los slots
+        let slots = [
+            { name: "Slot 1", color: "#FF5252", probability: 5, message: "¡Puedes jugar otra vez!" },
+            { name: "Slot 2", color: "#69F0AE", probability: 5, message: "¡Ganaste una botella!" },
+            { name: "Slot 3", color: "#40C4FF", probability: 5, message: "¡Oh no!" },
+            { name: "Slot 4", color: "#FFD740", probability: 10, message: "¡Oh no!" },
+            { name: "Slot 5", color: "#E040FB", probability: 10, message: "Polera MaihueGo" },
+            { name: "Slot 6", color: "#58D68D", probability: 5, message: "Suscripción gratis por 6 meses" },
+            { name: "Slot 7", color: "#F7DC6F", probability: 20, message: "Oh no" },
+            { name: "Slot 8", color: "#85C1E9", probability: 20, message: "Oh no" },
+            { name: "Slot 9", color: "#BB8FCE", probability: 20, message: "Juega de nuevo" }
+        ];
+        
+        let roulette;
+        let sketch = function(p) {
+            // Clase para la ruleta
+            class Roulette {
+                constructor(x, y, diameter, slots) {
+                    this.x = x;
+                    this.y = y;
+                    this.diameter = diameter;
+                    this.radius = diameter / 2;
+                    this.slots = slots;
+                    this.angle = 0;
+                    this.targetAngle = 0;
+                    this.velocity = 0;
+                    this.acceleration = 0;
+                    this.state = 'idle';
+                    this.winner = null;
+                    this.indicatorWidth = 20;
+                    this.indicatorHeight = 40;
+                    
+                    // Normalizar las probabilidades
+                    this.normalizeSlotProbabilities();
+                    // Calcular los ángulos de los slots
+                    this.slotsAngles = this.calculateSlotsAngles();
+                    
+                    // Parámetros de la ruleta
+                    this.spinSpeed = 8;           // Velocidad de giro (radianes por segundo)
+                    this.minRotations = 2;         // Mínimo de rotaciones completas
+                    this.accelerationDuration = 2.0; // Duración de aceleración en segundos
+                    this.decelerationDuration = 2.0; // Duración de desaceleración en segundos
+                    
+                    // Variables de tiempo
+                    this.spinStartTime = 0;
+                    this.spinDuration = 0;
+                    this.totalSpinTime = 0;
+                }
+                
+                normalizeSlotProbabilities() {
+                    let totalProbability = this.slots.reduce((sum, slot) => sum + slot.probability, 0);
+                    
+                    if (totalProbability !== 100) {
+                        const factor = 100 / totalProbability;
+                        this.slots.forEach(slot => {
+                            slot.probability = Math.round(slot.probability * factor);
+                        });
+                        
+                        // Ajustar para asegurar que sume exactamente 100
+                        let sum = this.slots.reduce((acc, slot) => acc + slot.probability, 0);
+                        if (sum !== 100) {
+                            this.slots[0].probability += (100 - sum);
+                        }
+                    }
+                }
+                
+                calculateSlotsAngles() {
+                    let angles = [];
+                    let currentAngle = 0;
+                    const slotCount = this.slots.length;
+                    const arcLength = (2 * Math.PI) / slotCount;
+                    
+                    this.slots.forEach(slot => {
+                        angles.push({
+                            start: currentAngle,
+                            end: currentAngle + arcLength,
+                            slot: slot
+                        });
+                        currentAngle += arcLength;
+                    });
+                    
+                    return angles;
+                }
+                
+                draw() {
+                    p.push();
+                    p.translate(this.x, this.y);
+                    p.rotate(this.angle);
+                    
+                    // Dibujar los sectores de la ruleta
+                    const slotCount = this.slots.length;
+                    const arcLength = (2 * Math.PI) / slotCount;
+                    
+                    this.slotsAngles.forEach((angleData, index) => {
+                        const slot = angleData.slot;
+                        p.fill(slot.color);
+                        p.stroke(0);
+                        p.strokeWeight(2);
+                        p.arc(0, 0, this.diameter, this.diameter, angleData.start, angleData.end, p.PIE);
+                        
+                        // Añadir texto
+                        p.push();
+                        p.rotate(angleData.start + arcLength / 2);
+                        p.translate(this.radius * 0.7, 0);
+                        p.rotate(Math.PI / 2);
+                        p.fill(0);
+                        p.noStroke();
+                        p.textAlign(p.CENTER, p.CENTER);
+                        
+                        // Ajustar tamaño de texto según el tamaño de la ruleta
+                        const fontSize = this.diameter * 0.04; // 4% del diámetro
+                        p.textSize(fontSize);
+                        
+                        p.text(slot.name, 0, 0);
+                        p.pop();
+                    });
+                    
+                    // Dibujar el centro de la ruleta
+                    p.fill(100);
+                    p.stroke(0);
+                    p.strokeWeight(2);
+                    p.ellipse(0, 0, this.radius * 0.2, this.radius * 0.2);
+                    
+                    p.pop();
+                    
+                    // Dibujar el indicador
+                    const indicatorWidth = this.radius * 0.1;
+                    const indicatorHeight = this.radius * 0.2;
+                    
+                    p.push();
+                    p.fill(255, 0, 0);
+                    p.stroke(0);
+                    p.strokeWeight(2);
+                    p.triangle(
+                        this.x + this.radius + 5, this.y,
+                        this.x + this.radius + indicatorWidth + 5, this.y - indicatorHeight/2,
+                        this.x + this.radius + indicatorWidth + 5, this.y + indicatorHeight/2
+                    );
+                    p.pop();
+                }
+                
+                spin() {
+                    if (this.state !== 'idle') return;
+                    
+                    // Determinar ganador antes de girar
+                    this.winner = this.determineWinner();
+                    
+                    // Calcular ángulo objetivo para que el ganador quede en el indicador
+                    const winnerAngle = this.findSlotAngle(this.winner);
+                    
+                    // Calcular cuántas vueltas completas dará (entre 2 y 3)
+                    const totalRotations = this.minRotations + (Math.random() * 0.2); // Pequeña variación aleatoria
+                    const minRotationAngle = totalRotations * 2 * Math.PI;
+                    
+                    // Calcular ángulo total de giro
+                    const targetPositionAngle = Math.PI / 2;
+                    const angleToTarget = (targetPositionAngle - winnerAngle) % (2 * Math.PI);
+                    this.targetAngle = this.angle + minRotationAngle + angleToTarget;
+                    
+                    // Calcular la cantidad exacta de radianes que debe girar
+                    const totalAngleToRotate = this.targetAngle - this.angle;
+                    
+                    // Calcular la velocidad máxima basada en el ángulo y el tiempo
+                    // Esto asegura que llegue exactamente al ángulo objetivo sin ajustes bruscos
+                    const constSpeedDuration = 3.0;
+                    this.totalSpinTime = this.accelerationDuration + constSpeedDuration + this.decelerationDuration;
+                    
+                    // Ajustar la velocidad para que sea consistente con la distancia a recorrer
+                    // La distancia recorrida durante aceleración es 0.5*accelTime*maxSpeed
+                    // La distancia recorrida durante velocidad constante es constTime*maxSpeed
+                    // La distancia recorrida durante desaceleración es 0.5*decelTime*maxSpeed
+                    // Total = maxSpeed * (0.5*accelTime + constTime + 0.5*decelTime)
+                    const effectiveTime = 0.5 * this.accelerationDuration + constSpeedDuration + 0.5 * this.decelerationDuration;
+                    this.spinSpeed = totalAngleToRotate / effectiveTime;
+                    
+                    // Iniciar el giro
+                    this.state = 'spinning';
+                    this.spinStartTime = p.millis() / 1000;
+                    
+                    // Actualizar UI
+                    document.getElementById('play-button').textContent = "GIRANDO...";
+                    document.getElementById('play-button').disabled = true;
+                    document.getElementById('play-button').style.opacity = 0.7;
+                }
+                
+                update(dt) {
+                    if (this.state !== 'spinning') return;
+                    
+                    const currentTime = p.millis() / 1000;
+                    const elapsedTime = currentTime - this.spinStartTime;
+                    
+                    // Progreso normalizado (0 a 1)
+                    const progress = Math.min(elapsedTime / this.totalSpinTime, 1);
+                    
+                    if (progress >= 1) {
+                        // Giro completado
+                        this.angle = this.targetAngle;
+                        this.state = 'idle';
+                        this.showWinnerMessage();
+                        return;
+                    }
+                    
+                    // Dividir el progreso en fases
+                    const accelPhaseEnd = this.accelerationDuration / this.totalSpinTime;
+                    const constPhaseEnd = accelPhaseEnd + (this.totalSpinTime - this.accelerationDuration - this.decelerationDuration) / this.totalSpinTime;
+                    
+                    let angularVelocity;
+                    
+                    if (progress < accelPhaseEnd) {
+                        // Fase de aceleración - función lineal simple para aceleración suave
+                        const accelProgress = progress / accelPhaseEnd;
+                        angularVelocity = this.spinSpeed * accelProgress;
+                    } else if (progress < constPhaseEnd) {
+                        // Fase de velocidad constante
+                        angularVelocity = this.spinSpeed;
+                    } else {
+                        // Fase de desaceleración - función lineal simple para desaceleración suave
+                        const decelProgress = (progress - constPhaseEnd) / (1 - constPhaseEnd);
+                        angularVelocity = this.spinSpeed * (1 - decelProgress);
+                    }
+                    
+                    // Actualizar el ángulo basado en la velocidad angular actual
+                    this.angle += angularVelocity * dt;
+                    
+                    // Ajuste suave para asegurar que termine exactamente en el ángulo objetivo
+                    // Eliminamos cualquier ajuste abrupto al final
+                }
+                
+                determineWinner() {
+                    const random = Math.random() * 100;
+                    let cumulativeProbability = 0;
+                    
+                    for (let slot of this.slots) {
+                        cumulativeProbability += slot.probability;
+                        if (random <= cumulativeProbability) {
+                            return slot;
+                        }
+                    }
+                    
+                    // En caso de error, devolver el último slot
+                    return this.slots[this.slots.length - 1];
+                }
+                
+                findSlotAngle(slot) {
+                    for (let angle of this.slotsAngles) {
+                        if (angle.slot === slot) {
+                            // Devolver el punto medio del sector
+                            return (angle.start + angle.end) / 2;
+                        }
+                    }
+                    return 0;
+                }
+                
+                showWinnerMessage() {
+                    if (this.winner) {
+                        // Mostrar el mensaje de resultado
+                        const resultTitle = document.getElementById('result-title');
+                        const resultText = document.getElementById('result-text');
+                        const resultOverlay = document.getElementById('result-overlay');
+                        
+                        resultTitle.textContent = "¡RESULTADO!";
+                        resultText.textContent = this.winner.message;
+                        resultOverlay.classList.add('active');
+                        
+                        // Restablecer el botón
+                        const playButton = document.getElementById('play-button');
+                        playButton.textContent = "¡JUGAR!";
+                        playButton.disabled = false;
+                        playButton.style.opacity = 1;
+                    }
+                }
+                
+                checkClick(mouseX, mouseY) {
+                    const distance = p.dist(mouseX, mouseY, this.x, this.y);
+                    
+                    // Aumentar ligeramente el área de detección para dispositivos táctiles
+                    const touchFriendlyRadius = this.radius * 1.1;
+                    
+                    return distance <= touchFriendlyRadius;
+                }
+            }
+            
+            p.setup = function() {
+                // Crear un canvas responsivo que se ajuste al tamaño de la ventana
+                let canvasSize = calculateCanvasSize();
+                const canvas = p.createCanvas(canvasSize.width, canvasSize.height);
+                canvas.parent(document.body);
+                p.angleMode(p.RADIANS);
+                p.textAlign(p.CENTER, p.CENTER);
+                
+                // Inicializar la ruleta
+                const centerX = p.width / 2;
+                const centerY = p.height / 2;
+                const ruletteDiameter = Math.min(p.width, p.height) * 0.8; // 80% del lado más pequeño
+                roulette = new Roulette(centerX, centerY, ruletteDiameter, slots);
+                
+                // Ajustar cuando cambie el tamaño de la ventana
+                window.addEventListener('resize', function() {
+                    canvasSize = calculateCanvasSize();
+                    p.resizeCanvas(canvasSize.width, canvasSize.height);
+                    
+                    // Reposicionar y redimensionar la ruleta
+                    const centerX = p.width / 2;
+                    const centerY = p.height / 2;
+                    const ruletteDiameter = Math.min(p.width, p.height) * 0.8;
+                    
+                    roulette.x = centerX;
+                    roulette.y = centerY;
+                    roulette.diameter = ruletteDiameter;
+                    roulette.radius = ruletteDiameter / 2;
+                });
+            };
+            
+            // Función para calcular el tamaño óptimo del canvas
+            function calculateCanvasSize() {
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight - 150; // Reservar espacio para título y botón
+                
+                // En móviles, usar casi todo el ancho disponible
+                if (windowWidth < 768) {
+                    const size = Math.min(windowWidth * 0.9, windowHeight);
+                    return {width: size, height: size};
+                }
+                
+                // En tablets y escritorio, limitar el tamaño máximo
+                const maxSize = Math.min(600, Math.min(windowWidth * 0.8, windowHeight));
+                return {width: maxSize, height: maxSize};
+            }
+            
+            p.draw = function() {
+                p.background(240);
+                
+                // Actualizar y dibujar la ruleta
+                const deltaTime = p.deltaTime / 1000; // Convertir a segundos
+                roulette.update(deltaTime);
+                roulette.draw();
+            };
+            
+            p.mousePressed = function() {
+                // Solo procesar clics si el overlay no está activo
+                const resultOverlay = document.getElementById('result-overlay');
+                const isOverlayActive = resultOverlay.classList.contains('active');
+                
+                if (!isOverlayActive && roulette.state === 'idle' && roulette.checkClick(p.mouseX, p.mouseY)) {
+                    roulette.spin();
+                    return false; // Prevenir comportamientos predeterminados
+                }
+            };
+            
+            p.touchStarted = function(event) {
+                // Prevenir comportamiento por defecto del navegador
+                if (event && event.preventDefault) {
+                    event.preventDefault();
+                }
+                
+                // Obtener las coordenadas del toque
+                let touchX, touchY;
+                
+                if (event && event.touches && event.touches[0]) {
+                    // Usar el evento directamente si está disponible
+                    const canvas = document.querySelector('canvas');
+                    const rect = canvas.getBoundingClientRect();
+                    touchX = event.touches[0].clientX - rect.left;
+                    touchY = event.touches[0].clientY - rect.top;
+                } else {
+                    // Usar p.touchX y p.touchY como respaldo
+                    touchX = p.touchX;
+                    touchY = p.touchY;
+                }
+                
+                // Solo procesar toques si el overlay no está activo
+                const resultOverlay = document.getElementById('result-overlay');
+                const isOverlayActive = resultOverlay.classList.contains('active');
+                
+                if (!isOverlayActive && roulette.state === 'idle' && roulette.checkClick(touchX, touchY)) {
+                    roulette.spin();
+                }
+                
+                return false; // Prevenir comportamientos predeterminados
+            };
+            
+            // Prevenir el scroll en dispositivos móviles cuando se interactúa con el canvas
+            p.touchMoved = function(event) {
+                if (event && event.preventDefault) {
+                    event.preventDefault();
+                }
+                return false;
+            };
+            
+            // Capturar eventos touch en el canvas
+            const canvasContainer = document.body;
+        };
+        
+        // Inicializar el sketch de P5
+        new p5(sketch);
+        
+        // Agregar event listeners manuales para el touch
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            setupTouchListeners();
+        });
+        
+        // Si el DOM ya está cargado, configurar los event listeners inmediatamente
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            setupEventListeners();
+            setupTouchListeners();
+        }
+        
+        function setupEventListeners() {
+            const playButton = document.getElementById('play-button');
+            const resultOverlay = document.getElementById('result-overlay');
+            
+            // Botón de jugar - usar touchstart para dispositivos móviles
+            if (playButton) {
+                // Evento para mouse/PC
+                playButton.addEventListener('click', function(event) {
+                    handlePlayButtonInteraction(event);
+                });
+                
+                // Evento específico para dispositivos táctiles
+                playButton.addEventListener('touchstart', function(event) {
+                    handlePlayButtonInteraction(event);
+                }, { passive: false });
+            }
+            
+            function handlePlayButtonInteraction(event) {
+                // Prevenir comportamiento por defecto
+                if (event && event.preventDefault) {
+                    event.preventDefault();
+                }
+                
+                console.log("Botón interactuado, ruleta:", roulette);
+                // Verificar si el overlay está visible
+                const isOverlayActive = resultOverlay.classList.contains('active');
+                
+                if (!isOverlayActive && roulette && roulette.state === 'idle') {
+                    roulette.spin();
+                }
+            }
+            
+            // Cerrar overlay - usar touchstart para dispositivos móviles
+            if (resultOverlay) {
+                // Evento para mouse/PC
+                resultOverlay.addEventListener('click', function() {
+                    resultOverlay.classList.remove('active');
+                });
+                
+                // Evento específico para dispositivos táctiles
+                resultOverlay.addEventListener('touchstart', function(event) {
+                    event.preventDefault(); // Prevenir comportamiento por defecto
+                    resultOverlay.classList.remove('active');
+                }, { passive: false });
+                
+                // Añadir un botón de cierre explícito para mayor claridad en móviles
+                const closeButton = document.createElement('button');
+                closeButton.textContent = '✕';
+                closeButton.style.position = 'absolute';
+                closeButton.style.top = '10px';
+                closeButton.style.right = '10px';
+                closeButton.style.background = '#f44336';
+                closeButton.style.color = 'white';
+                closeButton.style.border = 'none';
+                closeButton.style.borderRadius = '50%';
+                closeButton.style.width = '40px';
+                closeButton.style.height = '40px';
+                closeButton.style.fontSize = '20px';
+                closeButton.style.cursor = 'pointer';
+                closeButton.style.display = 'flex';
+                closeButton.style.justifyContent = 'center';
+                closeButton.style.alignItems = 'center';
+                closeButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.3)';
+                
+                // Añadir eventos al botón de cierre
+                closeButton.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Evitar que el evento burbujee
+                    resultOverlay.classList.remove('active');
+                });
+                
+                closeButton.addEventListener('touchstart', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation(); // Evitar que el evento burbujee
+                    resultOverlay.classList.remove('active');
+                }, { passive: false });
+                
+                // Añadir el botón a la caja de mensaje
+                const messageBox = resultOverlay.querySelector('.result-message');
+                if (messageBox) {
+                    messageBox.appendChild(closeButton);
+                }
+            }
+        }
+        
+        function setupTouchListeners() {
+            // Agregar un event listener de touch directamente al canvas como respaldo
+            document.addEventListener('touchstart', function(event) {
+                if (!roulette || roulette.state !== 'idle') return;
+                
+                const resultOverlay = document.getElementById('result-overlay');
+                if (resultOverlay.classList.contains('active')) return;
+                
+                const touch = event.touches[0];
+                const canvas = document.querySelector('canvas');
+                
+                if (!canvas) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const touchX = touch.clientX - rect.left;
+                const touchY = touch.clientY - rect.top;
+                
+                // Calcular si el toque está dentro de la ruleta
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const distance = Math.sqrt(Math.pow(touchX - centerX, 2) + Math.pow(touchY - centerY, 2));
+                
+                // Si el toque está dentro de la ruleta, hacerla girar
+                if (distance <= roulette.radius * 1.2) {
+                    roulette.spin();
+                    event.preventDefault();
+                }
+            }, { passive: false });
+        }
+    </script>
+</body>
+</html>
