@@ -70,6 +70,14 @@
             margin-bottom: 32px;
         }
         
+        /* Contenedor para el timer principal, para poder añadir padding cuando cambia el fondo */
+        .total-timer-container {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 4px 20px;
+            transition: all 0.3s ease;
+        }
+        
         .total-timer-label {
             font-size: 17px;
             color: var(--apple-text-secondary);
@@ -78,7 +86,7 @@
         }
         
         .total-timer-display {
-            font-size: 76px;
+            font-size: 120px;
             font-weight: 300; /* Más delgada, estilo Apple */
             border-radius: 16px;
             padding: 8px;
@@ -112,6 +120,8 @@
             font-size: 56px;
             font-weight: 300; /* Más delgada, estilo Apple */
             transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 4px 8px;
         }
         
         /* Estados de timer */
@@ -120,11 +130,23 @@
         }
         
         .warning {
-            color: var(--apple-warning);
+            color: var(--apple-text);
+            background-color: var(--apple-warning);
         }
         
         .overtime {
-            color: var(--apple-overtime);
+            color: white;
+            background-color: var(--apple-overtime);
+        }
+        
+        /* Temporizador deshabilitado */
+        .phase-timer.disabled {
+            opacity: 0.5;
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .phase-timer.disabled .phase-timer-display {
+            color: var(--apple-text-secondary);
         }
         
         /* Sección de configuración */
@@ -262,7 +284,9 @@
         <!-- Total Timer Display -->
         <div class="total-timer">
             <div class="total-timer-label">Tiempo Total Restante</div>
-            <div class="total-timer-display normal" id="totalTimer">06:00</div>
+            <div class="total-timer-container" id="totalTimerContainer">
+                <div class="total-timer-display normal" id="totalTimer">06:00</div>
+            </div>
         </div>
         
         <!-- Phase Timers Display -->
@@ -383,6 +407,14 @@
             phases.questions.secondsRemaining = phases.questions.totalSeconds;
             phases.questions.warningPoint = questionsWarningSeconds;
             
+            // Aplicar estilo de deshabilitado si el tiempo de preguntas es 0
+            const questionsTimerContainer = document.querySelector('.phase-timer:nth-child(2)');
+            if (questionsSeconds === 0) {
+                questionsTimerContainer.classList.add('disabled');
+            } else {
+                questionsTimerContainer.classList.remove('disabled');
+            }
+            
             // Establecer fase inicial
             currentPhase = 'presentation';
             
@@ -410,7 +442,7 @@
         function getDisplayClass(seconds, warningPoint) {
             if (seconds < 0) {
                 return 'overtime';
-            } else if (seconds <= warningPoint) {
+            } else if (seconds <= warningPoint && warningPoint > 0) {
                 return 'warning';
             } else {
                 return 'normal';
@@ -436,16 +468,21 @@
             // Actualizar temporizador total
             totalTimerDisplay.textContent = formatTime(totalRemainingSeconds);
             
+            const totalTimerContainer = document.getElementById('totalTimerContainer');
+            
             // Determinar la clase para el temporizador total
             if (totalRemainingSeconds < 0) {
                 totalTimerDisplay.className = 'total-timer-display overtime';
+                totalTimerContainer.style.backgroundColor = 'var(--apple-overtime)';
             } else if (
-                (currentPhase === 'presentation' && presentationSeconds <= phases.presentation.warningPoint) ||
-                (currentPhase === 'questions' && questionsSeconds <= phases.questions.warningPoint)
+                (currentPhase === 'presentation' && presentationSeconds <= phases.presentation.warningPoint && phases.presentation.warningPoint > 0) ||
+                (currentPhase === 'questions' && questionsSeconds <= phases.questions.warningPoint && phases.questions.warningPoint > 0)
             ) {
                 totalTimerDisplay.className = 'total-timer-display warning';
+                totalTimerContainer.style.backgroundColor = 'var(--apple-warning)';
             } else {
                 totalTimerDisplay.className = 'total-timer-display normal';
+                totalTimerContainer.style.backgroundColor = 'transparent';
             }
         }
         
@@ -531,6 +568,19 @@
         presentationWarningInput.addEventListener('change', initTimer);
         questionsMinutesInput.addEventListener('change', initTimer);
         questionsWarningInput.addEventListener('change', initTimer);
+        
+        // También escuchar eventos de input para actualización en tiempo real
+        questionsMinutesInput.addEventListener('input', function() {
+            const questionsMinutes = parseInt(this.value);
+            const questionsSeconds = isNaN(questionsMinutes) ? 0 : questionsMinutes * 60;
+            
+            const questionsTimerContainer = document.querySelector('.phase-timer:nth-child(2)');
+            if (questionsSeconds === 0) {
+                questionsTimerContainer.classList.add('disabled');
+            } else {
+                questionsTimerContainer.classList.remove('disabled');
+            }
+        });
         
         // Inicializar al cargar la página
         initTimer();
