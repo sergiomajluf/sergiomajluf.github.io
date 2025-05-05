@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fretscales/static/css/main.d055bc29.css",
+    "main.js": "/fretscales/static/js/main.3af6e99b.js",
+    "index.html": "/fretscales/index.html",
+    "main.d055bc29.css.map": "/fretscales/static/css/main.d055bc29.css.map",
+    "main.3af6e99b.js.map": "/fretscales/static/js/main.3af6e99b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d055bc29.css",
+    "static/js/main.3af6e99b.js"
+  ]
+}
