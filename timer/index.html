@@ -1,718 +1,515 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temporizador para Presentaciones</title>
-    <style>
-        /* Estilo inspirado en aplicaciones de Apple */
-        :root {
-            --apple-bg: #f5f5f7;
-            --apple-card: #ffffff;
-            --apple-text: #1d1d1f;
-            --apple-text-secondary: #86868b;
-            --apple-blue: #0071e3;
-            --apple-red: #ff3b30;
-            --apple-gray: #8e8e93;
-            --apple-warning: #ff9500;
-            --apple-overtime: #ff3b30;
-            --apple-shadow: rgba(0, 0, 0, 0.1);
+"use client"
+
+import { useState, useEffect, useRef } from "react"
+import { Play, Pause, SkipForward, RotateCcw, Settings, X } from "lucide-react"
+
+interface Phase {
+  name: string
+  totalSeconds: number
+  secondsRemaining: number
+  warningPoint: number
+}
+
+interface Phases {
+  presentation: Phase
+  questions: Phase
+}
+
+type PhaseType = "presentation" | "questions"
+type DisplayClass = "normal" | "warning" | "overtime"
+
+export default function PresentationTimer() {
+  const [isRunning, setIsRunning] = useState(false)
+  const [currentPhase, setCurrentPhase] = useState<PhaseType>("presentation")
+  const [showSettings, setShowSettings] = useState(false)
+  const [backgroundAlerts, setBackgroundAlerts] = useState(false)
+
+  // Configuración inicial
+  const [presentationMinutes, setPresentationMinutes] = useState(3)
+  const [presentationWarning, setPresentationWarning] = useState(1)
+  const [questionsMinutes, setQuestionsMinutes] = useState(3)
+  const [questionsWarning, setQuestionsWarning] = useState(1)
+
+  const [phases, setPhases] = useState<Phases>({
+    presentation: {
+      name: "Presentación",
+      totalSeconds: 180,
+      secondsRemaining: 180,
+      warningPoint: 60,
+    },
+    questions: {
+      name: "Preguntas",
+      totalSeconds: 180,
+      secondsRemaining: 180,
+      warningPoint: 60,
+    },
+  })
+
+  const timerInterval = useRef<NodeJS.Timeout | null>(null)
+
+  // Inicializar temporizador
+  const initTimer = () => {
+    const presentationSeconds = presentationMinutes * 60
+    const presentationWarningSeconds = presentationWarning * 60
+    const questionsSeconds = questionsMinutes * 60
+    const questionsWarningSeconds = questionsWarning * 60
+
+    setPhases({
+      presentation: {
+        name: "Presentación",
+        totalSeconds: presentationSeconds,
+        secondsRemaining: presentationSeconds,
+        warningPoint: presentationWarningSeconds,
+      },
+      questions: {
+        name: "Preguntas",
+        totalSeconds: questionsSeconds,
+        secondsRemaining: questionsSeconds,
+        warningPoint: questionsWarningSeconds,
+      },
+    })
+
+    setCurrentPhase("presentation")
+  }
+
+  // Formatear tiempo
+  const formatTime = (seconds: number): string => {
+    const isNegative = seconds < 0
+    const absSeconds = Math.abs(seconds)
+    const minutes = Math.floor(absSeconds / 60)
+    const secs = absSeconds % 60
+
+    const sign = isNegative ? "-" : ""
+    return sign + String(minutes).padStart(2, "0") + ":" + String(secs).padStart(2, "0")
+  }
+
+  // Determinar clase de visualización
+  const getDisplayClass = (seconds: number, warningPoint: number): DisplayClass => {
+    if (seconds < 0) {
+      return "overtime"
+    } else if (seconds <= warningPoint && warningPoint > 0) {
+      return "warning"
+    } else {
+      return "normal"
+    }
+  }
+
+  // Obtener tiempo total restante
+  const getTotalRemainingSeconds = (): number => {
+    return phases.presentation.secondsRemaining + phases.questions.secondsRemaining
+  }
+
+  // Determinar el estado del fondo
+  const getBackgroundState = (): DisplayClass => {
+    const totalRemainingSeconds = getTotalRemainingSeconds()
+    const currentPhaseData = phases[currentPhase]
+
+    if (totalRemainingSeconds < 0) {
+      return "overtime"
+    } else if (
+      currentPhaseData.secondsRemaining <= currentPhaseData.warningPoint &&
+      currentPhaseData.warningPoint > 0
+    ) {
+      return "warning"
+    } else {
+      return "normal"
+    }
+  }
+
+  // Iniciar temporizador
+  const startTimer = () => {
+    if (isRunning) return
+
+    setIsRunning(true)
+    timerInterval.current = setInterval(() => {
+      setPhases((prevPhases) => {
+        const newPhases = { ...prevPhases }
+        newPhases[currentPhase].secondsRemaining--
+
+        // Si estamos en presentación y llegamos a -1, pasar a preguntas
+        if (
+          currentPhase === "presentation" &&
+          newPhases.presentation.secondsRemaining === -1 &&
+          newPhases.questions.totalSeconds > 0
+        ) {
+          setCurrentPhase("questions")
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+
+        return newPhases
+      })
+    }, 1000)
+  }
+
+  // Pausar temporizador
+  const pauseTimer = () => {
+    if (!isRunning) return
+
+    setIsRunning(false)
+    if (timerInterval.current) {
+      clearInterval(timerInterval.current)
+    }
+  }
+
+  // Reiniciar temporizador
+  const resetTimer = () => {
+    pauseTimer()
+    initTimer()
+  }
+
+  // Siguiente fase
+  const nextPhase = () => {
+    if (currentPhase === "presentation") {
+      setCurrentPhase("questions")
+    }
+  }
+
+  // Efecto para aplicar el fondo cuando backgroundAlerts está habilitado
+  useEffect(() => {
+    if (backgroundAlerts) {
+      const backgroundState = getBackgroundState()
+      const body = document.body
+
+      // Remover clases anteriores
+      body.classList.remove("bg-warning", "bg-overtime", "bg-normal")
+
+      // Añadir clase correspondiente
+      body.classList.add(`bg-${backgroundState}`)
+    } else {
+      // Remover todas las clases de fondo si está deshabilitado
+      document.body.classList.remove("bg-warning", "bg-overtime", "bg-normal")
+    }
+
+    // Cleanup al desmontar
+    return () => {
+      document.body.classList.remove("bg-warning", "bg-overtime", "bg-normal")
+    }
+  }, [backgroundAlerts, phases, currentPhase])
+
+  // Inicializar al montar
+  useEffect(() => {
+    initTimer()
+    // Mostrar configuración inicialmente en desktop
+    if (window.innerWidth > 768) {
+      setShowSettings(true)
+    }
+  }, [])
+
+  // Reinicializar cuando cambien las configuraciones
+  useEffect(() => {
+    if (!isRunning) {
+      initTimer()
+    }
+  }, [presentationMinutes, presentationWarning, questionsMinutes, questionsWarning])
+
+  const totalRemainingSeconds = getTotalRemainingSeconds()
+  const backgroundState = getBackgroundState()
+
+  return (
+    <>
+      <style jsx global>{`
+        :root {
+          --apple-bg: #f5f5f7;
+          --apple-card: #ffffff;
+          --apple-text: #1d1d1f;
+          --apple-text-secondary: #86868b;
+          --apple-blue: #0071e3;
+          --apple-red: #ff3b30;
+          --apple-gray: #8e8e93;
+          --apple-warning: #ff9500;
+          --apple-overtime: #ff3b30;
+          --apple-shadow: rgba(0, 0, 0, 0.1);
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: var(--apple-bg);
-            color: var(--apple-text);
-            line-height: 1.5;
+          font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          background-color: var(--apple-bg);
+          color: var(--apple-text);
+          line-height: 1.5;
+          transition: background-color 0.3s ease;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body.bg-warning {
+          background-color: var(--apple-warning);
+        }
+        
+        body.bg-overtime {
+          background-color: var(--apple-overtime);
+        }
+        
+        body.bg-normal {
+          background-color: var(--apple-bg);
         }
         
         .container {
-            background-color: var(--apple-card);
-            border-radius: 20px;
-            box-shadow: 0 4px 24px var(--apple-shadow);
-            padding: 32px;
-            width: 90%;
-            max-width: 750px;
-            margin: 20px;
+          background-color: var(--apple-card);
+          border-radius: 20px;
+          box-shadow: 0 4px 24px var(--apple-shadow);
+          padding: 32px;
+          width: 90%;
+          max-width: 750px;
+          margin: 20px auto;
         }
         
-        h1 {
-            text-align: center;
-            font-weight: 600;
-            font-size: 28px;
-            margin-bottom: 24px;
-            color: var(--apple-text);
-        }
-        
-        h2 {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
-            margin: 24px 0 16px;
-            color: var(--apple-text);
-        }
-        
-        .total-timer {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-        
-        /* Contenedor para el timer principal, para poder añadir padding cuando cambia el fondo */
         .total-timer-container {
-            display: inline-block;
-            border-radius: 20px;
-            padding: 4px 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .total-timer-label {
-            font-size: 17px;
-            color: var(--apple-text-secondary);
-            margin-bottom: 8px;
-            font-weight: 500;
+          display: inline-block;
+          border-radius: 20px;
+          padding: 4px 20px;
+          transition: all 0.3s ease;
         }
         
         .total-timer-display {
-            font-size: 120px;
-            font-weight: 300; /* Más delgada, estilo Apple */
-            border-radius: 16px;
-            padding: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .phase-timers {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .phase-timer {
-            flex: 1;
-            text-align: center;
-            background-color: rgba(0,0,0,0.02);
-            border-radius: 16px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .phase-timer-label {
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--apple-text);
-            margin-bottom: 12px;
+          font-size: 120px;
+          font-weight: 300;
+          border-radius: 16px;
+          padding: 8px;
+          transition: all 0.3s ease;
         }
         
         .phase-timer-display {
-            font-size: 56px;
-            font-weight: 300; /* Más delgada, estilo Apple */
-            transition: all 0.3s ease;
-            border-radius: 10px;
-            padding: 4px 8px;
+          font-size: 56px;
+          font-weight: 300;
+          transition: all 0.3s ease;
+          border-radius: 10px;
+          padding: 4px 8px;
         }
         
-        /* Estados de timer */
         .normal {
-            color: var(--apple-text);
+          color: var(--apple-text);
         }
         
         .warning {
-            color: var(--apple-text);
-            background-color: var(--apple-warning);
+          color: var(--apple-text);
+          background-color: var(--apple-warning);
+          animation: pulse 1.5s infinite;
         }
         
         .overtime {
-            color: white;
-            background-color: var(--apple-overtime);
+          color: white;
+          background-color: var(--apple-overtime);
         }
         
-        /* Temporizador deshabilitado */
-        .phase-timer.disabled {
-            opacity: 0.5;
-            background-color: rgba(0,0,0,0.05);
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.02); }
+          100% { transform: scale(1); }
         }
         
-        .phase-timer.disabled .phase-timer-display {
-            color: var(--apple-text-secondary);
-        }
-        
-        /* Responsive design */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                width: 95%;
-                margin: 10px;
-            }
-            
-            .total-timer-display {
-                font-size: 80px;
-            }
-            
-            .phase-timers {
-                flex-direction: column;
-                gap: 16px;
-            }
-            
-            .phase-timer {
-                padding: 16px;
-            }
-            
-            .controls {
-                flex-wrap: wrap;
-            }
-            
-            button {
-                padding: 12px 16px;
-                min-width: 120px;
-            }
-            
-            .settings-row {
-                font-size: 14px;
-            }
-            
-            input {
-                padding: 10px;
-                font-size: 16px;
-            }
+          .container {
+            padding: 20px;
+            width: 95%;
+            margin: 10px auto;
+          }
+          
+          .total-timer-display {
+            font-size: 80px;
+          }
+          
+          .phase-timer-display {
+            font-size: 48px;
+          }
         }
         
         @media (max-width: 480px) {
-            .total-timer-display {
-                font-size: 64px;
-            }
-            
-            .phase-timer-display {
-                font-size: 48px;
-            }
-            
-            .settings-row {
-                grid-template-columns: 2fr 1fr 1fr;
-                font-size: 13px;
-            }
-            
-            input {
-                padding: 8px;
-                font-size: 14px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            h2 {
-                font-size: 18px;
-            }
+          .total-timer-display {
+            font-size: 64px;
+          }
+          
+          .phase-timer-display {
+            font-size: 48px;
+          }
         }
-        
-        /* Settings toggle */
-        .settings-toggle {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-        
-        .toggle-button {
-            background-color: transparent;
-            color: var(--apple-text-secondary);
-            border: 1px solid var(--apple-text-secondary);
-            border-radius: 16px;
-            padding: 8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin: 0 auto;
-        }
-        
-        .toggle-button:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-        
-        .settings-section {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease, margin 0.3s ease;
-            padding: 0;
-            margin: 0;
-            opacity: 0;
-        }
-        
-        .settings-section.visible {
-            max-height: 300px;
-            padding: 24px;
-            margin-bottom: 24px;
-            opacity: 1;
-            background-color: rgba(0,0,0,0.02);
-            border-radius: 16px;
-        }
-        
-        .settings-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 12px;
-            font-weight: 500;
-            color: var(--apple-text-secondary);
-            font-size: 15px;
-        }
-        
-        .settings-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
-            align-items: center;
-            font-size: 16px;
-        }
-        
-        input {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 10px;
-            width: 100%;
-            font-size: 17px;
-            background-color: white;
-            box-shadow: 0 1px 4px var(--apple-shadow);
-            color: var(--apple-text);
-            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            text-align: center;
-        }
-        
-        input:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.3);
-        }
-        
-        /* Controles */
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        
-        button {
-            padding: 14px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            flex: 1;
-            font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-        
-        #startBtn {
-            background-color: var(--apple-blue);
-            color: white;
-        }
-        
-        #startBtn:hover {
-            background-color: #0077ED;
-            transform: translateY(-1px);
-        }
-        
-        #pauseBtn {
-            background-color: var(--apple-gray);
-            color: white;
-        }
-        
-        #pauseBtn:hover:not(:disabled) {
-            background-color: #767680;
-            transform: translateY(-1px);
-        }
-        
-        #nextBtn {
-            background-color: var(--apple-gray);
-            color: white;
-        }
-        
-        #nextBtn:hover:not(:disabled) {
-            background-color: #767680;
-            transform: translateY(-1px);
-        }
-        
-        #resetBtn {
-            background-color: var(--apple-red);
-            color: white;
-        }
-        
-        #resetBtn:hover {
-            background-color: #FF453A;
-            transform: translateY(-1px);
-        }
-        
-        button:disabled {
-            background-color: #E1E1E6;
-            color: #AEAEB2;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        button:active:not(:disabled) {
-            transform: translateY(1px);
-        }
-        
-        /* Animaciones */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-        
-        .warning {
-            animation: pulse 1.5s infinite;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Temporizador para Presentaciones</h1>
-        
-        <!-- Total Timer Display -->
-        <div class="total-timer">
-            <div class="total-timer-label">Tiempo Total Restante</div>
-            <div class="total-timer-container" id="totalTimerContainer">
-                <div class="total-timer-display normal" id="totalTimer">06:00</div>
+      `}</style>
+
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="container">
+          <h1 className="text-center font-semibold text-3xl mb-6 text-gray-900">Temporizador para Presentaciones</h1>
+
+          {/* Total Timer Display */}
+          <div className="text-center mb-8">
+            <div className="text-gray-500 mb-2 text-lg font-medium">Tiempo Total Restante</div>
+            <div
+              className="total-timer-container"
+              style={{
+                backgroundColor:
+                  backgroundState === "overtime"
+                    ? "var(--apple-overtime)"
+                    : backgroundState === "warning"
+                      ? "var(--apple-warning)"
+                      : "transparent",
+              }}
+            >
+              <div className={`total-timer-display ${backgroundState}`}>{formatTime(totalRemainingSeconds)}</div>
             </div>
-        </div>
-        
-        <!-- Phase Timers Display -->
-        <div class="phase-timers">
-            <div class="phase-timer">
-                <div class="phase-timer-label">Tiempo de Presentación</div>
-                <div class="phase-timer-display normal" id="presentationTimer">03:00</div>
+          </div>
+
+          {/* Phase Timers Display */}
+          <div className="flex justify-between gap-5 mb-10 max-md:flex-col max-md:gap-4">
+            <div
+              className={`flex-1 text-center bg-gray-50 rounded-2xl p-5 transition-all duration-300 ${
+                phases.questions.totalSeconds === 0 ? "opacity-50" : ""
+              }`}
+            >
+              <div className="text-lg font-medium text-gray-900 mb-3">Tiempo de Presentación</div>
+              <div
+                className={`phase-timer-display ${getDisplayClass(phases.presentation.secondsRemaining, phases.presentation.warningPoint)}`}
+              >
+                {formatTime(phases.presentation.secondsRemaining)}
+              </div>
             </div>
-            
-            <div class="phase-timer">
-                <div class="phase-timer-label">Tiempo de Preguntas</div>
-                <div class="phase-timer-display normal" id="questionsTimer">03:00</div>
+
+            <div
+              className={`flex-1 text-center bg-gray-50 rounded-2xl p-5 transition-all duration-300 ${
+                phases.questions.totalSeconds === 0 ? "opacity-50" : ""
+              }`}
+            >
+              <div className="text-lg font-medium text-gray-900 mb-3">Tiempo de Preguntas</div>
+              <div
+                className={`phase-timer-display ${getDisplayClass(phases.questions.secondsRemaining, phases.questions.warningPoint)}`}
+              >
+                {formatTime(phases.questions.secondsRemaining)}
+              </div>
             </div>
-        </div>
-        
-        <!-- Settings Toggle Button -->
-        <div class="settings-toggle">
-            <button class="toggle-button" id="toggleSettings">Mostrar configuración</button>
-        </div>
-        
-        <!-- Settings Section -->
-        <div class="settings-section" id="settingsSection">
-            <h2>Configuración de Tiempos</h2>
-            
-            <div class="settings-header">
+          </div>
+
+          {/* Settings Toggle Button */}
+          <div className="flex justify-center mb-4">
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="flex items-center gap-2 bg-transparent text-gray-500 border border-gray-400 rounded-2xl px-4 py-2 text-sm cursor-pointer transition-all duration-200 hover:bg-gray-50"
+            >
+              {showSettings ? <X size={16} /> : <Settings size={16} />}
+              {showSettings ? "Ocultar configuración" : "Mostrar configuración"}
+            </button>
+          </div>
+
+          {/* Settings Section */}
+          {showSettings && (
+            <div
+              className="bg-gray-50 rounded-2xl p-6 mb-6 transition-all duration-300"
+              style={{
+                opacity: isRunning ? 0.5 : 1,
+              }}
+            >
+              <h2 className="text-center text-xl font-medium mb-6 text-gray-900">Configuración de Tiempos</h2>
+
+              <div className="grid grid-cols-3 gap-4 mb-3 font-medium text-gray-500 text-sm">
                 <div>Fase</div>
                 <div>Duración (min)</div>
                 <div>Alerta (min)</div>
-            </div>
-            
-            <div class="settings-row">
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 mb-4 items-center">
                 <div>Presentación</div>
                 <div>
-                    <input type="number" id="presentationMinutes" min="1" max="60" value="3">
+                  <input
+                    type="number"
+                    min="1"
+                    max="60"
+                    value={presentationMinutes}
+                    onChange={(e) => setPresentationMinutes(Number.parseInt(e.target.value) || 1)}
+                    disabled={isRunning}
+                    className="w-full p-3 border-none rounded-lg text-lg bg-white shadow-sm text-gray-900 text-center focus:outline-none focus:ring-3 focus:ring-blue-200 disabled:bg-gray-100 disabled:text-gray-400"
+                  />
                 </div>
                 <div>
-                    <input type="number" id="presentationWarning" min="0" max="60" value="1">
+                  <input
+                    type="number"
+                    min="0"
+                    max="60"
+                    value={presentationWarning}
+                    onChange={(e) => setPresentationWarning(Number.parseInt(e.target.value) || 0)}
+                    disabled={isRunning}
+                    className="w-full p-3 border-none rounded-lg text-lg bg-white shadow-sm text-gray-900 text-center focus:outline-none focus:ring-3 focus:ring-blue-200 disabled:bg-gray-100 disabled:text-gray-400"
+                  />
                 </div>
-            </div>
-            
-            <div class="settings-row">
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 mb-6 items-center">
                 <div>Preguntas</div>
                 <div>
-                    <input type="number" id="questionsMinutes" min="0" max="60" value="3">
+                  <input
+                    type="number"
+                    min="0"
+                    max="60"
+                    value={questionsMinutes}
+                    onChange={(e) => setQuestionsMinutes(Number.parseInt(e.target.value) || 0)}
+                    disabled={isRunning}
+                    className="w-full p-3 border-none rounded-lg text-lg bg-white shadow-sm text-gray-900 text-center focus:outline-none focus:ring-3 focus:ring-blue-200 disabled:bg-gray-100 disabled:text-gray-400"
+                  />
                 </div>
                 <div>
-                    <input type="number" id="questionsWarning" min="0" max="60" value="1">
+                  <input
+                    type="number"
+                    min="0"
+                    max="60"
+                    value={questionsWarning}
+                    onChange={(e) => setQuestionsWarning(Number.parseInt(e.target.value) || 0)}
+                    disabled={isRunning}
+                    className="w-full p-3 border-none rounded-lg text-lg bg-white shadow-sm text-gray-900 text-center focus:outline-none focus:ring-3 focus:ring-blue-200 disabled:bg-gray-100 disabled:text-gray-400"
+                  />
                 </div>
-            </div>
-        </div>
-        
-        <!-- Controls -->
-        <div class="controls">
-            <button id="startBtn">Iniciar</button>
-            <button id="pauseBtn" disabled>Pausar</button>
-            <button id="nextBtn" disabled>Siguiente Fase</button>
-            <button id="resetBtn">Reiniciar</button>
-        </div>
-    </div>
+              </div>
 
-    <script>
-        // Elementos del DOM
-        const totalTimerDisplay = document.getElementById('totalTimer');
-        const presentationTimerDisplay = document.getElementById('presentationTimer');
-        const questionsTimerDisplay = document.getElementById('questionsTimer');
-        const settingsSection = document.getElementById('settingsSection');
-        
-        const presentationMinutesInput = document.getElementById('presentationMinutes');
-        const presentationWarningInput = document.getElementById('presentationWarning');
-        const questionsMinutesInput = document.getElementById('questionsMinutes');
-        const questionsWarningInput = document.getElementById('questionsWarning');
-        
-        const startBtn = document.getElementById('startBtn');
-        const pauseBtn = document.getElementById('pauseBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const toggleSettingsBtn = document.getElementById('toggleSettings');
-        
-        // Variables del temporizador
-        let isRunning = false;
-        let timerInterval;
-        let currentPhase = 'presentation'; // 'presentation' o 'questions'
-        
-        // Configuración de fases
-        let phases = {
-            presentation: {
-                name: 'Presentación',
-                totalSeconds: 0,
-                secondsRemaining: 0,
-                warningPoint: 0,
-                display: presentationTimerDisplay
-            },
-            questions: {
-                name: 'Preguntas',
-                totalSeconds: 0,
-                secondsRemaining: 0,
-                warningPoint: 0,
-                display: questionsTimerDisplay
-            }
-        };
-        
-        // Inicializar temporizador con los valores de entrada
-        function initTimer() {
-            // Configurar fase de presentación
-            const presentationMinutes = parseInt(presentationMinutesInput.value) || 3;
-            const presentationWarningMinutes = parseInt(presentationWarningInput.value);
-            // Usar valor 0 para warningPoint si se ingresa 0 o valor inválido
-            const presentationWarningSeconds = isNaN(presentationWarningMinutes) ? 0 : presentationWarningMinutes * 60;
-            
-            phases.presentation.totalSeconds = presentationMinutes * 60;
-            phases.presentation.secondsRemaining = phases.presentation.totalSeconds;
-            phases.presentation.warningPoint = presentationWarningSeconds;
-            
-            // Configurar fase de preguntas
-            const questionsMinutes = parseInt(questionsMinutesInput.value);
-            // Permitir 0 minutos para fase de preguntas
-            const questionsSeconds = isNaN(questionsMinutes) ? 0 : questionsMinutes * 60;
-            
-            const questionsWarningMinutes = parseInt(questionsWarningInput.value);
-            // Usar valor 0 para warningPoint si se ingresa 0 o valor inválido
-            const questionsWarningSeconds = isNaN(questionsWarningMinutes) ? 0 : questionsWarningMinutes * 60;
-            
-            phases.questions.totalSeconds = questionsSeconds;
-            phases.questions.secondsRemaining = phases.questions.totalSeconds;
-            phases.questions.warningPoint = questionsWarningSeconds;
-            
-            // Aplicar estilo de deshabilitado si el tiempo de preguntas es 0
-            const questionsTimerContainer = document.querySelector('.phase-timer:nth-child(2)');
-            if (questionsSeconds === 0) {
-                questionsTimerContainer.classList.add('disabled');
-            } else {
-                questionsTimerContainer.classList.remove('disabled');
-            }
-            
-            // Establecer fase inicial
-            currentPhase = 'presentation';
-            
-            // Actualizar displays
-            updateTimerDisplays();
-        }
-        
-        // Obtener el tiempo total restante
-        function getTotalRemainingSeconds() {
-            return phases.presentation.secondsRemaining + phases.questions.secondsRemaining;
-        }
-        
-        // Formatear tiempo en formato MM:SS con signo negativo si es necesario
-        function formatTime(seconds) {
-            const isNegative = seconds < 0;
-            const absSeconds = Math.abs(seconds);
-            const minutes = Math.floor(absSeconds / 60);
-            const secs = absSeconds % 60;
-            
-            const sign = isNegative ? '-' : '';
-            return sign + String(minutes).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-        }
-        
-        // Determinar la clase de visualización basada en tiempo restante y punto de advertencia
-        function getDisplayClass(seconds, warningPoint) {
-            if (seconds < 0) {
-                return 'overtime';
-            } else if (seconds <= warningPoint && warningPoint > 0) {
-                return 'warning';
-            } else {
-                return 'normal';
-            }
-        }
-        
-        // Actualizar las visualizaciones de los temporizadores
-        function updateTimerDisplays() {
-            const presentationSeconds = phases.presentation.secondsRemaining;
-            const questionsSeconds = phases.questions.secondsRemaining;
-            const totalRemainingSeconds = getTotalRemainingSeconds();
-            
-            // Actualizar temporizador de presentación
-            presentationTimerDisplay.textContent = formatTime(presentationSeconds);
-            presentationTimerDisplay.className = 'phase-timer-display ' + 
-                getDisplayClass(presentationSeconds, phases.presentation.warningPoint);
-            
-            // Actualizar temporizador de preguntas
-            questionsTimerDisplay.textContent = formatTime(questionsSeconds);
-            questionsTimerDisplay.className = 'phase-timer-display ' + 
-                getDisplayClass(questionsSeconds, phases.questions.warningPoint);
-            
-            // Actualizar temporizador total
-            totalTimerDisplay.textContent = formatTime(totalRemainingSeconds);
-            
-            const totalTimerContainer = document.getElementById('totalTimerContainer');
-            
-            // Determinar la clase para el temporizador total
-            if (totalRemainingSeconds < 0) {
-                totalTimerDisplay.className = 'total-timer-display overtime';
-                totalTimerContainer.style.backgroundColor = 'var(--apple-overtime)';
-            } else if (
-                (currentPhase === 'presentation' && presentationSeconds <= phases.presentation.warningPoint && phases.presentation.warningPoint > 0) ||
-                (currentPhase === 'questions' && questionsSeconds <= phases.questions.warningPoint && phases.questions.warningPoint > 0)
-            ) {
-                totalTimerDisplay.className = 'total-timer-display warning';
-                totalTimerContainer.style.backgroundColor = 'var(--apple-warning)';
-            } else {
-                totalTimerDisplay.className = 'total-timer-display normal';
-                totalTimerContainer.style.backgroundColor = 'transparent';
-            }
-        }
-        
-        // Cambiar a la siguiente fase
-        function nextPhase() {
-            if (currentPhase === 'presentation') {
-                currentPhase = 'questions';
-                updateTimerDisplays();
-            }
-        }
-        
-        // Function to toggle settings visibility
-        function toggleSettings() {
-            const settingsSection = document.getElementById('settingsSection');
-            
-            if (settingsSection.classList.contains('visible')) {
-                settingsSection.classList.remove('visible');
-                toggleSettingsBtn.textContent = 'Mostrar configuración';
-            } else {
-                settingsSection.classList.add('visible');
-                toggleSettingsBtn.textContent = 'Ocultar configuración';
-            }
-        }
-        
-        // Iniciar el temporizador
-        function startTimer() {
-            if (isRunning) return;
-            
-            isRunning = true;
-            timerInterval = setInterval(() => {
-                // Decrementar solo la fase actual
-                phases[currentPhase].secondsRemaining--;
-                
-                // Si estamos en presentación y llegamos a 0, pasar automáticamente a preguntas
-                // Solo si la fase de preguntas tiene duración mayor a 0
-                if (currentPhase === 'presentation' && 
-                    phases.presentation.secondsRemaining === -1 &&
-                    phases.questions.totalSeconds > 0) {
-                    nextPhase();
-                }
-                
-                updateTimerDisplays();
-            }, 1000);
-            
-            // Reducir opacidad de las configuraciones
-            if (settingsSection.classList.contains('visible')) {
-                settingsSection.style.opacity = '0.5';
-            }
-            
-            // Actualizar botones
-            startBtn.disabled = true;
-            pauseBtn.disabled = false;
-            nextBtn.disabled = false;
-            presentationMinutesInput.disabled = true;
-            presentationWarningInput.disabled = true;
-            questionsMinutesInput.disabled = true;
-            questionsWarningInput.disabled = true;
-        }
-        
-        // Pausar el temporizador
-        function pauseTimer() {
-            if (!isRunning) return;
-            
-            isRunning = false;
-            clearInterval(timerInterval);
-            
-            // Actualizar botones
-            startBtn.disabled = false;
-            pauseBtn.disabled = true;
-        }
-        
-        // Reiniciar el temporizador
-        function resetTimer() {
-            pauseTimer();
-            initTimer();
-            
-            // Restaurar opacidad de las configuraciones
-            if (settingsSection.classList.contains('visible')) {
-                settingsSection.style.opacity = '1';
-            }
-            
-            // Actualizar botones
-            startBtn.disabled = false;
-            pauseBtn.disabled = true;
-            nextBtn.disabled = true;
-            presentationMinutesInput.disabled = false;
-            presentationWarningInput.disabled = false;
-            questionsMinutesInput.disabled = false;
-            questionsWarningInput.disabled = false;
-        }
-        
-        // Event listeners
-        startBtn.addEventListener('click', startTimer);
-        pauseBtn.addEventListener('click', pauseTimer);
-        nextBtn.addEventListener('click', nextPhase);
-        resetBtn.addEventListener('click', resetTimer);
-        toggleSettingsBtn.addEventListener('click', toggleSettings);
-        
-        // Event listeners para reinicializar al cambiar configuración
-        presentationMinutesInput.addEventListener('change', initTimer);
-        presentationWarningInput.addEventListener('change', initTimer);
-        questionsMinutesInput.addEventListener('change', initTimer);
-        questionsWarningInput.addEventListener('change', initTimer);
-        
-        // También escuchar eventos de input para actualización en tiempo real
-        questionsMinutesInput.addEventListener('input', function() {
-            const questionsMinutes = parseInt(this.value);
-            const questionsSeconds = isNaN(questionsMinutes) ? 0 : questionsMinutes * 60;
-            
-            const questionsTimerContainer = document.querySelector('.phase-timer:nth-child(2)');
-            if (questionsSeconds === 0) {
-                questionsTimerContainer.classList.add('disabled');
-            } else {
-                questionsTimerContainer.classList.remove('disabled');
-            }
-        });
-        
-        // Inicializar al cargar la página
-        initTimer();
-        
-        // Mostrar configuración inicialmente en dispositivos de escritorio, ocultar en móviles
-        if (window.innerWidth > 768) {
-            toggleSettings();
-        }
-    </script>
-</body>
-</html>
+              {/* Background Alerts Option */}
+              <div className="border-t border-gray-200 pt-4">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={backgroundAlerts}
+                    onChange={(e) => setBackgroundAlerts(e.target.checked)}
+                    className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                  />
+                  <span className="text-gray-900 font-medium">Cambiar color de fondo de la página durante alertas</span>
+                </label>
+                <p className="text-sm text-gray-500 mt-1 ml-8">
+                  Cuando esté habilitado, el fondo de toda la página cambiará a naranja (alerta) o rojo (tiempo agotado)
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Controls */}
+          <div className="flex justify-between gap-3 max-md:flex-wrap">
+            <button
+              onClick={startTimer}
+              disabled={isRunning}
+              className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded-lg text-lg font-medium cursor-pointer transition-all duration-200 bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:transform-none active:translate-y-0.5 max-md:min-w-[120px]"
+            >
+              <Play size={20} />
+              Iniciar
+            </button>
+
+            <button
+              onClick={pauseTimer}
+              disabled={!isRunning}
+              className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded-lg text-lg font-medium cursor-pointer transition-all duration-200 bg-gray-600 text-white hover:bg-gray-700 hover:-translate-y-0.5 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:transform-none active:translate-y-0.5 max-md:min-w-[120px]"
+            >
+              <Pause size={20} />
+              Pausar
+            </button>
+
+            <button
+              onClick={nextPhase}
+              disabled={!isRunning}
+              className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded-lg text-lg font-medium cursor-pointer transition-all duration-200 bg-gray-600 text-white hover:bg-gray-700 hover:-translate-y-0.5 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:transform-none active:translate-y-0.5 max-md:min-w-[120px]"
+            >
+              <SkipForward size={20} />
+              Siguiente
+            </button>
+
+            <button
+              onClick={resetTimer}
+              className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded-lg text-lg font-medium cursor-pointer transition-all duration-200 bg-red-600 text-white hover:bg-red-700 hover:-translate-y-0.5 active:translate-y-0.5 max-md:min-w-[120px]"
+            >
+              <RotateCcw size={20} />
+              Reiniciar
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
