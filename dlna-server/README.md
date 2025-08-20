@@ -14,7 +14,7 @@ Un servidor DLNA ligero y controlable para Raspberry Pi que permite streaming de
 
 ## Instalación Rápida
 
-1. **Descargar e instalar:**
+1. **Descargar e instalar: NO FUCNIONA AUN**
 ```bash
 wget https://sergiomajluf.github.io/dlna-server/main.zip
 unzip main.zip
@@ -23,9 +23,9 @@ chmod +x install.sh
 ./install.sh
 ```
 
-O instalar directamente:
+**O instalar directamente: ESTE SI**
 ```bash
-curl -sSL https://https://sergiomajluf.github.io/dlna-server/install.sh | bash
+curl -sSL https:sergiomajluf.github.io/dlna-server/install_script.sh | bash
 ```
 
 2. **El script de instalación se encarga de:**
