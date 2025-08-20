@@ -1,0 +1,25 @@
+{
+  "name": "uss_claustro",
+  "version": "0.0.1",
+  "description": "Repo de trabajo para visualizaciones de Claustro USS",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergiomajluf/uss_claustro.git"
+  },
+  "author": "sergio majluf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergiomajluf/uss_claustro/issues"
+  },
+  "homepage": "https://github.com/sergiomajluf/uss_claustro#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
