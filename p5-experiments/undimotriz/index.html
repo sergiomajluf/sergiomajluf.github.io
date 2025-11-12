@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transformación de Energía del Océano</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #003366;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+    }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 51, 102, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .input-box {
+      background-color: rgba(0, 64, 128, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+    }
+    .input-box h2 {
+      margin-top: 0;
+      color: #00ccff;
+      font-size: 28px;
+      text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+    }
+    .input-box p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .input-box input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #003366;
+      font-size: 16px;
+      text-align: center;
+      display: block; /* Asegura que se muestre como bloque */
+      transition: all 0.15s ease-in-out;
+    }
+    /* Estilos para inputs enfocados/activos */
+    .input-box input:focus,
+    .input-box input:active {
+      outline: none;
+      border: 2px solid #00ccff;
+      box-shadow: 0 0 18px rgba(0, 204, 255, 0.45);
+      transform: translateY(-1px);
+      background-color: #ffffff;
+      color: #003366;
+    }
+    .input-box button {
+      background-color: #00ccff;
+      color: #003366;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 20px;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .input-box button:hover {
+      background-color: #80e5ff;
+      transform: scale(1.05);
+    }
+    .instruction-list {
+      text-align: left;
+      padding-left: 20px;
+    }
+    .instruction-list li {
+      margin-bottom: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+    
+    /* Estilos para los paneles de juego */
+    .game-ui {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+    }
+    
+    .energy-meter {
+      width: 400px;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .energy-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff5733 0%, #ffcc00 50%, #46cc71 100%);
+      border-radius: 15px;
+      transition: width 0.2s;
+    }
+    
+    .info-panel {
+      display: flex;
+      justify-content: space-between;
+      width: 600px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
+    
+    .info-item {
+      text-align: center;
+    }
+    
+    .status {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 10px 20px;
+      z-index: 5;
+    }
+    
+    /* Instrucciones ESC */
+    .esc-hint {
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Div para la pantalla de entrada de nombres -->
+  <div id="name-input" class="overlay">
+    <div class="input-box">
+      <h2>Transformación de Energía del Océano</h2>
+      <p>Bienvenido al simulador de transformación de energía undimotriz. Ingresa los nombres de los jugadores para comenzar.</p>
+      <input type="text" id="player1-name" placeholder="Nombre del Jugador 1" value="Jugador A">
+      <input type="text" id="player2-name" placeholder="Nombre del Jugador 2" value="Jugador B">
+      <button id="start-button">Comenzar</button>
+      <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+    </div>
+  </div>
+  
+  <!-- Div para las instrucciones iniciales -->
+  <div id="instructions" class="overlay hidden">
+    <div class="input-box">
+      <h2>Cómo Jugar</h2>
+      <ul class="instruction-list">
+        <li>Mueve el mouse lo más rápido posible <strong>dentro del círculo</strong></li>
+        <li>Si sales del círculo, perderás energía</li>
+        <li>El movimiento genera energía que agita las olas del mar</li>
+        <li>Hay 3 etapas de dificultad con círculos más pequeños:</li>
+        <li>- Etapa 1: 12 segundos (círculo grande)</li>
+        <li>- Etapa 2: 8 segundos (círculo mediano)</li>
+        <li>- Etapa 3: 5 segundos (círculo pequeño)</li>
+        <li>El jugador con mayor puntaje total gana</li>
+      </ul>
+      <div id="first-player-turn"></div>
+      <button id="begin-game">¡Comenzar!</button>
+      <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+    </div>
+  </div>
+  
+  <!-- Div para interludios entre etapas -->
+  <div id="interlude" class="overlay hidden">
+    <div class="input-box">
+      <h2 id="interlude-title">Preparando siguiente etapa</h2>
+      <p id="interlude-text">Prepárate para la siguiente etapa. El círculo será más pequeño.</p>
+      <div id="interlude-player"></div>
+      <button id="continue-button">Continuar</button>
+      <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+    </div>
+  </div>
+  
+  <!-- Div para resultados de etapa -->
+  <div id="stage-results" class="overlay hidden">
+    <div class="input-box">
+      <h2 id="results-player">Resultados de Jugador</h2>
+      <h3 id="results-stage">Etapa</h3>
+      <div id="score-display" style="font-size: 36px; margin: 20px 0;"></div>
+      <p>puntos</p>
+      <div id="accumulated-score">Puntaje acumulado: 0</div>
+      <button id="next-turn">Siguiente Turno</button>
+      <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+    </div>
+  </div>
+  
+  <!-- Div para resultados finales -->
+  <div id="final-results" class="overlay hidden">
+    <div class="input-box">
+      <h2>Resultados Finales</h2>
+      <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="padding: 8px; border-bottom: 1px solid #00ccff;">Jugador</th>
+            <th style="padding: 8px; border-bottom: 1px solid #00ccff;">Etapa 1</th>
+            <th style="padding: 8px; border-bottom: 1px solid #00ccff;">Etapa 2</th>
+            <th style="padding: 8px; border-bottom: 1px solid #00ccff;">Etapa 3</th>
+            <th style="padding: 8px; border-bottom: 1px solid #00ccff;">Total</th>
+          </tr>
+        </thead>
+        <tbody id="results-table">
+          <!-- La tabla se llenará con JavaScript -->
+        </tbody>
+      </table>
+      <div id="winner-announcement" style="font-size: 24px; margin: 15px 0;"></div>
+      <button id="play-again">Jugar de Nuevo</button>
+      <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+    </div>
+  </div>
+  
+  <!-- Interfaz de juego (se muestra durante el juego) -->
+  <div id="game-ui" class="game-ui hidden">
+    <div class="status" id="status-indicator">DENTRO</div>
+    <div class="energy-meter">
+      <div class="energy-fill" id="energy-bar"></div>
+    </div>
+    <div class="info-panel">
+      <div class="info-item" id="player-display">Jugador A</div>
+      <div class="info-item" id="stage-display">Etapa 1</div>
+      <div class="info-item" id="speed-display">Velocidad: 0</div>
+      <div class="info-item" id="score-counter">Puntos: 0</div>
+      <div class="info-item" id="time-display">12</div>
+    </div>
+    <div class="esc-hint">Presiona ESC en cualquier momento para volver al inicio</div>
+  </div>
+  
+  <script>
+    // Definición global del juego
+    let game;
+    
+    // Helper: focus & select the player1 input when appropriate
+    function focusPlayer1() {
+      const el = document.getElementById('player1-name');
+      if (el) {
+        // Small timeout helps when focusing right after DOM changes
+        setTimeout(() => {
+          el.focus();
+          try { el.select(); } catch (e) { /* some browsers may not allow select */ }
+        }, 10);
+      }
+    }
+
+    // Focus on load
+    window.addEventListener('load', focusPlayer1);
+    
+    // Add click handlers to ensure focus when clicking on input fields
+    window.addEventListener('load', () => {
+      const input1 = document.getElementById('player1-name');
+      const input2 = document.getElementById('player2-name');
+      
+      if (input1) {
+        input1.addEventListener('click', () => {
+          input1.focus();
+          try { input1.select(); } catch (e) { /* ignore */ }
+        });
+      }
+      
+      if (input2) {
+        input2.addEventListener('click', () => {
+          input2.focus();
+          try { input2.select(); } catch (e) { /* ignore */ }
+        });
+      }
+    });
+    
+    // Iniciar p5.js
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      
+      // Inicializar el juego
+      game = new OceanEnergyGame();
+      
+      // Configurar eventos de botones
+      document.getElementById('start-button').addEventListener('click', () => {
+        // Obtener nombres de jugadores
+        let player1 = document.getElementById('player1-name').value || "Jugador A";
+        let player2 = document.getElementById('player2-name').value || "Jugador B";
+        
+        // Establecer nombres
+        game.setPlayerNames(player1, player2);
+        
+        // Ocultar pantalla de nombres y mostrar instrucciones
+        document.getElementById('name-input').classList.add('hidden');
+        document.getElementById('first-player-turn').textContent = `Turno de ${player1}`;
+        document.getElementById('instructions').classList.remove('hidden');
+      });
+      
+      document.getElementById('begin-game').addEventListener('click', () => {
+        // Ocultar instrucciones y comenzar el juego
+        document.getElementById('instructions').classList.add('hidden');
+        document.getElementById('game-ui').classList.remove('hidden');
+        game.startGame();
+      });
+      
+      document.getElementById('continue-button').addEventListener('click', () => {
+        // Continuar con la siguiente etapa
+        document.getElementById('interlude').classList.add('hidden');
+        document.getElementById('game-ui').classList.remove('hidden');
+        game.resumeGame();
+      });
+      
+      document.getElementById('next-turn').addEventListener('click', () => {
+        // Avanzar al siguiente turno
+        document.getElementById('stage-results').classList.add('hidden');
+        
+        if (game.advanceToNextTurn()) {
+          // Si hay un siguiente turno, mostrar interfaz de juego
+          document.getElementById('game-ui').classList.remove('hidden');
+        } else {
+          // Si el juego terminó, mostrar resultados finales
+          document.getElementById('final-results').classList.remove('hidden');
+        }
+      });
+      
+      document.getElementById('play-again').addEventListener('click', () => {
+        // Reiniciar el juego
+        document.getElementById('final-results').classList.add('hidden');
+        document.getElementById('name-input').classList.remove('hidden');
+        game.reset();
+      });
+      
+      // Manejar evento de tecla ESC
+      document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+          game.restartGame();
+        }
+      });
+    }
+    
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+      if (game) {
+        game.updateCanvasSize();
+      }
+    }
+    
+    // Clase principal del juego
+    class OceanEnergyGame {
+      constructor() {
+        // Estados del juego
+        this.gameState = "waiting"; // waiting, playing, paused, ended
+        
+        // Información de jugadores
+        this.playerNames = ["Jugador A", "Jugador B"];
+        this.currentPlayer = 0;
+        this.currentStage = 0;
+        
+        // Puntuaciones
+        this.scores = [[0, 0, 0], [0, 0, 0]]; // [jugador][etapa]
+        this.totalScores = [0, 0];
+        
+        // Tiempos por etapa
+        this.stageTimes = [12, 8, 5]; // Segundos por etapa (ajustados)
+        this.timeLeft = this.stageTimes[0];
+        this.gameTimer = null;
+        
+        // Tamaños de círculo por etapa
+        this.circleSizes = [200, 120, 60]; // Radios
+        
+        // Variables de juego
+        this.circleX = width / 2;
+        this.circleY = height * 0.4;
+        this.circleRadius = this.circleSizes[0];
+        this.isInsideCircle = false;
+        
+        // Detección de movimiento
+        this.lastMouseX = 0;
+        this.lastMouseY = 0;
+        this.mouseSpeeds = Array(10).fill(0); // Historial de velocidades
+        this.currentSpeed = 0;
+        
+        // Energía
+        this.energyLevel = 0;
+        this.maxEnergy = 100;
+        this.currentScore = 0;
+        
+        // Océano
+        this.waves = [];
+        this.waveCount = 6;
+        this.baseWaveSpeed = 0.05; // Velocidad base de las olas
+        this.initWaves();
+        
+        // Partículas
+        this.particles = [];
+        this.foamParticles = [];
+      }
+      
+      updateCanvasSize() {
+        // Actualizar posición del círculo cuando cambia el tamaño de ventana
+        this.circleX = width / 2;
+        this.circleY = height * 0.4;
+        
+        // Reinicializar olas
+        this.initWaves();
+      }
+      
+      setPlayerNames(player1, player2) {
+        this.playerNames = [player1, player2];
+      }
+      
+      initWaves() {
+        this.waves = [];
+        for (let i = 0; i < this.waveCount; i++) {
+          this.waves.push({
+            y: height * (0.65 + i * 0.05),
+            amplitude: 25 - i * 3.5,
+            frequency: 0.01 + i * 0.002,
+            speed: this.baseWaveSpeed - i * 0.005, // Velocidad relativa a la profundidad
+            phase: random(TWO_PI),
+            baseSpeed: this.baseWaveSpeed - i * 0.005 // Guardamos la velocidad base
+          });
+        }
+      }
+      
+      restartGame() {
+        // Limpiar temporizador
+        if (this.gameTimer) {
+          clearInterval(this.gameTimer);
+          this.gameTimer = null;
+        }
+        
+        // Ocultar todas las pantallas
+        document.getElementById('game-ui').classList.add('hidden');
+        document.getElementById('instructions').classList.add('hidden');
+        document.getElementById('interlude').classList.add('hidden');
+        document.getElementById('stage-results').classList.add('hidden');
+        document.getElementById('final-results').classList.add('hidden');
+        
+        // Mostrar pantalla de entrada de nombres
+        document.getElementById('name-input').classList.remove('hidden');
+        // Asegurarnos de que el input principal tenga foco y esté seleccionado
+        focusPlayer1();
+
+        // Reiniciar el juego
+        this.reset();
+      }
+      
+      startGame() {
+        // Iniciar el juego para el primer jugador y etapa
+        this.gameState = "playing";
+        this.currentPlayer = 0;
+        this.currentStage = 0;
+        this.timeLeft = this.stageTimes[this.currentStage];
+        this.circleRadius = this.circleSizes[this.currentStage];
+        this.energyLevel = 0;
+        this.currentScore = 0;
+        
+        // Actualizar UI
+        this.updateUI();
+        
+        // Iniciar temporizador
+        this.startTimer();
+      }
+      
+      resumeGame() {
+        // Reanudar juego después de un interludio
+        this.gameState = "playing";
+        this.timeLeft = this.stageTimes[this.currentStage];
+        this.circleRadius = this.circleSizes[this.currentStage];
+        this.energyLevel = 0;
+        this.currentScore = 0;
+        
+        // Actualizar UI
+        this.updateUI();
+        
+        // Iniciar temporizador
+        this.startTimer();
+      }
+      
+      startTimer() {
+        // Limpiar timer anterior si existe
+        if (this.gameTimer) {
+          clearInterval(this.gameTimer);
+        }
+        
+        // Iniciar nuevo temporizador
+        this.gameTimer = setInterval(() => {
+          this.timeLeft--;
+          document.getElementById('time-display').textContent = this.timeLeft;
+          
+          if (this.timeLeft <= 0) {
+            this.endStage();
+          }
+        }, 1000);
+      }
+      
+      endStage() {
+        // Detener temporizador
+        clearInterval(this.gameTimer);
+        
+        // Guardar puntaje de la etapa
+        this.scores[this.currentPlayer][this.currentStage] = Math.floor(this.currentScore);
+        
+        // Actualizar puntaje total
+        this.totalScores[this.currentPlayer] = 0;
+        for (let i = 0; i < this.scores[this.currentPlayer].length; i++) {
+          this.totalScores[this.currentPlayer] += this.scores[this.currentPlayer][i];
+        }
+        
+        // Mostrar resultados de la etapa
+        this.showStageResults();
+        
+        // Pausar el juego
+        this.gameState = "paused";
+      }
+      
+      showStageResults() {
+        // Ocultar UI del juego
+        document.getElementById('game-ui').classList.add('hidden');
+        
+        // Mostrar resultados de etapa
+        let resultsPlayer = document.getElementById('results-player');
+        let resultsStage = document.getElementById('results-stage');
+        let scoreDisplay = document.getElementById('score-display');
+        let accumulatedScore = document.getElementById('accumulated-score');
+        
+        resultsPlayer.textContent = `Resultados de ${this.playerNames[this.currentPlayer]}`;
+        resultsStage.textContent = `Etapa ${this.currentStage + 1}`;
+        scoreDisplay.textContent = Math.floor(this.currentScore);
+        accumulatedScore.textContent = `Puntaje acumulado: ${this.totalScores[this.currentPlayer]}`;
+        
+        document.getElementById('stage-results').classList.remove('hidden');
+      }
+      
+      advanceToNextTurn() {
+        if (this.currentPlayer === 0) {
+          // Cambiar al segundo jugador, misma etapa
+          this.currentPlayer = 1;
+          this.showInterlude(`Turno de ${this.playerNames[1]}`, `Prepárate para la Etapa ${this.currentStage + 1}`);
+          return true;
+        } else {
+          // Ambos jugadores completaron la etapa
+          this.currentPlayer = 0;
+          this.currentStage++;
+          
+          if (this.currentStage < 3) {
+            // Hay más etapas
+            this.showInterlude(`Turno de ${this.playerNames[0]}`, `Prepárate para la Etapa ${this.currentStage + 1}`);
+            return true;
+          } else {
+            // Juego completado
+            this.gameState = "ended";
+            this.showFinalResults();
+            return false;
+          }
+        }
+      }
+      
+      showInterlude(player, message) {
+        document.getElementById('interlude-title').textContent = "Siguiente Turno";
+        document.getElementById('interlude-text').textContent = message;
+        document.getElementById('interlude-player').textContent = player;
+        document.getElementById('interlude').classList.remove('hidden');
+      }
+      
+      showFinalResults() {
+        // Construir tabla de resultados
+        let tableHTML = "";
+        
+        for (let i = 0; i < 2; i++) {
+          let playerColor = i === 0 ? "#46cc71" : "#00aaff";
+          
+          tableHTML += `<tr style="color: ${playerColor}">`;
+          tableHTML += `<td style="padding: 8px;">${this.playerNames[i]}</td>`;
+          
+          // Puntuaciones por etapa
+          for (let j = 0; j < 3; j++) {
+            tableHTML += `<td style="padding: 8px;">${this.scores[i][j]}</td>`;
+          }
+          
+          // Total
+          tableHTML += `<td style="padding: 8px; font-weight: bold;">${this.totalScores[i]}</td>`;
+          tableHTML += "</tr>";
+        }
+        
+        document.getElementById('results-table').innerHTML = tableHTML;
+        
+        // Determinar ganador
+        let winnerAnnouncement = document.getElementById('winner-announcement');
+        
+        if (this.totalScores[0] > this.totalScores[1]) {
+          winnerAnnouncement.textContent = `¡${this.playerNames[0]} es el ganador!`;
+          winnerAnnouncement.style.color = "#46cc71";
+        } else if (this.totalScores[1] > this.totalScores[0]) {
+          winnerAnnouncement.textContent = `¡${this.playerNames[1]} es el ganador!`;
+          winnerAnnouncement.style.color = "#00aaff";
+        } else {
+          winnerAnnouncement.textContent = "¡Empate!";
+          winnerAnnouncement.style.color = "#ffffff";
+        }
+        
+        document.getElementById('final-results').classList.remove('hidden');
+      }
+      
+      updateUI() {
+        // Actualizar interfaz del juego
+        document.getElementById('player-display').textContent = this.playerNames[this.currentPlayer];
+        document.getElementById('stage-display').textContent = `Etapa ${this.currentStage + 1}`;
+        document.getElementById('speed-display').textContent = `Velocidad: ${Math.floor(this.currentSpeed)}`;
+        document.getElementById('score-counter').textContent = `Puntos: ${Math.floor(this.currentScore)}`;
+        document.getElementById('time-display').textContent = this.timeLeft;
+        document.getElementById('energy-bar').style.width = `${this.energyLevel}%`;
+      }
+      
+      update() {
+        if (this.gameState !== "playing") return;
+        
+        // Calcular velocidad del mouse
+        let mouseSpeed = dist(mouseX, mouseY, this.lastMouseX, this.lastMouseY);
+        this.lastMouseX = mouseX;
+        this.lastMouseY = mouseY;
+        
+        // Actualizar historial de velocidades
+        this.mouseSpeeds.push(mouseSpeed);
+        this.mouseSpeeds.shift();
+        
+        // Calcular velocidad promedio
+        let sum = 0;
+        for (let speed of this.mouseSpeeds) {
+          sum += speed;
+        }
+        this.currentSpeed = sum / this.mouseSpeeds.length;
+        
+        // Comprobar si está dentro del círculo
+        this.isInsideCircle = dist(mouseX, mouseY, this.circleX, this.circleY) < this.circleRadius;
+        
+        // Actualizar estado indicador
+        let statusIndicator = document.getElementById('status-indicator');
+        if (this.isInsideCircle) {
+          statusIndicator.textContent = "DENTRO";
+          statusIndicator.style.color = "#46cc71";
+        } else {
+          statusIndicator.textContent = "FUERA";
+          statusIndicator.style.color = "#ff5733";
+        }
+        
+        // Actualizar energía
+        if (this.isInsideCircle) {
+          // Dentro del círculo: ganar energía basada en la velocidad
+          let energyGain = map(this.currentSpeed, 0, 50, 0, 1);
+          this.energyLevel += energyGain;
+          this.energyLevel = constrain(this.energyLevel, 0, this.maxEnergy);
+          
+          // Añadir puntuación
+          this.currentScore += energyGain * 10;
+          
+          // Crear partículas si hay movimiento suficiente
+          if (this.currentSpeed > 10 && random() < 0.3) {
+            this.createEnergyParticle();
+          }
+        } else {
+          // Fuera del círculo: perder energía
+          this.energyLevel -= 1.5;
+          this.energyLevel = constrain(this.energyLevel, 0, this.maxEnergy);
+        }
+        
+        // Actualizar olas
+        this.updateWaves();
+        
+        // Actualizar partículas
+        this.updateParticles();
+        
+        // Actualizar UI
+        this.updateUI();
+      }
+      
+      updateWaves() {
+        // Factor de energía (0 a 1)
+        const energyFactor = this.energyLevel / this.maxEnergy;
+        
+        // Actualizar fases de las olas basado en energía
+        for (let wave of this.waves) {
+          // Ajustar velocidad en función de la energía (de 1x a 5x más rápido)
+          const speedMultiplier = 1 + energyFactor * 4;
+          
+          // Aplicar velocidad ajustada
+          wave.phase += wave.baseSpeed * speedMultiplier;
+        }
+        
+        // Crear espuma ocasionalmente si hay suficiente energía
+        if (this.energyLevel > 50 && random() < energyFactor * 0.2) {
+          this.createFoamParticle();
+        }
+      }
+      
+      createEnergyParticle() {
+        // Crear partícula de energía cerca del cursor
+        const angle = random(TWO_PI);
+        const distance = random(10, 30);
+        
+        const px = mouseX + cos(angle) * distance;
+        const py = mouseY + sin(angle) * distance;
+        
+        // Color basado en el jugador actual
+        const particleColor = this.currentPlayer === 0 ? 
+          color(70, 220, 130, 200) : color(70, 150, 230, 200);
+        
+        this.particles.push({
+          x: px,
+          y: py,
+          vx: cos(angle) * random(2, 5),
+          vy: sin(angle) * random(2, 5),
+          size: random(4, 10),
+          color: particleColor,
+          life: 40 + random() * 20
+        });
+      }
+      
+      createFoamParticle() {
+        // Crear partícula de espuma en las olas
+        const x = random(width);
+        const waveIndex = 0; // Ola superior
+        const wave = this.waves[waveIndex];
+        
+        // Calcular altura de la ola en esta posición x
+        let y = wave.y + sin(x * wave.frequency + wave.phase) * wave.amplitude;
+        
+        this.foamParticles.push({
+          x,
+          y,
+          vx: random(-1, 1),
+          vy: random(-2, -0.5),
+          size: random(3, 8),
+          life: 30 + random() * 30
+        });
+      }
+      
+      updateParticles() {
+        // Actualizar partículas de energía
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          let p = this.particles[i];
+          
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.95;
+          p.vy *= 0.95;
+          p.life--;
+          
+          if (p.life <= 0) {
+            this.particles.splice(i, 1);
+          }
+        }
+        
+        // Actualizar partículas de espuma
+        for (let i = this.foamParticles.length - 1; i >= 0; i--) {
+          let p = this.foamParticles[i];
+          
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life--;
+          
+          if (p.life <= 0) {
+            this.foamParticles.splice(i, 1);
+          }
+        }
+      }
+      
+      draw() {
+        background(0, 30, 60);
+        
+        // Dibujar cielo (degradado)
+        drawSky();
+        
+        // Dibujar océano
+        this.drawOcean();
+        
+        // Dibujar círculo de juego si está activo
+        if (this.gameState === "playing") {
+          this.drawGameCircle();
+        }
+      }
+      
+      drawGameCircle() {
+        // Dibujar círculo de juego
+        noFill();
+        
+        // Efecto de brillo exterior
+        for (let i = 4; i > 0; i--) {
+          let alpha = map(i, 1, 4, 255, 50);
+          
+          if (this.isInsideCircle) {
+            stroke(70, 220, 130, alpha); // Verde
+          } else {
+            stroke(255, 80, 80, alpha); // Rojo
+          }
+          
+          strokeWeight(i * 1.5);
+          ellipse(this.circleX, this.circleY, this.circleRadius * 2 + i * 6);
+        }
+        
+        // Círculo principal
+        if (this.isInsideCircle) {
+          stroke(100, 255, 150); // Verde brillante
+        } else {
+          stroke(255, 100, 80); // Rojo brillante
+        }
+        strokeWeight(3);
+        ellipse(this.circleX, this.circleY, this.circleRadius * 2);
+      }
+      
+      drawOcean() {
+        const energyFactor = this.energyLevel / this.maxEnergy;
+        
+        // Dibujar capas de olas (desde el fondo)
+        for (let i = this.waves.length - 1; i >= 0; i--) {
+          const wave = this.waves[i];
+          
+          // Color según profundidad
+          const alpha = map(i, 0, this.waves.length - 1, 255, 100);
+          let waveColor;
+          
+          if (i === 0) { // Ola superficial
+            waveColor = color(0, 150, 240, alpha);
+          } else { // Olas profundas
+            const depth = i / this.waves.length;
+            waveColor = color(
+              0, 
+              100 - depth * 50, 
+              180 - depth * 80,
+              alpha
+            );
+          }
+          
+          fill(waveColor);
+          noStroke();
+          
+          // Dibujar forma de la ola
+          beginShape();
+          
+          // Empezar desde el fondo
+          vertex(0, height);
+          
+          // Ajustar amplitud según energía
+          const dynamicAmplitude = wave.amplitude * (1 + energyFactor * 2);
+          
+          // Dibujar puntos de la ola
+          for (let x = 0; x <= width; x += 10) {
+            // Altura de la ola en esta posición x
+            let y = wave.y;
+            
+            // Onda principal
+            y += sin(x * wave.frequency + wave.phase) * dynamicAmplitude;
+            
+            // Onda secundaria (detalle)
+            y += sin(x * wave.frequency * 2.5 + wave.phase * 0.8) * dynamicAmplitude * 0.3;
+            
+            vertex(x, y);
+          }
+          
+          // Completar forma
+          vertex(width, height);
+          endShape(CLOSE);
+          
+          // Dibujar espuma para la ola superior
+          if (i === 0) {
+            this.drawFoam(wave, dynamicAmplitude);
+          }
+        }
+        
+        // Dibujar partículas
+        this.drawParticles();
+      }
+      
+      drawFoam(wave, amplitude) {
+        fill(255, 255, 255, 180);
+        noStroke();
+        
+        for (let x = 0; x < width; x += 20) {
+          // Calcular altura de la ola en esta posición
+          let y = wave.y + sin(x * wave.frequency + wave.phase) * amplitude;
+          y += sin(x * wave.frequency * 2.5 + wave.phase * 0.8) * amplitude * 0.3;
+          
+          // Detectar crestas de la ola
+          let prevY = wave.y + sin((x - 20) * wave.frequency + wave.phase) * amplitude;
+          let nextY = wave.y + sin((x + 20) * wave.frequency + wave.phase) * amplitude;
+          
+          if (y < prevY && y < nextY) { // Es una cresta
+            const foamSize = 4 + this.energyLevel / this.maxEnergy * 8;
+            ellipse(x, y, foamSize, foamSize * 0.7);
+          }
+        }
+        
+        // Dibujar partículas de espuma
+        for (let i = 0; i < this.foamParticles.length; i++) {
+          const p = this.foamParticles[i];
+          const alpha = p.life / 30 * 180;
+          
+          fill(255, 255, 255, alpha);
+          ellipse(p.x, p.y, p.size, p.size * 0.8);
+        }
+      }
+      
+      drawParticles() {
+        // Dibujar partículas de energía
+        for (let i = 0; i < this.particles.length; i++) {
+          const p = this.particles[i];
+          const fadeAlpha = p.life / 60;
+          
+          p.color.setAlpha(fadeAlpha * 200);
+          fill(p.color);
+          noStroke();
+          
+          ellipse(p.x, p.y, p.size, p.size);
+        }
+      }
+      
+      reset() {
+        // Reiniciar todas las variables del juego
+        this.gameState = "waiting";
+        this.scores = [[0, 0, 0], [0, 0, 0]];
+        this.totalScores = [0, 0];
+        this.currentPlayer = 0;
+        this.currentStage = 0;
+        this.energyLevel = 0;
+        this.currentScore = 0;
+        
+        // Limpiar temporizador
+        if (this.gameTimer) {
+          clearInterval(this.gameTimer);
+          this.gameTimer = null;
+        }
+        
+        // Reiniciar olas
+        this.initWaves();
+        
+        // Limpiar partículas
+        this.particles = [];
+        this.foamParticles = [];
+      }
+    }
+    
+    // Función para dibujar el cielo
+    function drawSky() {
+      // Gradiente del cielo
+      for (let y = 0; y < height * 0.65; y++) {
+        const t = map(y, 0, height * 0.65, 0, 1);
+        const skyColor = lerpColor(
+          color(100, 150, 255), // Azul claro arriba
+          color(50, 100, 200),  // Azul más oscuro abajo
+          t
+        );
+        
+        stroke(skyColor);
+        line(0, y, width, y);
+      }
+    }
+    
+    // Funciones principales de p5.js
+    function draw() {
+      // Actualizar el juego
+      game.update();
+      
+      // Dibujar el juego
+      game.draw();
+    }
+    
+    // Eventos del mouse
+    function mousePressed() {
+      // Para prevenir comportamiento predeterminado
+      return false;
+    }
+  </script>
+</body>
+</html>
