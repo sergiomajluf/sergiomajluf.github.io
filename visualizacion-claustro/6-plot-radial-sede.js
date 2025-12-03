@@ -82,8 +82,8 @@ function prepara(cod) {
 }
 
 function mouseReleased() {
-    //cicleThroughFiles();
-    //location.reload();
+    cicleThroughFiles();
+    location.reload();
     //saveFrames('plot-radial-' + ciudad, 'png', 1, 1);
 
 }
