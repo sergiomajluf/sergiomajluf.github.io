@@ -203,6 +203,28 @@
             gap: 12px;
         }
 
+        .toggle-setting {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toggle-setting input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-blue);
+        }
+
+        .toggle-setting span {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         .timer-row {
             display: grid;
             grid-template-columns: 1fr 80px 80px 40px;
@@ -211,6 +233,12 @@
             background: #f9f9f9;
             padding: 10px;
             border-radius: 12px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .timer-row.active-phase {
+            background: rgba(0, 113, 227, 0.12);
+            border: 1px solid rgba(0, 113, 227, 0.25);
         }
 
         .timer-row input {
@@ -339,6 +367,12 @@
                 <div class="config-toggle-icon" id="configIcon">▼</div>
             </div>
             <div class="config-content open" id="configContent">
+                <div class="toggle-setting">
+                    <label>
+                        <input type="checkbox" id="autoAdvanceToggle" onchange="setAutoAdvance(this.checked)">
+                        <span>Avanzar automáticamente entre fases</span>
+                    </label>
+                </div>
                 <div class="timer-list" id="timerList">
                     <!-- Timer rows will be injected here -->
                 </div>
@@ -360,6 +394,8 @@
         let isRunning = false;
         let intervalId = null;
         let isOvertime = false;
+        let phaseComplete = false;
+        let autoAdvance = true;
 
         // DOM Elements
         const phaseLabel = document.getElementById('phaseLabel');
@@ -370,10 +406,12 @@
         const startPauseBtn = document.getElementById('startPauseBtn');
         const nextBtn = document.getElementById('nextBtn');
         const timerListEl = document.getElementById('timerList');
+        const autoAdvanceToggle = document.getElementById('autoAdvanceToggle');
 
         // Initialization
         function init() {
             loadSettings();
+            autoAdvanceToggle.checked = autoAdvance;
             renderConfig();
             resetAll();
         }
@@ -382,7 +420,13 @@
             const saved = localStorage.getItem('timerConfig');
             if (saved) {
                 try {
-                    timers = JSON.parse(saved);
+                    const settings = JSON.parse(saved);
+                    if (Array.isArray(settings.timers)) {
+                        timers = settings.timers;
+                    }
+                    if (typeof settings.autoAdvance === 'boolean') {
+                        autoAdvance = settings.autoAdvance;
+                    }
                 } catch (e) {
                     console.error("Error loading settings", e);
                 }
@@ -390,7 +434,7 @@
         }
 
         function saveSettings() {
-            localStorage.setItem('timerConfig', JSON.stringify(timers));
+            localStorage.setItem('timerConfig', JSON.stringify({ timers, autoAdvance }));
         }
 
         // Timer Logic
@@ -411,6 +455,22 @@
 
                 timeRemaining -= delta;
                 totalTimeRemaining -= delta;
+
+                if (timeRemaining <= 0 && !isOvertime) {
+                    if (autoAdvance) {
+                        nextPhase();
+                        return;
+                    }
+
+                    if (!phaseComplete) {
+                        timeRemaining = 0;
+                        phaseComplete = true;
+                        calculateTotalTime();
+                        pauseTimer();
+                        updateDisplay();
+                        return;
+                    }
+                }
 
                 if (timeRemaining < 0 && !isOvertime) {
                     isOvertime = true;
@@ -458,9 +518,10 @@
             const timer = timers[index];
             timeRemaining = timer.duration * 60;
             isOvertime = false;
+            phaseComplete = false;
 
             calculateTotalTime();
-
+            renderConfig();
             updateDisplay();
         }
 
@@ -478,6 +539,7 @@
 
         function finish() {
             pauseTimer();
+            phaseComplete = false;
             phaseLabel.textContent = "¡Terminado!";
             mainDisplay.textContent = "00:00";
             timerCard.className = "timer-card status-finished";
@@ -526,7 +588,7 @@
             timerListEl.innerHTML = '';
             timers.forEach((timer, index) => {
                 const row = document.createElement('div');
-                row.className = 'timer-row';
+                row.className = `timer-row${index === currentTimerIndex ? ' active-phase' : ''}`;
                 row.innerHTML = `
                 <div>
                     ${index === 0 ? '<label>Nombre</label>' : ''}
@@ -576,6 +638,11 @@
                 calculateTotalTime();
                 updateDisplay();
             }
+        };
+
+        window.setAutoAdvance = function (value) {
+            autoAdvance = value;
+            saveSettings();
         };
 
         window.removeTimer = removeTimer;
